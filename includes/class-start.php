@@ -187,20 +187,20 @@ Class RFMP_Start {
                 if ($active[$method->id])
                 {
                     $rcur[] = $method->id;
-                    $script .= 'document.getElementById("rfmp_pm_' . $method->id . '").style.display = "block";' . "\n";
+                    $script .= 'document.getElementById("rfmp_pm_' . $method->id . '_' . $post . '").style.display = "block";' . "\n";
                 }
             }
             foreach ($this->mollie->methods->all(0,0) as $method)
             {
                 if ($active[$method->id] && !in_array($method->id, $rcur))
-                    $script .= 'document.getElementById("rfmp_pm_' . $method->id . '").style.display = (frequency!="once" ? "none" : "block");' . "\n";
+                    $script .= 'document.getElementById("rfmp_pm_' . $method->id . '_' . $post . '").style.display = (frequency!="once" ? "none" : "block");' . "\n";
             }
 
             $methods = '
             <script>
-            window.onload = rfmp_recurring_methods();
-            function rfmp_recurring_methods() {
-                var priceoptions = document.getElementsByName("rfmp_priceoptions");
+            window.onload = rfmp_recurring_methods_' . $post . '();
+            function rfmp_recurring_methods_' . $post . '() {
+                var priceoptions = document.getElementsByName("rfmp_priceoptions_' . $post . '");
                 if (priceoptions[0].tagName == "INPUT")
                 {
                     for (var i = 0, length = priceoptions.length; i < length; i++) {
@@ -235,15 +235,15 @@ Class RFMP_Start {
 
                         if ($display == 'list')
                         {
-                            $methods .= '<li id="rfmp_pm_' . esc_attr($method->id) . '"><label><input type="radio" name="rfmp_payment_method" value="' . esc_attr($method->id) . '"' . ($form_value == $method->id || $first ? ' checked' : '') . '> <img style="vertical-align:middle;display:inline-block;" src="' . esc_url($method->image->normal) . '"> ' . esc_html($method->description) . (!empty($subcharge) ? ' (+ ' . implode(' & ', $subcharge) . ')' : '') . '</label></li>';
+                            $methods .= '<li id="rfmp_pm_' . esc_attr($method->id) . '_' . $post . '"><label><input type="radio" name="rfmp_payment_method_' . $post . '" value="' . esc_attr($method->id) . '"' . ($form_value == $method->id || $first ? ' checked' : '') . '> <img style="vertical-align:middle;display:inline-block;" src="' . esc_url($method->image->normal) . '"> ' . esc_html($method->description) . (!empty($subcharge) ? ' (+ ' . implode(' & ', $subcharge) . ')' : '') . '</label></li>';
                         }
                         elseif ($display == 'text')
                         {
-                            $methods .= '<li id="rfmp_pm_' . esc_attr($method->id) . '"><input type="radio" name="rfmp_payment_method" value="' . esc_attr($method->id) . '"' . ($form_value == $method->id || $first ? ' checked' : '') . '> ' . esc_html($method->description) . (!empty($subcharge) ? ' (+ ' . implode(' & ', $subcharge) . ')' : '') . '</li>';
+                            $methods .= '<li id="rfmp_pm_' . esc_attr($method->id) . '_' . $post . '"><input type="radio" name="rfmp_payment_method_' . $post . '" value="' . esc_attr($method->id) . '"' . ($form_value == $method->id || $first ? ' checked' : '') . '> ' . esc_html($method->description) . (!empty($subcharge) ? ' (+ ' . implode(' & ', $subcharge) . ')' : '') . '</li>';
                         }
                         elseif ($display == 'icons')
                         {
-                            $methods .= '<li id="rfmp_pm_' . esc_attr($method->id) . '"><input type="radio" name="rfmp_payment_method" value="' . esc_attr($method->id) . '"' . ($form_value == $method->id || $first ? ' checked' : '') . '> <img style="vertical-align:middle;display:inline-block;" src="' . esc_url($method->image->normal) . '"> ' . (!empty($subcharge) ? ' (+ ' . implode(' & ', $subcharge) . ')' : '') . '</li>';
+                            $methods .= '<li id="rfmp_pm_' . esc_attr($method->id) . '_' . $post . '"><input type="radio" name="rfmp_payment_method_' . $post . '" value="' . esc_attr($method->id) . '"' . ($form_value == $method->id || $first ? ' checked' : '') . '> <img style="vertical-align:middle;display:inline-block;" src="' . esc_url($method->image->normal) . '"> ' . (!empty($subcharge) ? ' (+ ' . implode(' & ', $subcharge) . ')' : '') . '</li>';
                         }
                         $first = false;
                     }
@@ -252,7 +252,7 @@ Class RFMP_Start {
             }
             else
             {
-                $methods .= '<select name="rfmp_payment_method" class="' . esc_attr($class) . '">';
+                $methods .= '<select name="rfmp_payment_method_' . $post . '" class="' . esc_attr($class) . '">';
                 foreach ($this->mollie->methods->all(0,0, array('locale' => get_locale())) as $method)
                 {
                     if ($active[$method->id])
@@ -264,7 +264,7 @@ Class RFMP_Start {
                         if (isset($variable[$method->id]) && $variable[$method->id])
                             $subcharge[] = str_replace(',','.',$variable[$method->id]) . '%';
 
-                        $methods .= '<option id="rfmp_pm_' . esc_attr($method->id) . '" value="' . esc_attr($method->id) . '"' . ($form_value == $method->id ? ' selected' : '') . '>' . esc_html($method->description) . (!empty($subcharge) ? ' (+ ' . implode(' & ', $subcharge) . ')' : '') . '</option>';
+                        $methods .= '<option id="rfmp_pm_' . esc_attr($method->id) . '_' . $post . '" value="' . esc_attr($method->id) . '"' . ($form_value == $method->id ? ' selected' : '') . '>' . esc_html($method->description) . (!empty($subcharge) ? ' (+ ' . implode(' & ', $subcharge) . ')' : '') . '</option>';
                     }
                 }
                 $methods .= '</select>';
@@ -284,7 +284,7 @@ Class RFMP_Start {
         $option_frequency   = get_post_meta($post, '_rfmp_priceoption_frequency', true);
         $option_frequencyval= get_post_meta($post, '_rfmp_priceoption_frequencyval', true);
         $option_display     = get_post_meta($post, '_rfmp_priceoptions_display', true);
-        $form_value         = isset($_POST['rfmp_priceoptions']) ? $_POST['rfmp_priceoptions'] : '';
+        $form_value         = isset($_POST['rfmp_priceoptions_' . $post ]) ? $_POST['rfmp_priceoptions_' . $post] : '';
 
         $priceoptions = '';
         $first = true;
@@ -293,14 +293,14 @@ Class RFMP_Start {
             $priceoptions .= '<ul class="' . esc_attr($class) . '" style="list-style-type:none;margin:0;">';
             foreach ($option_desc as $key => $desc)
             {
-                $priceoptions .= '<li><label><input type="radio" onchange="rfmp_recurring_methods();" data-frequency="' . esc_attr($option_frequency[$key]) . '" name="rfmp_priceoptions" value="' . esc_attr($key) . '"' . ($form_value == $key || $first ? ' checked' : '') . '> ' . esc_html($desc) . ' (&euro;' . number_format($option_price[$key], 2, ',', '') . ' ' . $this->frequency_label($option_frequencyval[$key] . ' ' . $option_frequency[$key]) . ')</label></li>';
+                $priceoptions .= '<li><label><input type="radio" onchange="rfmp_recurring_methods_' . $post . '();" data-frequency="' . esc_attr($option_frequency[$key]) . '" name="rfmp_priceoptions_' . $post . '" value="' . esc_attr($key) . '"' . ($form_value == $key || $first ? ' checked' : '') . '> ' . esc_html($desc) . ' (&euro;' . number_format($option_price[$key], 2, ',', '') . ' ' . $this->frequency_label($option_frequencyval[$key] . ' ' . $option_frequency[$key]) . ')</label></li>';
                 $first = false;
             }
             $priceoptions .= '</ul>';
         }
         else
         {
-            $priceoptions .= '<select name="rfmp_priceoptions" onchange="rfmp_recurring_methods();" class="' . esc_attr($class) . '">';
+            $priceoptions .= '<select name="rfmp_priceoptions_' . $post . '" onchange="rfmp_recurring_methods_' . $post . '();" class="' . esc_attr($class) . '">';
             foreach ($option_desc as $key => $desc)
             {
                 $priceoptions .= '<option data-frequency="' . esc_attr($option_frequency[$key]) . '" value="' . esc_attr($key) . '"' . ($form_value == $key ? ' selected' : '') . '>' . esc_html($desc) . ' (&euro;' . number_format($option_price[$key], 2, ',', '') . ' ' . $this->frequency_label($option_frequencyval[$key] . ' ' . $option_frequency[$key]) . ')</option>';
@@ -351,7 +351,7 @@ Class RFMP_Start {
 
                 $rfmp_id = uniqid('rfmp-' . $post . '-');
 
-                $option             = $_POST['rfmp_priceoptions'];
+                $option             = $_POST['rfmp_priceoptions_' . $post];
                 $option_desc        = get_post_meta($post, '_rfmp_priceoption_desc', true);
                 $option_price       = get_post_meta($post, '_rfmp_priceoption_price', true);
                 $option_frequency   = get_post_meta($post, '_rfmp_priceoption_frequency', true);
@@ -365,7 +365,7 @@ Class RFMP_Start {
                 $name_field_value   = trim($_POST['form_' . $post . '_field_' . $name_field]);
                 $email_field_value  = trim($_POST['form_' . $post . '_field_' . $email_field]);
 
-                $method             = $_POST['rfmp_payment_method'];
+                $method             = $_POST['rfmp_payment_method_' . $post];
                 $fixed              = get_post_meta($post, '_rfmp_payment_method_fixed', true);
                 $variable           = get_post_meta($post, '_rfmp_payment_method_variable', true);
 
@@ -459,7 +459,7 @@ Class RFMP_Start {
                     {
                         $value = $_POST['form_' . $post . '_field_' . $key];
                         if ($field_type[$key] == 'payment_methods')
-                            $value = $_POST['rfmp_payment_method'];
+                            $value = $_POST['rfmp_payment_method_' . $post];
                         elseif ($field_type[$key] == 'priceoptions')
                             $value = $desc;
 

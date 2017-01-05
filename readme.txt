@@ -3,7 +3,7 @@ Contributors: ndijkstra
 Tags: mollie,registration,form,payments,ideal,bancontact,sofort,bitcoin,belfius,creditcard,recurring,forms
 Requires at least: 3.8
 Tested up to: 4.7
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,9 @@ For recurring payments you will need a supported payment method. You have to act
 
 
 == Changelog ==
+
+= 0.1.1 =
+* Bug fixes
 
 = 0.1.0 =
 * Beta release
