@@ -1,0 +1,480 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Mollie Forms\n"
+"POT-Creation-Date: 2016-12-29 17:52+0100\n"
+"PO-Revision-Date: 2016-12-29 17:55+0100\n"
+"Last-Translator: Nick Dijkstra <nbdijkstra@gmail.com>, 2016\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/nick-dijkstra/teams/70304/nl_NL/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/class-admin.php:32 includes/class-admin.php:33
+#: includes/class-admin.php:439 includes/class-admin.php:465
+msgid "Registrations"
+msgstr "Registraties"
+
+#: includes/class-admin.php:43 includes/class-admin.php:44
+#: includes/class-admin.php:563
+msgid "Registration"
+msgstr "Registratie"
+
+#: includes/class-admin.php:56
+msgid "Fields"
+msgstr "Velden"
+
+#: includes/class-admin.php:57
+msgid "Settings"
+msgstr "Instellingen"
+
+#: includes/class-admin.php:58 includes/class-admin.php:114
+msgid "Price options"
+msgstr "Prijsopties"
+
+#: includes/class-admin.php:59 includes/class-admin.php:134
+msgid "Payment methods"
+msgstr "Betaalmethodes"
+
+#: includes/class-admin.php:74 includes/class-admin.php:144
+msgid "Name"
+msgstr "Naam"
+
+#: includes/class-admin.php:74
+msgid "Email"
+msgstr "E-mail"
+
+#: includes/class-admin.php:74 includes/class-admin.php:628
+msgid "Payment method"
+msgstr "Betaalmethode"
+
+#: includes/class-admin.php:74
+msgid "Submit"
+msgstr "Versturen"
+
+#: includes/class-admin.php:82 includes/class-admin.php:166
+msgid "Text field"
+msgstr "Tekstveld"
+
+#: includes/class-admin.php:83 includes/class-admin.php:167
+msgid "Text area"
+msgstr "Tekstgebied"
+
+#: includes/class-admin.php:84 includes/class-admin.php:168
+#: includes/class-admin.php:294 includes/class-admin.php:305
+msgid "Dropdown"
+msgstr "Keuzemenu"
+
+#: includes/class-admin.php:85 includes/class-admin.php:169
+msgid "Checkbox"
+msgstr "Checkbox"
+
+#: includes/class-admin.php:92 includes/class-admin.php:176
+#: includes/class-admin.php:213 includes/class-admin.php:243
+#: includes/class-registrations-table.php:23
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: includes/class-admin.php:101
+msgid "Type"
+msgstr "Soort"
+
+#: includes/class-admin.php:102
+msgid "Label"
+msgstr "Label"
+
+#: includes/class-admin.php:103
+msgid "Values"
+msgstr "Waardes"
+
+#: includes/class-admin.php:104
+msgid "Class"
+msgstr "Class"
+
+#: includes/class-admin.php:105
+msgid "Required"
+msgstr "Verplicht"
+
+#: includes/class-admin.php:124
+msgid "Submit button"
+msgstr "Versturen knop"
+
+#: includes/class-admin.php:154
+msgid "Email address"
+msgstr "E-mailadres"
+
+#: includes/class-admin.php:183
+msgid "Add new field"
+msgstr "Nieuw veld toevoegen"
+
+#: includes/class-admin.php:207 includes/class-admin.php:237
+#: includes/class-admin.php:663
+msgid "Once"
+msgstr "Éenmalig"
+
+#: includes/class-admin.php:208 includes/class-admin.php:238
+msgid "Months"
+msgstr "Maanden"
+
+#: includes/class-admin.php:209 includes/class-admin.php:239
+msgid "Weeks"
+msgstr "Weken"
+
+#: includes/class-admin.php:210 includes/class-admin.php:240
+msgid "Days"
+msgstr "Dagen"
+
+#: includes/class-admin.php:222 includes/class-registrations-table.php:13
+msgid "Description"
+msgstr "Omschrijving"
+
+#: includes/class-admin.php:223
+msgid "Price"
+msgstr "Prijs"
+
+#: includes/class-admin.php:224 includes/class-registrations-table.php:12
+msgid "Frequency"
+msgstr "Frequentie"
+
+#: includes/class-admin.php:249
+msgid "Add new price option"
+msgstr "Nieuwe prijsoptie toevoegen"
+
+#: includes/class-admin.php:273
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: includes/class-admin.php:277
+msgid "Place this shortcode on a page or in a post"
+msgstr "Plaats deze shortcode op een pagina of in een bericht"
+
+#: includes/class-admin.php:282
+msgid "Mollie API-key"
+msgstr "Mollie API-key"
+
+#: includes/class-admin.php:290
+msgid "Price options display"
+msgstr "Prijsopties weergave"
+
+#: includes/class-admin.php:295
+msgid "List"
+msgstr "Lijst"
+
+#: includes/class-admin.php:301
+msgid "Payment methods display"
+msgstr "Betaalmethodes weergave"
+
+#: includes/class-admin.php:306
+msgid "List with icons and text"
+msgstr "Lijst met icoontjes en tekst"
+
+#: includes/class-admin.php:307
+msgid "List with text"
+msgstr "Lijst met tekst"
+
+#: includes/class-admin.php:308
+msgid "List with icons"
+msgstr "Lijst met icoontjes"
+
+#: includes/class-admin.php:314
+msgid "Success message"
+msgstr "Succesvol bericht"
+
+#: includes/class-admin.php:322
+msgid "Error message"
+msgstr "Error bericht"
+
+#: includes/class-admin.php:330
+msgid "Class success message"
+msgstr "Class succes bericht"
+
+#: includes/class-admin.php:338
+msgid "Class error message"
+msgstr "Class error bericht"
+
+#: includes/class-admin.php:361 includes/class-start.php:313
+msgid "No API-key set"
+msgstr "Geen API-key ingesteld"
+
+#: includes/class-admin.php:370
+msgid "Surcharge:"
+msgstr "Toeslag:"
+
+#: includes/class-admin.php:457
+msgid "The registration is successful deleted"
+msgstr "De registratie is succesvol verwijderd"
+
+#: includes/class-admin.php:475 includes/class-admin.php:481
+msgid "Registration not found"
+msgstr "Registratie niet gevonden"
+
+#: includes/class-admin.php:549
+msgid "The payment is successful refunded"
+msgstr "De betaling is succesvol teruggestort"
+
+#: includes/class-admin.php:552
+msgid "The payment can not be refunded"
+msgstr "De betaling kan niet worden teruggestort"
+
+#: includes/class-admin.php:555
+msgid "The subscription is successful cancelled"
+msgstr "Het abonnement is succesvol geannuleerd"
+
+#: includes/class-admin.php:574 includes/class-registrations-table.php:11
+msgid "Total price"
+msgstr "Totaalprijs"
+
+#: includes/class-admin.php:578
+msgid "Mollie Customer ID"
+msgstr "Mollie Klant ID"
+
+#: includes/class-admin.php:585
+msgid "Subscriptions"
+msgstr "Abonnementen"
+
+#: includes/class-admin.php:589
+msgid "Subscription ID"
+msgstr "Abonnement ID"
+
+#: includes/class-admin.php:590 includes/class-admin.php:627
+msgid "Created at"
+msgstr "Aangemaakt op"
+
+#: includes/class-admin.php:591
+msgid "Subscription mode"
+msgstr "Abonnement modus"
+
+#: includes/class-admin.php:592
+msgid "Subscription amount"
+msgstr "Abonnement bedrag"
+
+#: includes/class-admin.php:593
+msgid "Subscription method"
+msgstr "Abonnement methode"
+
+#: includes/class-admin.php:594
+msgid "Subscription interval"
+msgstr "Abonnement interval"
+
+#: includes/class-admin.php:595
+msgid "Subscription description"
+msgstr "Abonnement omschrijving"
+
+#: includes/class-admin.php:596
+msgid "Subscription status"
+msgstr "Abonnement status"
+
+#: includes/class-admin.php:614
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: includes/class-admin.php:621
+msgid "Payments"
+msgstr "Betalingen"
+
+#: includes/class-admin.php:625
+msgid "ID"
+msgstr "ID"
+
+#: includes/class-admin.php:626
+msgid "Payment ID"
+msgstr "Betaling ID"
+
+#: includes/class-admin.php:629
+msgid "Payment mode"
+msgstr "Betalingsmodus"
+
+#: includes/class-admin.php:630
+msgid "Payment status"
+msgstr "Betalingsstatus"
+
+#: includes/class-admin.php:631
+msgid "Amount"
+msgstr "Bedrag"
+
+#: includes/class-admin.php:648
+msgid "Refund"
+msgstr "Terugstorten"
+
+#: includes/class-admin.php:666 includes/class-admin.php:669
+#: includes/class-registrations-table.php:99
+#: includes/class-registrations-table.php:102 includes/class-start.php:474
+#: includes/class-start.php:477
+msgid "per month"
+msgstr "per maand"
+
+#: includes/class-admin.php:672 includes/class-registrations-table.php:105
+#: includes/class-start.php:480
+msgid "each quarter"
+msgstr "per kwartaal"
+
+#: includes/class-admin.php:675 includes/class-registrations-table.php:108
+#: includes/class-start.php:483
+msgid "per year"
+msgstr "per jaar"
+
+#: includes/class-admin.php:678 includes/class-admin.php:681
+#: includes/class-registrations-table.php:111
+#: includes/class-registrations-table.php:114 includes/class-start.php:486
+#: includes/class-start.php:489
+msgid "per week"
+msgstr "per week"
+
+#: includes/class-admin.php:684 includes/class-admin.php:687
+#: includes/class-registrations-table.php:117
+#: includes/class-registrations-table.php:120 includes/class-start.php:492
+#: includes/class-start.php:495
+msgid "per day"
+msgstr "per dag"
+
+#: includes/class-admin.php:690 includes/class-registrations-table.php:123
+#: includes/class-start.php:498
+msgid "each"
+msgstr "iedere"
+
+#: includes/class-registrations-table.php:8
+msgid "Date/time"
+msgstr "Datum/tijd"
+
+#: includes/class-registrations-table.php:9
+msgid "Form"
+msgstr "Formulier"
+
+#: includes/class-registrations-table.php:10
+msgid "Customer"
+msgstr "Klant"
+
+#: includes/class-registrations-table.php:23
+msgid "View"
+msgstr "Bekijken"
+
+#: includes/class-registrations-table.php:23
+msgid "Are you sure?"
+msgstr "Weet je het zeker?"
+
+#: includes/class-start.php:23
+msgid "Mollie Forms"
+msgstr "Mollie Forms"
+
+#: includes/class-start.php:24 includes/class-start.php:48
+msgid "Registration Form"
+msgstr "Registratieformulier"
+
+#: includes/class-start.php:25
+msgid "Item Archives"
+msgstr "Item Archief"
+
+#: includes/class-start.php:26
+msgid "Parent Item:"
+msgstr "Huidig item:"
+
+#: includes/class-start.php:27
+msgid "All Forms"
+msgstr "Alle formulieren"
+
+#: includes/class-start.php:28
+msgid "Add New Form"
+msgstr "Nieuw Formulier Toevoegen"
+
+#: includes/class-start.php:29
+msgid "Add New"
+msgstr "Nieuwe toevoegen"
+
+#: includes/class-start.php:30
+msgid "New Form"
+msgstr "Nieuw formulier"
+
+#: includes/class-start.php:31
+msgid "Edit Form"
+msgstr "Bewerk formulier"
+
+#: includes/class-start.php:32
+msgid "Update Form"
+msgstr "Update formulier"
+
+#: includes/class-start.php:33
+msgid "View Form"
+msgstr "Bekijk formulier"
+
+#: includes/class-start.php:34
+msgid "Search Form"
+msgstr "Zoek formulier"
+
+#: includes/class-start.php:35
+msgid "Not found"
+msgstr "Niet gevonden"
+
+#: includes/class-start.php:36
+msgid "Not found in Trash"
+msgstr "Niet gevonden in de prullenbak"
+
+#: includes/class-start.php:37
+msgid "Featured Image"
+msgstr "Uitgelichte afbeelding"
+
+#: includes/class-start.php:38
+msgid "Set featured image"
+msgstr "Stel uitgelichte afbeelding in"
+
+#: includes/class-start.php:39
+msgid "Remove featured image"
+msgstr "Verwijder uitgelichte afbeelding"
+
+#: includes/class-start.php:40
+msgid "Use as featured image"
+msgstr "Gebruik als uitgelichte afbeelding"
+
+#: includes/class-start.php:41
+msgid "Insert into form"
+msgstr "Voeg toe aan formulier"
+
+#: includes/class-start.php:42
+msgid "Uploaded to this form"
+msgstr "Geupload naar dit formulier"
+
+#: includes/class-start.php:43
+msgid "Forms list"
+msgstr "Formulieren lijst"
+
+#: includes/class-start.php:44
+msgid "Forms list navigation"
+msgstr "Formulieren lijst navigatie"
+
+#: includes/class-start.php:45
+msgid "Filter forms list"
+msgstr "Filter formulieren lijst"
+
+#: includes/class-start.php:49
+msgid "Registration Form Description"
+msgstr "Registratieformulier omschrijving"
+
+#: includes/class-start.php:70
+msgid "weeks"
+msgstr "weken"
+
+#: includes/class-start.php:71
+msgid "months"
+msgstr "maanden"
+
+#: includes/class-start.php:72
+msgid "days"
+msgstr "dagen"
+
+#: includes/class-start.php:85
+msgid "Form not found"
+msgstr "Formulier niet gevonden"
+
+#: includes/class-start.php:103
+msgid "No payment found"
+msgstr "Geen betaling gevonden"
+
+#: includes/class-start.php:295
+#, php-format
+msgid "%s is a required field"
+msgstr "%s is een verplicht veld"

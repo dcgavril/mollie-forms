@@ -1,0 +1,480 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mollie Forms\n"
+"POT-Creation-Date: 2016-12-29 17:52+0100\n"
+"PO-Revision-Date: 2016-12-29 15:57+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/class-admin.php:32 includes/class-admin.php:33
+#: includes/class-admin.php:439 includes/class-admin.php:465
+msgid "Registrations"
+msgstr ""
+
+#: includes/class-admin.php:43 includes/class-admin.php:44
+#: includes/class-admin.php:563
+msgid "Registration"
+msgstr ""
+
+#: includes/class-admin.php:56
+msgid "Fields"
+msgstr ""
+
+#: includes/class-admin.php:57
+msgid "Settings"
+msgstr ""
+
+#: includes/class-admin.php:58 includes/class-admin.php:114
+msgid "Price options"
+msgstr ""
+
+#: includes/class-admin.php:59 includes/class-admin.php:134
+msgid "Payment methods"
+msgstr ""
+
+#: includes/class-admin.php:74 includes/class-admin.php:144
+msgid "Name"
+msgstr ""
+
+#: includes/class-admin.php:74
+msgid "Email"
+msgstr ""
+
+#: includes/class-admin.php:74 includes/class-admin.php:628
+msgid "Payment method"
+msgstr ""
+
+#: includes/class-admin.php:74
+msgid "Submit"
+msgstr ""
+
+#: includes/class-admin.php:82 includes/class-admin.php:166
+msgid "Text field"
+msgstr ""
+
+#: includes/class-admin.php:83 includes/class-admin.php:167
+msgid "Text area"
+msgstr ""
+
+#: includes/class-admin.php:84 includes/class-admin.php:168
+#: includes/class-admin.php:294 includes/class-admin.php:305
+msgid "Dropdown"
+msgstr ""
+
+#: includes/class-admin.php:85 includes/class-admin.php:169
+msgid "Checkbox"
+msgstr ""
+
+#: includes/class-admin.php:92 includes/class-admin.php:176
+#: includes/class-admin.php:213 includes/class-admin.php:243
+#: includes/class-registrations-table.php:23
+msgid "Delete"
+msgstr ""
+
+#: includes/class-admin.php:101
+msgid "Type"
+msgstr ""
+
+#: includes/class-admin.php:102
+msgid "Label"
+msgstr ""
+
+#: includes/class-admin.php:103
+msgid "Values"
+msgstr ""
+
+#: includes/class-admin.php:104
+msgid "Class"
+msgstr ""
+
+#: includes/class-admin.php:105
+msgid "Required"
+msgstr ""
+
+#: includes/class-admin.php:124
+msgid "Submit button"
+msgstr ""
+
+#: includes/class-admin.php:154
+msgid "Email address"
+msgstr ""
+
+#: includes/class-admin.php:183
+msgid "Add new field"
+msgstr ""
+
+#: includes/class-admin.php:207 includes/class-admin.php:237
+#: includes/class-admin.php:663
+msgid "Once"
+msgstr ""
+
+#: includes/class-admin.php:208 includes/class-admin.php:238
+msgid "Months"
+msgstr ""
+
+#: includes/class-admin.php:209 includes/class-admin.php:239
+msgid "Weeks"
+msgstr ""
+
+#: includes/class-admin.php:210 includes/class-admin.php:240
+msgid "Days"
+msgstr ""
+
+#: includes/class-admin.php:222 includes/class-registrations-table.php:13
+msgid "Description"
+msgstr ""
+
+#: includes/class-admin.php:223
+msgid "Price"
+msgstr ""
+
+#: includes/class-admin.php:224 includes/class-registrations-table.php:12
+msgid "Frequency"
+msgstr ""
+
+#: includes/class-admin.php:249
+msgid "Add new price option"
+msgstr ""
+
+#: includes/class-admin.php:273
+msgid "Shortcode"
+msgstr ""
+
+#: includes/class-admin.php:277
+msgid "Place this shortcode on a page or in a post"
+msgstr ""
+
+#: includes/class-admin.php:282
+msgid "Mollie API-key"
+msgstr ""
+
+#: includes/class-admin.php:290
+msgid "Price options display"
+msgstr ""
+
+#: includes/class-admin.php:295
+msgid "List"
+msgstr ""
+
+#: includes/class-admin.php:301
+msgid "Payment methods display"
+msgstr ""
+
+#: includes/class-admin.php:306
+msgid "List with icons and text"
+msgstr ""
+
+#: includes/class-admin.php:307
+msgid "List with text"
+msgstr ""
+
+#: includes/class-admin.php:308
+msgid "List with icons"
+msgstr ""
+
+#: includes/class-admin.php:314
+msgid "Success message"
+msgstr ""
+
+#: includes/class-admin.php:322
+msgid "Error message"
+msgstr ""
+
+#: includes/class-admin.php:330
+msgid "Class success message"
+msgstr ""
+
+#: includes/class-admin.php:338
+msgid "Class error message"
+msgstr ""
+
+#: includes/class-admin.php:361 includes/class-start.php:313
+msgid "No API-key set"
+msgstr ""
+
+#: includes/class-admin.php:370
+msgid "Surcharge:"
+msgstr ""
+
+#: includes/class-admin.php:457
+msgid "The registration is successful deleted"
+msgstr ""
+
+#: includes/class-admin.php:475 includes/class-admin.php:481
+msgid "Registration not found"
+msgstr ""
+
+#: includes/class-admin.php:549
+msgid "The payment is successful refunded"
+msgstr ""
+
+#: includes/class-admin.php:552
+msgid "The payment can not be refunded"
+msgstr ""
+
+#: includes/class-admin.php:555
+msgid "The subscription is successful cancelled"
+msgstr ""
+
+#: includes/class-admin.php:574 includes/class-registrations-table.php:11
+msgid "Total price"
+msgstr ""
+
+#: includes/class-admin.php:578
+msgid "Mollie Customer ID"
+msgstr ""
+
+#: includes/class-admin.php:585
+msgid "Subscriptions"
+msgstr ""
+
+#: includes/class-admin.php:589
+msgid "Subscription ID"
+msgstr ""
+
+#: includes/class-admin.php:590 includes/class-admin.php:627
+msgid "Created at"
+msgstr ""
+
+#: includes/class-admin.php:591
+msgid "Subscription mode"
+msgstr ""
+
+#: includes/class-admin.php:592
+msgid "Subscription amount"
+msgstr ""
+
+#: includes/class-admin.php:593
+msgid "Subscription method"
+msgstr ""
+
+#: includes/class-admin.php:594
+msgid "Subscription interval"
+msgstr ""
+
+#: includes/class-admin.php:595
+msgid "Subscription description"
+msgstr ""
+
+#: includes/class-admin.php:596
+msgid "Subscription status"
+msgstr ""
+
+#: includes/class-admin.php:614
+msgid "Cancel"
+msgstr ""
+
+#: includes/class-admin.php:621
+msgid "Payments"
+msgstr ""
+
+#: includes/class-admin.php:625
+msgid "ID"
+msgstr ""
+
+#: includes/class-admin.php:626
+msgid "Payment ID"
+msgstr ""
+
+#: includes/class-admin.php:629
+msgid "Payment mode"
+msgstr ""
+
+#: includes/class-admin.php:630
+msgid "Payment status"
+msgstr ""
+
+#: includes/class-admin.php:631
+msgid "Amount"
+msgstr ""
+
+#: includes/class-admin.php:648
+msgid "Refund"
+msgstr ""
+
+#: includes/class-admin.php:666 includes/class-admin.php:669
+#: includes/class-registrations-table.php:99
+#: includes/class-registrations-table.php:102 includes/class-start.php:474
+#: includes/class-start.php:477
+msgid "per month"
+msgstr ""
+
+#: includes/class-admin.php:672 includes/class-registrations-table.php:105
+#: includes/class-start.php:480
+msgid "each quarter"
+msgstr ""
+
+#: includes/class-admin.php:675 includes/class-registrations-table.php:108
+#: includes/class-start.php:483
+msgid "per year"
+msgstr ""
+
+#: includes/class-admin.php:678 includes/class-admin.php:681
+#: includes/class-registrations-table.php:111
+#: includes/class-registrations-table.php:114 includes/class-start.php:486
+#: includes/class-start.php:489
+msgid "per week"
+msgstr ""
+
+#: includes/class-admin.php:684 includes/class-admin.php:687
+#: includes/class-registrations-table.php:117
+#: includes/class-registrations-table.php:120 includes/class-start.php:492
+#: includes/class-start.php:495
+msgid "per day"
+msgstr ""
+
+#: includes/class-admin.php:690 includes/class-registrations-table.php:123
+#: includes/class-start.php:498
+msgid "each"
+msgstr ""
+
+#: includes/class-registrations-table.php:8
+msgid "Date/time"
+msgstr ""
+
+#: includes/class-registrations-table.php:9
+msgid "Form"
+msgstr ""
+
+#: includes/class-registrations-table.php:10
+msgid "Customer"
+msgstr ""
+
+#: includes/class-registrations-table.php:23
+msgid "View"
+msgstr ""
+
+#: includes/class-registrations-table.php:23
+msgid "Are you sure?"
+msgstr ""
+
+#: includes/class-start.php:23
+msgid "Mollie Forms"
+msgstr ""
+
+#: includes/class-start.php:24 includes/class-start.php:48
+msgid "Registration Form"
+msgstr ""
+
+#: includes/class-start.php:25
+msgid "Item Archives"
+msgstr ""
+
+#: includes/class-start.php:26
+msgid "Parent Item:"
+msgstr ""
+
+#: includes/class-start.php:27
+msgid "All Forms"
+msgstr ""
+
+#: includes/class-start.php:28
+msgid "Add New Form"
+msgstr ""
+
+#: includes/class-start.php:29
+msgid "Add New"
+msgstr ""
+
+#: includes/class-start.php:30
+msgid "New Form"
+msgstr ""
+
+#: includes/class-start.php:31
+msgid "Edit Form"
+msgstr ""
+
+#: includes/class-start.php:32
+msgid "Update Form"
+msgstr ""
+
+#: includes/class-start.php:33
+msgid "View Form"
+msgstr ""
+
+#: includes/class-start.php:34
+msgid "Search Form"
+msgstr ""
+
+#: includes/class-start.php:35
+msgid "Not found"
+msgstr ""
+
+#: includes/class-start.php:36
+msgid "Not found in Trash"
+msgstr ""
+
+#: includes/class-start.php:37
+msgid "Featured Image"
+msgstr ""
+
+#: includes/class-start.php:38
+msgid "Set featured image"
+msgstr ""
+
+#: includes/class-start.php:39
+msgid "Remove featured image"
+msgstr ""
+
+#: includes/class-start.php:40
+msgid "Use as featured image"
+msgstr ""
+
+#: includes/class-start.php:41
+msgid "Insert into form"
+msgstr ""
+
+#: includes/class-start.php:42
+msgid "Uploaded to this form"
+msgstr ""
+
+#: includes/class-start.php:43
+msgid "Forms list"
+msgstr ""
+
+#: includes/class-start.php:44
+msgid "Forms list navigation"
+msgstr ""
+
+#: includes/class-start.php:45
+msgid "Filter forms list"
+msgstr ""
+
+#: includes/class-start.php:49
+msgid "Registration Form Description"
+msgstr ""
+
+#: includes/class-start.php:70
+msgid "weeks"
+msgstr ""
+
+#: includes/class-start.php:71
+msgid "months"
+msgstr ""
+
+#: includes/class-start.php:72
+msgid "days"
+msgstr ""
+
+#: includes/class-start.php:85
+msgid "Form not found"
+msgstr ""
+
+#: includes/class-start.php:103
+msgid "No payment found"
+msgstr ""
+
+#: includes/class-start.php:295
+#, php-format
+msgid "%s is a required field"
+msgstr ""
