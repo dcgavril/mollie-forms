@@ -13,7 +13,9 @@ Create registration forms with payment methods of Mollie. One-time and recurring
 
 Create registration forms with payment methods of Mollie. One-time and recurring payments are possible.
 
-= This is a Beta release, we are still working on more features. Feature requests are welcome! =
+= This is a Beta release, we are still working on more features. =
+
+
 
 **Features:**
 
