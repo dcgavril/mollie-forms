@@ -96,10 +96,13 @@ Class RFMP_Start {
             $payment = $this->wpdb->get_row("SELECT * FROM " . RFMP_TABLE_PAYMENTS . " WHERE rfmp_id='" . esc_sql($_GET['payment']) . "'");
             if ($payment == null)
                 return '<p class="' . esc_attr($class_error) . '">' . esc_html__('No payment found', RFMP_TXT_DOMAIN) . '</p>';
-            elseif ($payment->payment_status == 'paid')
-                return '<p class="' . esc_attr($class_success) . '">' . esc_html($message_success) . '</p>';
-            else
-                $output .= '<p class="' . esc_attr($class_error) . '">' . esc_html($message_error) . '</p>';
+            elseif ($payment->form_id == $post->ID)
+            {
+                if ($payment->payment_status == 'paid')
+                    return '<p class="' . esc_attr($class_success) . '">' . esc_html($message_success) . '</p>';
+                else
+                    $output .= '<p class="' . esc_attr($class_error) . '">' . esc_html($message_error) . '</p>';
+            }
         }
 
         // Display form errors
@@ -198,7 +201,7 @@ Class RFMP_Start {
 
             $methods = '
             <script>
-            window.onload = rfmp_recurring_methods_' . $post . '();
+            window.onload = setTimeout(rfmp_recurring_methods_' . $post . ', 100);
             function rfmp_recurring_methods_' . $post . '() {
                 var priceoptions = document.getElementsByName("rfmp_priceoptions_' . $post . '");
                 if (priceoptions[0].tagName == "INPUT")
