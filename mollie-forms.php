@@ -23,6 +23,9 @@ define('RFMP_PLUGIN_BASE', plugin_basename(__FILE__));
 global $wpdb;
 
 // Includes
+if(!class_exists('Mollie_API_Client'))
+    require_once RFMP_PLUGIN_PATH . 'libs/mollie-api-php/src/Mollie/API/Autoloader.php';
+
 require_once RFMP_PLUGIN_PATH . 'includes/config.php';
 require_once RFMP_PLUGIN_PATH . 'includes/class-webhook.php';
 require_once RFMP_PLUGIN_PATH . 'includes/class-start.php';
@@ -40,10 +43,6 @@ if (is_admin())
 
     $admin = new RFMP_Admin;
 }
-
-if(!class_exists('Mollie_API_Client'))
-    require_once RFMP_PLUGIN_PATH . 'libs/mollie-api-php/src/Mollie/API/Autoloader.php';
-
 
 // Register hooks
 register_activation_hook(__FILE__, 'rfmp_install_plugin');
