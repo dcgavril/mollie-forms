@@ -2,8 +2,8 @@
 Contributors: ndijkstra
 Tags: mollie,registration,form,payments,ideal,bancontact,sofort,bitcoin,belfius,creditcard,recurring,forms
 Requires at least: 3.8
-Tested up to: 4.7
-Stable tag: 0.1.3
+Tested up to: 4.7.1
+Stable tag: 0.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
