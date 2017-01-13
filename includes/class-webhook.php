@@ -69,8 +69,7 @@ class RFMP_Webhook {
             $api_key    = get_post_meta($post, '_rfmp_api_key', true);
             $payment_id = $_POST['id'];
 
-            $url        = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on'?'https://':'http://') . $_SERVER['HTTP_HOST'];
-            $webhook    = $url . RFMP_WEBHOOK . $post . '/';
+            $webhook    = get_site_url(null, RFMP_WEBHOOK . $post . '/');
 
             // Connect with Mollie
             $mollie = new Mollie_API_Client;

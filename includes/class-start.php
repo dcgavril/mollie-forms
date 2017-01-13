@@ -18,35 +18,35 @@ Class RFMP_Start {
     public function add_registration_form_type()
     {
         $labels = array(
-            'name'                  => _x('Mollie Forms', 'Registration Forms General Name', RFMP_TXT_DOMAIN),
-            'singular_name'         => _x('Mollie Form', 'Registration Form Singular Name', RFMP_TXT_DOMAIN),
-            'menu_name'             => __('Mollie Forms', RFMP_TXT_DOMAIN),
-            'name_admin_bar'        => __('Registration Form', RFMP_TXT_DOMAIN),
-            'archives'              => __('Item Archives', RFMP_TXT_DOMAIN),
-            'parent_item_colon'     => __('Parent Item:', RFMP_TXT_DOMAIN),
-            'all_items'             => __('All Forms', RFMP_TXT_DOMAIN),
-            'add_new_item'          => __('Add New Form', RFMP_TXT_DOMAIN),
-            'add_new'               => __('Add New', RFMP_TXT_DOMAIN),
-            'new_item'              => __('New Form', RFMP_TXT_DOMAIN),
-            'edit_item'             => __('Edit Form', RFMP_TXT_DOMAIN),
-            'update_item'           => __('Update Form', RFMP_TXT_DOMAIN),
-            'view_item'             => __('View Form', RFMP_TXT_DOMAIN),
-            'search_items'          => __('Search Form', RFMP_TXT_DOMAIN),
-            'not_found'             => __('Not found', RFMP_TXT_DOMAIN),
-            'not_found_in_trash'    => __('Not found in Trash', RFMP_TXT_DOMAIN),
-            'featured_image'        => __('Featured Image', RFMP_TXT_DOMAIN),
-            'set_featured_image'    => __('Set featured image', RFMP_TXT_DOMAIN),
-            'remove_featured_image' => __('Remove featured image', RFMP_TXT_DOMAIN),
-            'use_featured_image'    => __('Use as featured image', RFMP_TXT_DOMAIN),
-            'insert_into_item'      => __('Insert into form', RFMP_TXT_DOMAIN),
-            'uploaded_to_this_item' => __('Uploaded to this form', RFMP_TXT_DOMAIN),
-            'items_list'            => __('Forms list', RFMP_TXT_DOMAIN),
-            'items_list_navigation' => __('Forms list navigation', RFMP_TXT_DOMAIN),
-            'filter_items_list'     => __('Filter forms list', RFMP_TXT_DOMAIN),
+            'name'                  => _x('Mollie Forms', 'Registration Forms General Name', 'registration-form-with-mollie-payments'),
+            'singular_name'         => _x('Mollie Form', 'Registration Form Singular Name', 'registration-form-with-mollie-payments'),
+            'menu_name'             => __('Mollie Forms', 'registration-form-with-mollie-payments'),
+            'name_admin_bar'        => __('Registration Form', 'registration-form-with-mollie-payments'),
+            'archives'              => __('Item Archives', 'registration-form-with-mollie-payments'),
+            'parent_item_colon'     => __('Parent Item:', 'registration-form-with-mollie-payments'),
+            'all_items'             => __('All Forms', 'registration-form-with-mollie-payments'),
+            'add_new_item'          => __('Add New Form', 'registration-form-with-mollie-payments'),
+            'add_new'               => __('Add New', 'registration-form-with-mollie-payments'),
+            'new_item'              => __('New Form', 'registration-form-with-mollie-payments'),
+            'edit_item'             => __('Edit Form', 'registration-form-with-mollie-payments'),
+            'update_item'           => __('Update Form', 'registration-form-with-mollie-payments'),
+            'view_item'             => __('View Form', 'registration-form-with-mollie-payments'),
+            'search_items'          => __('Search Form', 'registration-form-with-mollie-payments'),
+            'not_found'             => __('Not found', 'registration-form-with-mollie-payments'),
+            'not_found_in_trash'    => __('Not found in Trash', 'registration-form-with-mollie-payments'),
+            'featured_image'        => __('Featured Image', 'registration-form-with-mollie-payments'),
+            'set_featured_image'    => __('Set featured image', 'registration-form-with-mollie-payments'),
+            'remove_featured_image' => __('Remove featured image', 'registration-form-with-mollie-payments'),
+            'use_featured_image'    => __('Use as featured image', 'registration-form-with-mollie-payments'),
+            'insert_into_item'      => __('Insert into form', 'registration-form-with-mollie-payments'),
+            'uploaded_to_this_item' => __('Uploaded to this form', 'registration-form-with-mollie-payments'),
+            'items_list'            => __('Forms list', 'registration-form-with-mollie-payments'),
+            'items_list_navigation' => __('Forms list navigation', 'registration-form-with-mollie-payments'),
+            'filter_items_list'     => __('Filter forms list', 'registration-form-with-mollie-payments'),
         );
         $args = array(
-            'label'                 => __('Registration Form', RFMP_TXT_DOMAIN),
-            'description'           => __('Registration Form Description', RFMP_TXT_DOMAIN),
+            'label'                 => __('Registration Form', 'registration-form-with-mollie-payments'),
+            'description'           => __('Registration Form Description', 'registration-form-with-mollie-payments'),
             'labels'                => $labels,
             'supports'              => array(),
             'taxonomies'            => array(),
@@ -77,7 +77,7 @@ Class RFMP_Start {
         $post = get_post($atts['id']);
 
         if (!$post->ID)
-            return __('Form not found', RFMP_TXT_DOMAIN);
+            return __('Form not found', 'registration-form-with-mollie-payments');
 
         $fields_type = get_post_meta($post->ID, '_rfmp_fields_type', true);
 
@@ -95,7 +95,7 @@ Class RFMP_Start {
 
             $payment = $this->wpdb->get_row("SELECT * FROM " . RFMP_TABLE_PAYMENTS . " WHERE rfmp_id='" . esc_sql($_GET['payment']) . "'");
             if ($payment == null)
-                return '<p class="' . esc_attr($class_error) . '">' . esc_html__('No payment found', RFMP_TXT_DOMAIN) . '</p>';
+                return '<p class="' . esc_attr($class_error) . '">' . esc_html__('No payment found', 'registration-form-with-mollie-payments') . '</p>';
             elseif ($payment->form_id == $post->ID)
             {
                 if ($payment->payment_status == 'paid')
@@ -329,7 +329,7 @@ Class RFMP_Start {
             if (isset($_POST[$name]) && empty($_POST[$name]) && $required)
             {
                 $return = false;
-                $this->required_errors .= '<p class="rfmp_error" style="color:red;">- ' . sprintf(esc_html__('%s is a required field', RFMP_TXT_DOMAIN), $fields_label[$key]) . '</p>';
+                $this->required_errors .= '<p class="rfmp_error" style="color:red;">- ' . sprintf(esc_html__('%s is a required field', 'registration-form-with-mollie-payments'), $fields_label[$key]) . '</p>';
             }
         }
 
@@ -339,15 +339,14 @@ Class RFMP_Start {
     private function do_post($post)
     {
         $api_key    = get_post_meta($post, '_rfmp_api_key', true);
-        $url        = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on'?'https://':'http://') . $_SERVER['HTTP_HOST'];
-        $webhook    = $url . RFMP_WEBHOOK . $post . '/';
-        $redirect   = $url . $_SERVER['REQUEST_URI'] . (strstr($_SERVER['REQUEST_URI'], '?') ? '&' : '?');
+        $webhook    = get_site_url(null, RFMP_WEBHOOK . $post . '/');
+        $redirect   = get_site_url(null, $_SERVER['REQUEST_URI'] . (strstr($_SERVER['REQUEST_URI'], '?') ? '&' : '?'));
 
 
         try {
 
             if (!$api_key)
-                echo '<p style="color: red">' . esc_html__('No API-key set', RFMP_TXT_DOMAIN) . '</p>';
+                echo '<p style="color: red">' . esc_html__('No API-key set', 'registration-form-with-mollie-payments') . '</p>';
             else
             {
                 $this->mollie->setApiKey($api_key);
@@ -507,9 +506,9 @@ Class RFMP_Start {
             'months',
         );
         $translations = array(
-            __('days', RFMP_TXT_DOMAIN),
-            __('weeks', RFMP_TXT_DOMAIN),
-            __('months', RFMP_TXT_DOMAIN),
+            __('days', 'registration-form-with-mollie-payments'),
+            __('weeks', 'registration-form-with-mollie-payments'),
+            __('months', 'registration-form-with-mollie-payments'),
         );
 
         $frequency = trim($frequency);
@@ -519,31 +518,31 @@ Class RFMP_Start {
                 $return = '';
                 break;
             case '1 months':
-                $return = __('per month', RFMP_TXT_DOMAIN);
+                $return = __('per month', 'registration-form-with-mollie-payments');
                 break;
             case '1 month':
-                $return = __('per month', RFMP_TXT_DOMAIN);
+                $return = __('per month', 'registration-form-with-mollie-payments');
                 break;
             case '3 months':
-                $return = __('each quarter', RFMP_TXT_DOMAIN);
+                $return = __('each quarter', 'registration-form-with-mollie-payments');
                 break;
             case '12 months':
-                $return = __('per year', RFMP_TXT_DOMAIN);
+                $return = __('per year', 'registration-form-with-mollie-payments');
                 break;
             case '1 weeks':
-                $return = __('per week', RFMP_TXT_DOMAIN);
+                $return = __('per week', 'registration-form-with-mollie-payments');
                 break;
             case '1 week':
-                $return = __('per week', RFMP_TXT_DOMAIN);
+                $return = __('per week', 'registration-form-with-mollie-payments');
                 break;
             case '1 days':
-                $return = __('per day', RFMP_TXT_DOMAIN);
+                $return = __('per day', 'registration-form-with-mollie-payments');
                 break;
             case '1 day':
-                $return = __('per day', RFMP_TXT_DOMAIN);
+                $return = __('per day', 'registration-form-with-mollie-payments');
                 break;
             default:
-                $return = __('each', RFMP_TXT_DOMAIN) . ' ' . str_replace($words, $translations, $frequency);
+                $return = __('each', 'registration-form-with-mollie-payments') . ' ' . str_replace($words, $translations, $frequency);
         }
 
         return $return;

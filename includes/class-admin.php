@@ -29,8 +29,8 @@ Class RFMP_Admin {
     {
         add_submenu_page(
             'edit.php?post_type=rfmp',
-            __('Registrations', RFMP_TXT_DOMAIN),
-            __('Registrations', RFMP_TXT_DOMAIN),
+            __('Registrations', 'registration-form-with-mollie-payments'),
+            __('Registrations', 'registration-form-with-mollie-payments'),
             'manage_options',
             'registrations',
             array(
@@ -40,8 +40,8 @@ Class RFMP_Admin {
         );
         add_submenu_page(
             null,
-            __('Registration', RFMP_TXT_DOMAIN),
-            __('Registration', RFMP_TXT_DOMAIN),
+            __('Registration', 'registration-form-with-mollie-payments'),
+            __('Registration', 'registration-form-with-mollie-payments'),
             'manage_options',
             'registration',
             array(
@@ -53,10 +53,10 @@ Class RFMP_Admin {
 
     public function add_meta_boxes($post)
     {
-        add_meta_box('rfmp_meta_box_fields', __('Fields', RFMP_TXT_DOMAIN), array($this, 'build_meta_boxes_fields'), 'rfmp', 'normal', 'high');
-        add_meta_box('rfmp_meta_box_settings', __('Settings', RFMP_TXT_DOMAIN), array($this, 'build_meta_boxes_settings'), 'rfmp', 'normal', 'default');
-        add_meta_box('rfmp_meta_box_priceoptions', __('Price options', RFMP_TXT_DOMAIN), array($this, 'build_meta_boxes_priceoptions'), 'rfmp', 'normal', 'default');
-        add_meta_box('rfmp_meta_box_paymentmethods', __('Payment methods', RFMP_TXT_DOMAIN), array($this, 'build_meta_boxes_paymentmethods'), 'rfmp', 'side', 'default');
+        add_meta_box('rfmp_meta_box_fields', __('Fields', 'registration-form-with-mollie-payments'), array($this, 'build_meta_boxes_fields'), 'rfmp', 'normal', 'high');
+        add_meta_box('rfmp_meta_box_settings', __('Settings', 'registration-form-with-mollie-payments'), array($this, 'build_meta_boxes_settings'), 'rfmp', 'normal', 'default');
+        add_meta_box('rfmp_meta_box_priceoptions', __('Price options', 'registration-form-with-mollie-payments'), array($this, 'build_meta_boxes_priceoptions'), 'rfmp', 'normal', 'default');
+        add_meta_box('rfmp_meta_box_paymentmethods', __('Payment methods', 'registration-form-with-mollie-payments'), array($this, 'build_meta_boxes_paymentmethods'), 'rfmp', 'side', 'default');
     }
 
     public function build_meta_boxes_fields($post)
@@ -71,7 +71,7 @@ Class RFMP_Admin {
         if (empty($field_type))
         {
             $field_type = array(0 => 'name', 1 => 'email', 2 => 'priceoptions', 3 => 'payment_methods', 4 => 'submit');
-            $field_label = array(0 => __('Name', RFMP_TXT_DOMAIN), 1 => __('Email', RFMP_TXT_DOMAIN), 2 => '', 3 => __('Payment method', RFMP_TXT_DOMAIN), 4 => __('Submit', RFMP_TXT_DOMAIN));
+            $field_label = array(0 => __('Name', 'registration-form-with-mollie-payments'), 1 => __('Email', 'registration-form-with-mollie-payments'), 2 => '', 3 => __('Payment method', 'registration-form-with-mollie-payments'), 4 => __('Submit', 'registration-form-with-mollie-payments'));
         }
         ?>
         <script id="rfmp_template_field" type="text/template">
@@ -79,17 +79,17 @@ Class RFMP_Admin {
                 <td class="sort"></td>
                 <td>
                     <select name="rfmp_fields_type[]" class="rfmp_type">
-                        <option value="text"><?php esc_html_e('Text field', RFMP_TXT_DOMAIN);?></option>
-                        <option value="textarea"><?php esc_html_e('Text area', RFMP_TXT_DOMAIN);?></option>
-                        <option value="dropdown"><?php esc_html_e('Dropdown', RFMP_TXT_DOMAIN);?></option>
-                        <option value="checkbox"><?php esc_html_e('Checkbox', RFMP_TXT_DOMAIN);?></option>
+                        <option value="text"><?php esc_html_e('Text field', 'registration-form-with-mollie-payments');?></option>
+                        <option value="textarea"><?php esc_html_e('Text area', 'registration-form-with-mollie-payments');?></option>
+                        <option value="dropdown"><?php esc_html_e('Dropdown', 'registration-form-with-mollie-payments');?></option>
+                        <option value="checkbox"><?php esc_html_e('Checkbox', 'registration-form-with-mollie-payments');?></option>
                     </select>
                 </td>
                 <td><input type="text" name="rfmp_fields_label[]" style="width:100%"></td>
                 <td><input style="display:none;width:100%" class="rfmp_value" type="text" name="rfmp_fields_value[]" placeholder="value1|value2|value3"></td>
                 <td><input type="text" name="rfmp_fields_class[]" style="width:100%"></td>
                 <td><input type="hidden" name="rfmp_fields_required[]" value="0"><input type="checkbox" name="rfmp_fields_required[]" value="1"></td>
-                <td width="1%"><a href="#" class="delete"><?php esc_html_e('Delete', RFMP_TXT_DOMAIN);?></a></td>
+                <td width="1%"><a href="#" class="delete"><?php esc_html_e('Delete', 'registration-form-with-mollie-payments');?></a></td>
             </tr>
         </script>
 
@@ -98,11 +98,11 @@ Class RFMP_Admin {
                 <thead>
                     <tr>
                         <th class="sort"></th>
-                        <th><?php esc_html_e('Type', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Label', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Values', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Class', RFMP_TXT_DOMAIN);?></th>
-                        <th width="50"><?php esc_html_e('Required', RFMP_TXT_DOMAIN);?></th>
+                        <th><?php esc_html_e('Type', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Label', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Values', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Class', 'registration-form-with-mollie-payments');?></th>
+                        <th width="50"><?php esc_html_e('Required', 'registration-form-with-mollie-payments');?></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -111,7 +111,7 @@ Class RFMP_Admin {
                         <?php if ($type == 'priceoptions') { ?>
                             <tr>
                                 <td class="sort"></td>
-                                <td><?php esc_html_e('Price options', RFMP_TXT_DOMAIN);?><input type="hidden" name="rfmp_fields_type[]" value="priceoptions"></td>
+                                <td><?php esc_html_e('Price options', 'registration-form-with-mollie-payments');?><input type="hidden" name="rfmp_fields_type[]" value="priceoptions"></td>
                                 <td><input type="text" name="rfmp_fields_label[]" value="<?php echo esc_attr($field_label[$key]);?>" style="width:100%"></td>
                                 <td><input type="hidden" name="rfmp_fields_value[]" value=""></td>
                                 <td><input type="text" name="rfmp_fields_class[]" value="<?php echo esc_attr($field_class[$key]);?>" style="width:100%"></td>
@@ -121,7 +121,7 @@ Class RFMP_Admin {
                         <?php } elseif ($type == 'submit') { ?>
                             <tr>
                                 <td class="sort"></td>
-                                <td><?php esc_html_e('Submit button', RFMP_TXT_DOMAIN);?><input type="hidden" name="rfmp_fields_type[]" value="submit"></td>
+                                <td><?php esc_html_e('Submit button', 'registration-form-with-mollie-payments');?><input type="hidden" name="rfmp_fields_type[]" value="submit"></td>
                                 <td><input type="text" name="rfmp_fields_label[]" value="<?php echo esc_attr($field_label[$key]);?>" style="width:100%"></td>
                                 <td><input type="hidden" name="rfmp_fields_value[]" value=""></td>
                                 <td><input type="text" name="rfmp_fields_class[]" value="<?php echo esc_attr($field_class[$key]);?>" style="width:100%"></td>
@@ -131,7 +131,7 @@ Class RFMP_Admin {
                         <?php } elseif ($type == 'payment_methods') { ?>
                             <tr>
                                 <td class="sort"></td>
-                                <td><?php esc_html_e('Payment methods', RFMP_TXT_DOMAIN);?><input type="hidden" name="rfmp_fields_type[]" value="payment_methods"></td>
+                                <td><?php esc_html_e('Payment methods', 'registration-form-with-mollie-payments');?><input type="hidden" name="rfmp_fields_type[]" value="payment_methods"></td>
                                 <td><input type="text" name="rfmp_fields_label[]" value="<?php echo esc_attr($field_label[$key]);?>" style="width:100%"></td>
                                 <td><input type="hidden" name="rfmp_fields_value[]" value=""></td>
                                 <td><input type="text" name="rfmp_fields_class[]" value="<?php echo esc_attr($field_class[$key]);?>" style="width:100%"></td>
@@ -141,7 +141,7 @@ Class RFMP_Admin {
                         <?php } elseif ($type == 'name') { ?>
                             <tr>
                                 <td class="sort"></td>
-                                <td><?php esc_html_e('Name', RFMP_TXT_DOMAIN);?><input type="hidden" name="rfmp_fields_type[]" value="name"></td>
+                                <td><?php esc_html_e('Name', 'registration-form-with-mollie-payments');?><input type="hidden" name="rfmp_fields_type[]" value="name"></td>
                                 <td><input type="text" name="rfmp_fields_label[]" value="<?php echo esc_attr($field_label[$key]);?>" style="width:100%"></td>
                                 <td><input type="hidden" name="rfmp_fields_value[]" value=""></td>
                                 <td><input type="text" name="rfmp_fields_class[]" value="<?php echo esc_attr($field_class[$key]);?>" style="width:100%"></td>
@@ -151,7 +151,7 @@ Class RFMP_Admin {
                         <?php } elseif ($type == 'email') { ?>
                             <tr>
                                 <td class="sort"></td>
-                                <td><?php esc_html_e('Email address', RFMP_TXT_DOMAIN);?><input type="hidden" name="rfmp_fields_type[]" value="email"></td>
+                                <td><?php esc_html_e('Email address', 'registration-form-with-mollie-payments');?><input type="hidden" name="rfmp_fields_type[]" value="email"></td>
                                 <td><input type="text" name="rfmp_fields_label[]" value="<?php echo esc_attr($field_label[$key]);?>" style="width:100%"></td>
                                 <td><input type="hidden" name="rfmp_fields_value[]" value=""></td>
                                 <td><input type="text" name="rfmp_fields_class[]" value="<?php echo esc_attr($field_class[$key]);?>" style="width:100%"></td>
@@ -163,24 +163,24 @@ Class RFMP_Admin {
                                 <td class="sort"></td>
                                 <td>
                                     <select name="rfmp_fields_type[]" class="rfmp_type">
-                                        <option value="text"><?php esc_html_e('Text field', RFMP_TXT_DOMAIN);?></option>
-                                        <option value="textarea"<?php echo ($type == 'textarea' ? ' selected' : '');?>><?php esc_html_e('Text area', RFMP_TXT_DOMAIN);?></option>
-                                        <option value="dropdown"<?php echo ($type == 'dropdown' ? ' selected' : '');?>><?php esc_html_e('Dropdown', RFMP_TXT_DOMAIN);?></option>
-                                        <option value="checkbox"<?php echo ($type == 'checkbox' ? ' selected' : '');?>><?php esc_html_e('Checkbox', RFMP_TXT_DOMAIN);?></option>
+                                        <option value="text"><?php esc_html_e('Text field', 'registration-form-with-mollie-payments');?></option>
+                                        <option value="textarea"<?php echo ($type == 'textarea' ? ' selected' : '');?>><?php esc_html_e('Text area', 'registration-form-with-mollie-payments');?></option>
+                                        <option value="dropdown"<?php echo ($type == 'dropdown' ? ' selected' : '');?>><?php esc_html_e('Dropdown', 'registration-form-with-mollie-payments');?></option>
+                                        <option value="checkbox"<?php echo ($type == 'checkbox' ? ' selected' : '');?>><?php esc_html_e('Checkbox', 'registration-form-with-mollie-payments');?></option>
                                     </select>
                                 </td>
                                 <td><input type="text" name="rfmp_fields_label[]" value="<?php echo esc_attr($field_label[$key]);?>" style="width:100%"></td>
                                 <td><input style="<?php echo ($type != 'dropdown' ? 'display:none;' : '');?>width:100%;" class="rfmp_value" type="text" name="rfmp_fields_value[]" value="<?php echo esc_attr($field_value[$key]);?>" placeholder="value1|value2|value3"></td>
                                 <td><input type="text" name="rfmp_fields_class[]" value="<?php echo esc_attr($field_class[$key]);?>" style="width:100%"></td>
                                 <td><input type="hidden" name="rfmp_fields_required[]" value="0"><input type="checkbox" value="1" name="rfmp_fields_required[<?php echo $key;?>]"<?php echo (isset($field_required[$key]) && $field_required[$key] ? ' checked' : '');?>></td>
-                                <td width="1%"><a href="#" class="delete"><?php esc_html_e('Delete', RFMP_TXT_DOMAIN);?></a></td>
+                                <td width="1%"><a href="#" class="delete"><?php esc_html_e('Delete', 'registration-form-with-mollie-payments');?></a></td>
                             </tr>
                         <?php } ?>
                     <?php } ?>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="7"><input type="button" id="rfmp_add_field" class="button" value="<?php esc_html_e('Add new field', RFMP_TXT_DOMAIN);?>"></th>
+                        <th colspan="7"><input type="button" id="rfmp_add_field" class="button" value="<?php esc_html_e('Add new field', 'registration-form-with-mollie-payments');?>"></th>
                     </tr>
                 </tfoot>
             </table>
@@ -204,13 +204,13 @@ Class RFMP_Admin {
                 <td>
                     <input type="number" name="rfmp_priceoptions_frequencyval[]" style="width:50px;display:none;">
                     <select name="rfmp_priceoptions_frequency[]" class="rfmp_frequency">
-                        <option value="once"><?php esc_html_e('Once', RFMP_TXT_DOMAIN);?></option>
-                        <option value="months"><?php esc_html_e('Months', RFMP_TXT_DOMAIN);?></option>
-                        <option value="weeks"><?php esc_html_e('Weeks', RFMP_TXT_DOMAIN);?></option>
-                        <option value="days"><?php esc_html_e('Days', RFMP_TXT_DOMAIN);?></option>
+                        <option value="once"><?php esc_html_e('Once', 'registration-form-with-mollie-payments');?></option>
+                        <option value="months"><?php esc_html_e('Months', 'registration-form-with-mollie-payments');?></option>
+                        <option value="weeks"><?php esc_html_e('Weeks', 'registration-form-with-mollie-payments');?></option>
+                        <option value="days"><?php esc_html_e('Days', 'registration-form-with-mollie-payments');?></option>
                     </select>
                 </td>
-                <td width="1%"><a href="#" class="delete"><?php esc_html_e('Delete', RFMP_TXT_DOMAIN);?></a></td>
+                <td width="1%"><a href="#" class="delete"><?php esc_html_e('Delete', 'registration-form-with-mollie-payments');?></a></td>
             </tr>
         </script>
 
@@ -219,9 +219,9 @@ Class RFMP_Admin {
                 <thead>
                     <tr>
                         <th class="sort"></th>
-                        <th><?php esc_html_e('Description', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Price', RFMP_TXT_DOMAIN);?> &euro;</th>
-                        <th><?php esc_html_e('Frequency', RFMP_TXT_DOMAIN);?></th>
+                        <th><?php esc_html_e('Description', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Price', 'registration-form-with-mollie-payments');?> &euro;</th>
+                        <th><?php esc_html_e('Frequency', 'registration-form-with-mollie-payments');?></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -234,19 +234,19 @@ Class RFMP_Admin {
                             <td>
                                 <input type="number" name="rfmp_priceoptions_frequencyval[]" value="<?php echo esc_attr($option_frequencyval[$key]);?>" style="width:50px;<?php echo ($option_frequency[$key] == 'once' ? 'display:none;' : '');?>">
                                 <select name="rfmp_priceoptions_frequency[]" class="rfmp_frequency">
-                                    <option value="once"><?php esc_html_e('Once', RFMP_TXT_DOMAIN);?></option>
-                                    <option value="months"<?php echo ($option_frequency[$key] == 'months' ? ' selected' : '');?>><?php esc_html_e('Months', RFMP_TXT_DOMAIN);?></option>
-                                    <option value="weeks"<?php echo ($option_frequency[$key] == 'weeks' ? ' selected' : '');?>><?php esc_html_e('Weeks', RFMP_TXT_DOMAIN);?></option>
-                                    <option value="days"<?php echo ($option_frequency[$key] == 'days' ? ' selected' : '');?>><?php esc_html_e('Days', RFMP_TXT_DOMAIN);?></option>
+                                    <option value="once"><?php esc_html_e('Once', 'registration-form-with-mollie-payments');?></option>
+                                    <option value="months"<?php echo ($option_frequency[$key] == 'months' ? ' selected' : '');?>><?php esc_html_e('Months', 'registration-form-with-mollie-payments');?></option>
+                                    <option value="weeks"<?php echo ($option_frequency[$key] == 'weeks' ? ' selected' : '');?>><?php esc_html_e('Weeks', 'registration-form-with-mollie-payments');?></option>
+                                    <option value="days"<?php echo ($option_frequency[$key] == 'days' ? ' selected' : '');?>><?php esc_html_e('Days', 'registration-form-with-mollie-payments');?></option>
                                 </select>
                             </td>
-                            <td width="1%"><a href="#" class="delete"><?php esc_html_e('Delete', RFMP_TXT_DOMAIN);?></a></td>
+                            <td width="1%"><a href="#" class="delete"><?php esc_html_e('Delete', 'registration-form-with-mollie-payments');?></a></td>
                         </tr>
                     <?php } ?>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="5"><input type="button" id="rfmp_add_priceoption" class="button" value="<?php esc_html_e('Add new price option', RFMP_TXT_DOMAIN);?>"></th>
+                        <th colspan="5"><input type="button" id="rfmp_add_priceoption" class="button" value="<?php esc_html_e('Add new price option', 'registration-form-with-mollie-payments');?>"></th>
                     </tr>
                 </tfoot>
             </table>
@@ -270,16 +270,16 @@ Class RFMP_Admin {
                 <tbody>
                 <tr valign="top">
                     <th scope="row" class="titledesc">
-                        <label for="rfmp_shortcode"><?php esc_html_e('Shortcode', RFMP_TXT_DOMAIN);?></label>
+                        <label for="rfmp_shortcode"><?php esc_html_e('Shortcode', 'registration-form-with-mollie-payments');?></label>
                     </th>
                     <td class="forminp forminp-text">
                         <input id="rfmp_shortcode" value='[rfmp id="<?php echo esc_attr($post->ID);?>"]' readonly type="text" style="width: 350px" onfocus="this.select();"><br>
-                        <small><?php echo esc_html_e('Place this shortcode on a page or in a post', RFMP_TXT_DOMAIN);?></small>
+                        <small><?php echo esc_html_e('Place this shortcode on a page or in a post', 'registration-form-with-mollie-payments');?></small>
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row" class="titledesc">
-                        <label for="rfmp_api_key"><?php esc_html_e('Mollie API-key', RFMP_TXT_DOMAIN);?></label>
+                        <label for="rfmp_api_key"><?php esc_html_e('Mollie API-key', 'registration-form-with-mollie-payments');?></label>
                     </th>
                     <td class="forminp forminp-text">
                         <input name="rfmp_api_key" id="rfmp_api_key" value="<?php echo esc_attr($api_key);?>" required type="text" style="width: 350px">
@@ -287,31 +287,31 @@ Class RFMP_Admin {
                 </tr>
                 <tr valign="top">
                     <th scope="row" class="titledesc">
-                        <label for="rfmp_priceoptions_display"><?php esc_html_e('Price options display', RFMP_TXT_DOMAIN);?></label>
+                        <label for="rfmp_priceoptions_display"><?php esc_html_e('Price options display', 'registration-form-with-mollie-payments');?></label>
                     </th>
                     <td class="forminp forminp-text">
                         <select name="rfmp_priceoptions_display" style="width: 350px;">
-                            <option value="dropdown"><?php esc_html_e('Dropdown', RFMP_TXT_DOMAIN);?></option>
-                            <option value="list"<?php echo ($display_po == 'list' ? ' selected' : '');?>><?php esc_html_e('List', RFMP_TXT_DOMAIN);?></option>
+                            <option value="dropdown"><?php esc_html_e('Dropdown', 'registration-form-with-mollie-payments');?></option>
+                            <option value="list"<?php echo ($display_po == 'list' ? ' selected' : '');?>><?php esc_html_e('List', 'registration-form-with-mollie-payments');?></option>
                         </select>
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row" class="titledesc">
-                        <label for="rfmp_payment_methods_display"><?php esc_html_e('Payment methods display', RFMP_TXT_DOMAIN);?></label>
+                        <label for="rfmp_payment_methods_display"><?php esc_html_e('Payment methods display', 'registration-form-with-mollie-payments');?></label>
                     </th>
                     <td class="forminp forminp-text">
                         <select name="rfmp_payment_methods_display" style="width: 350px;">
-                            <option value="dropdown"><?php esc_html_e('Dropdown', RFMP_TXT_DOMAIN);?></option>
-                            <option value="list"<?php echo ($display_pm == 'list' ? ' selected' : '');?>><?php esc_html_e('List with icons and text', RFMP_TXT_DOMAIN);?></option>
-                            <option value="text"<?php echo ($display_pm == 'text' ? ' selected' : '');?>><?php esc_html_e('List with text', RFMP_TXT_DOMAIN);?></option>
-                            <option value="icons"<?php echo ($display_pm == 'icons' ? ' selected' : '');?>><?php esc_html_e('List with icons', RFMP_TXT_DOMAIN);?></option>
+                            <option value="dropdown"><?php esc_html_e('Dropdown', 'registration-form-with-mollie-payments');?></option>
+                            <option value="list"<?php echo ($display_pm == 'list' ? ' selected' : '');?>><?php esc_html_e('List with icons and text', 'registration-form-with-mollie-payments');?></option>
+                            <option value="text"<?php echo ($display_pm == 'text' ? ' selected' : '');?>><?php esc_html_e('List with text', 'registration-form-with-mollie-payments');?></option>
+                            <option value="icons"<?php echo ($display_pm == 'icons' ? ' selected' : '');?>><?php esc_html_e('List with icons', 'registration-form-with-mollie-payments');?></option>
                         </select>
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row" class="titledesc">
-                        <label for="rfmp_msg_success"><?php esc_html_e('Success message', RFMP_TXT_DOMAIN);?></label>
+                        <label for="rfmp_msg_success"><?php esc_html_e('Success message', 'registration-form-with-mollie-payments');?></label>
                     </th>
                     <td class="forminp forminp-text">
                         <input name="rfmp_msg_success" id="rfmp_msg_success" value="<?php echo esc_attr($message_success);?>" required type="text" style="width: 350px">
@@ -319,7 +319,7 @@ Class RFMP_Admin {
                 </tr>
                 <tr valign="top">
                     <th scope="row" class="titledesc">
-                        <label for="rfmp_msg_error"><?php esc_html_e('Error message', RFMP_TXT_DOMAIN);?></label>
+                        <label for="rfmp_msg_error"><?php esc_html_e('Error message', 'registration-form-with-mollie-payments');?></label>
                     </th>
                     <td class="forminp forminp-text">
                         <input name="rfmp_msg_error" id="rfmp_msg_error" value="<?php echo esc_attr($message_error);?>" required type="text" style="width: 350px">
@@ -327,7 +327,7 @@ Class RFMP_Admin {
                 </tr>
                 <tr valign="top">
                     <th scope="row" class="titledesc">
-                        <label for="rfmp_class_success"><?php esc_html_e('Class success message', RFMP_TXT_DOMAIN);?></label>
+                        <label for="rfmp_class_success"><?php esc_html_e('Class success message', 'registration-form-with-mollie-payments');?></label>
                     </th>
                     <td class="forminp forminp-text">
                         <input name="rfmp_class_success" id="rfmp_class_success" value="<?php echo esc_attr($class_success);?>" type="text" style="width: 350px">
@@ -335,7 +335,7 @@ Class RFMP_Admin {
                 </tr>
                 <tr valign="top">
                     <th scope="row" class="titledesc">
-                        <label for="rfmp_class_error"><?php esc_html_e('Class error message', RFMP_TXT_DOMAIN);?></label>
+                        <label for="rfmp_class_error"><?php esc_html_e('Class error message', 'registration-form-with-mollie-payments');?></label>
                     </th>
                     <td class="forminp forminp-text">
                         <input name="rfmp_class_error" id="rfmp_class_error" value="<?php echo esc_attr($class_error);?>" type="text" style="width: 350px">
@@ -358,7 +358,7 @@ Class RFMP_Admin {
         try {
 
             if (!$api_key)
-                echo '<p style="color: red">' . esc_html__('No API-key set', RFMP_TXT_DOMAIN) . '</p>';
+                echo '<p style="color: red">' . esc_html__('No API-key set', 'registration-form-with-mollie-payments') . '</p>';
             else
             {
                 $this->mollie->setApiKey($api_key);
@@ -367,7 +367,7 @@ Class RFMP_Admin {
                 {
                     echo '<input type="hidden" value="0" name="rfmp_payment_method[' . $method->id . ']">';
                     echo '<label><input type="checkbox" name="rfmp_payment_method[' . $method->id . ']" ' . ($active[$method->id] ? 'checked' : '') . ' value="1"> <img style="vertical-align:middle;display:inline-block;width:25px;" src="' . esc_url($method->image->normal) . '"> ' . esc_html($method->description) . '</label><br>';
-                    echo esc_html_e('Surcharge:', RFMP_TXT_DOMAIN) . ' &euro; <input type="number" step="any" min="0" name="rfmp_payment_method_fixed[' . $method->id . ']" value="' . esc_attr($fixed[$method->id]) . '" style="width: 50px;"> + <input type="number" step="any" min="0" name="rfmp_payment_method_variable[' . $method->id . ']" value="' . esc_attr($variable[$method->id]) . '" style="width: 50px;"> %<br><hr>';
+                    echo esc_html_e('Surcharge:', 'registration-form-with-mollie-payments') . ' &euro; <input type="number" step="any" min="0" name="rfmp_payment_method_fixed[' . $method->id . ']" value="' . esc_attr($fixed[$method->id]) . '" style="width: 50px;"> + <input type="number" step="any" min="0" name="rfmp_payment_method_variable[' . $method->id . ']" value="' . esc_attr($variable[$method->id]) . '" style="width: 50px;"> %<br><hr>';
                 }
             }
 
@@ -436,7 +436,7 @@ Class RFMP_Admin {
         {
             unset($actions['inline hide-if-no-js']);
             unset($actions['view']);
-            $actions['registrations'] = '<a href="edit.php?post_type=rfmp&page=registrations&post=' . $post->ID . '">' . __('Registrations', RFMP_TXT_DOMAIN) . '</a>';
+            $actions['registrations'] = '<a href="edit.php?post_type=rfmp&page=registrations&post=' . $post->ID . '">' . __('Registrations', 'registration-form-with-mollie-payments') . '</a>';
         }
         return $actions;
     }
@@ -454,7 +454,7 @@ Class RFMP_Admin {
             switch ($_GET['msg'])
             {
                 case 'delete-ok':
-                    $rfmp_msg = '<div class="updated notice"><p>' . esc_html__('The registration is successful deleted', RFMP_TXT_DOMAIN) . '</p></div>';
+                    $rfmp_msg = '<div class="updated notice"><p>' . esc_html__('The registration is successful deleted', 'registration-form-with-mollie-payments') . '</p></div>';
                     break;
             }
 
@@ -462,7 +462,7 @@ Class RFMP_Admin {
         }
         ?>
         <div class="wrap">
-            <h2><?php esc_html_e('Registrations', RFMP_TXT_DOMAIN); echo (isset($post) ? ' <small>(' . $post->post_title . ')</small>' : '');?></h2>
+            <h2><?php esc_html_e('Registrations', 'registration-form-with-mollie-payments'); echo (isset($post) ? ' <small>(' . $post->post_title . ')</small>' : '');?></h2>
 
             <?php $table->display();?>
         </div>
@@ -472,13 +472,13 @@ Class RFMP_Admin {
     public function page_registration()
     {
         if (!isset($_GET['view']))
-            return esc_html__('Registration not found', RFMP_TXT_DOMAIN);
+            return esc_html__('Registration not found', 'registration-form-with-mollie-payments');
 
         $id = (int) $_GET['view'];
 
         $registration   = $this->wpdb->get_row("SELECT * FROM " . RFMP_TABLE_REGISTRATIONS . " WHERE id=" . $id);
         if ($registration == null)
-            return esc_html__('Registration not found', RFMP_TXT_DOMAIN);
+            return esc_html__('Registration not found', 'registration-form-with-mollie-payments');
 
         // Delete registration
         if (isset($_GET['delete']) && check_admin_referer('delete-reg_' . $_GET['view']))
@@ -546,13 +546,13 @@ Class RFMP_Admin {
             switch ($_GET['msg'])
             {
                 case 'refund-ok':
-                    $rfmp_msg = '<div class="updated notice"><p>' . esc_html__('The payment is successful refunded', RFMP_TXT_DOMAIN) . '</p></div>';
+                    $rfmp_msg = '<div class="updated notice"><p>' . esc_html__('The payment is successful refunded', 'registration-form-with-mollie-payments') . '</p></div>';
                     break;
                 case 'refund-nok':
-                    $rfmp_msg = '<div class="error notice"><p>' . esc_html__('The payment can not be refunded', RFMP_TXT_DOMAIN) . '</p></div>';
+                    $rfmp_msg = '<div class="error notice"><p>' . esc_html__('The payment can not be refunded', 'registration-form-with-mollie-payments') . '</p></div>';
                     break;
                 case 'cancel-ok':
-                    $rfmp_msg = '<div class="updated notice"><p>' . esc_html__('The subscription is successful cancelled', RFMP_TXT_DOMAIN) . '</p></div>';
+                    $rfmp_msg = '<div class="updated notice"><p>' . esc_html__('The subscription is successful cancelled', 'registration-form-with-mollie-payments') . '</p></div>';
                     break;
             }
 
@@ -560,7 +560,7 @@ Class RFMP_Admin {
         }
         ?>
         <div class="wrap">
-            <h2><?php esc_html_e('Registration', RFMP_TXT_DOMAIN);?></h2>
+            <h2><?php esc_html_e('Registration', 'registration-form-with-mollie-payments');?></h2>
 
             <table class="wp-list-table widefat fixed striped rfmp_page_registration">
                 <tbody id="the-list">
@@ -571,29 +571,29 @@ Class RFMP_Admin {
                         </tr>
                     <?php } ?>
                     <tr>
-                        <td class="field column-field column-primary"><strong><?php echo esc_html_e('Total price', RFMP_TXT_DOMAIN);?></strong></td>
+                        <td class="field column-field column-primary"><strong><?php echo esc_html_e('Total price', 'registration-form-with-mollie-payments');?></strong></td>
                         <td class="value column-value"><?php echo '&euro; ' . number_format($registration->total_price, 2, ',', '');?></td>
                     </tr>
                     <tr>
-                        <td class="field column-field column-primary"><strong><?php echo esc_html_e('Mollie Customer ID', RFMP_TXT_DOMAIN);?></strong></td>
+                        <td class="field column-field column-primary"><strong><?php echo esc_html_e('Mollie Customer ID', 'registration-form-with-mollie-payments');?></strong></td>
                         <td class="value column-value"><?php echo esc_html($registration->customer_id);?></td>
                     </tr>
                 </tbody>
             </table><br>
 
             <?php if ($registration->price_frequency != 'once' && $subscriptions != null) { ?>
-                <h3><?php esc_html_e('Subscriptions', RFMP_TXT_DOMAIN);?></h3>
+                <h3><?php esc_html_e('Subscriptions', 'registration-form-with-mollie-payments');?></h3>
                 <table class="wp-list-table widefat fixed striped rfmp_page_registration_subscriptions">
                     <thead>
                     <tr>
-                        <th><?php esc_html_e('Subscription ID', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Created at', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Subscription mode', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Subscription amount', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Subscription method', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Subscription interval', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Subscription description', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Subscription status', RFMP_TXT_DOMAIN);?></th>
+                        <th><?php esc_html_e('Subscription ID', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Created at', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Subscription mode', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Subscription amount', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Subscription method', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Subscription interval', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Subscription description', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Subscription status', 'registration-form-with-mollie-payments');?></th>
                         <th></th>
                     </tr>
                     </thead>
@@ -611,24 +611,24 @@ Class RFMP_Admin {
                             <td class="column-sub_interval"><?php echo esc_html($this->frequency_label($subscription->sub_interval));?></td>
                             <td class="column-sub_description"><?php echo esc_html($subscription->sub_description);?></td>
                             <td class="column-sub_status"><?php echo esc_html($subscription->sub_status);?></td>
-                            <td class="column-cancel"><?php if ($subscription->sub_status == 'active') { ?><a href="<?php echo $url_cancel;?>" style="color:#a00;"><?php echo esc_html_e('Cancel', RFMP_TXT_DOMAIN);?></a><?php } ?></td>
+                            <td class="column-cancel"><?php if ($subscription->sub_status == 'active') { ?><a href="<?php echo $url_cancel;?>" style="color:#a00;"><?php echo esc_html_e('Cancel', 'registration-form-with-mollie-payments');?></a><?php } ?></td>
                         </tr>
                     <?php } ?>
                     </tbody>
                 </table><br>
             <?php } ?>
 
-            <h3><?php esc_html_e('Payments', RFMP_TXT_DOMAIN);?></h3>
+            <h3><?php esc_html_e('Payments', 'registration-form-with-mollie-payments');?></h3>
             <table class="wp-list-table widefat fixed striped rfmp_page_registration_payments">
                 <thead>
                     <tr>
-                        <th><?php esc_html_e('ID', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Payment ID', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Created at', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Payment method', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Payment mode', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Payment status', RFMP_TXT_DOMAIN);?></th>
-                        <th><?php esc_html_e('Amount', RFMP_TXT_DOMAIN);?></th>
+                        <th><?php esc_html_e('ID', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Payment ID', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Created at', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Payment method', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Payment mode', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Payment status', 'registration-form-with-mollie-payments');?></th>
+                        <th><?php esc_html_e('Amount', 'registration-form-with-mollie-payments');?></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -645,7 +645,7 @@ Class RFMP_Admin {
                         <td class="column-payment_mode"><?php echo esc_html($payment->payment_mode);?></td>
                         <td class="column-payment_status"><?php echo esc_html($payment->payment_status);?></td>
                         <td class="column-amount"><?php echo '&euro; ' . number_format($payment->amount, 2, ',', '');?></td>
-                        <td class="column-cancel"><?php if ($payment->payment_status == 'paid') { ?><a href="<?php echo $url_refund;?>" style="color:#a00;"><?php echo esc_html_e('Refund', RFMP_TXT_DOMAIN);?></a><?php } ?></td>
+                        <td class="column-cancel"><?php if ($payment->payment_status == 'paid') { ?><a href="<?php echo $url_refund;?>" style="color:#a00;"><?php echo esc_html_e('Refund', 'registration-form-with-mollie-payments');?></a><?php } ?></td>
                     </tr>
                 <?php } ?>
                 </tbody>
@@ -660,34 +660,34 @@ Class RFMP_Admin {
         switch ($frequency)
         {
             case 'once':
-                $return = __('Once', RFMP_TXT_DOMAIN);
+                $return = __('Once', 'registration-form-with-mollie-payments');
                 break;
             case '1 months':
-                $return = __('per month', RFMP_TXT_DOMAIN);
+                $return = __('per month', 'registration-form-with-mollie-payments');
                 break;
             case '1 month':
-                $return = __('per month', RFMP_TXT_DOMAIN);
+                $return = __('per month', 'registration-form-with-mollie-payments');
                 break;
             case '3 months':
-                $return = __('each quarter', RFMP_TXT_DOMAIN);
+                $return = __('each quarter', 'registration-form-with-mollie-payments');
                 break;
             case '12 months':
-                $return = __('per year', RFMP_TXT_DOMAIN);
+                $return = __('per year', 'registration-form-with-mollie-payments');
                 break;
             case '1 weeks':
-                $return = __('per week', RFMP_TXT_DOMAIN);
+                $return = __('per week', 'registration-form-with-mollie-payments');
                 break;
             case '1 week':
-                $return = __('per week', RFMP_TXT_DOMAIN);
+                $return = __('per week', 'registration-form-with-mollie-payments');
                 break;
             case '1 days':
-                $return = __('per day', RFMP_TXT_DOMAIN);
+                $return = __('per day', 'registration-form-with-mollie-payments');
                 break;
             case '1 day':
-                $return = __('per day', RFMP_TXT_DOMAIN);
+                $return = __('per day', 'registration-form-with-mollie-payments');
                 break;
             default:
-                $return = __('each', RFMP_TXT_DOMAIN) . ' ' . $frequency;
+                $return = __('each', 'registration-form-with-mollie-payments') . ' ' . $frequency;
         }
 
         return $return;

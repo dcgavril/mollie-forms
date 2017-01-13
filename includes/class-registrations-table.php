@@ -5,12 +5,12 @@ class RFMP_Registrations_Table extends WP_List_Table {
     function get_columns()
     {
         $columns = array();
-        $columns['created_at'] = __('Date/time', RFMP_TXT_DOMAIN);
-        $columns['post_id'] = __('Form', RFMP_TXT_DOMAIN);
-        $columns['customer'] = __('Customer', RFMP_TXT_DOMAIN);
-        $columns['total_price'] = __('Total price', RFMP_TXT_DOMAIN);
-        $columns['price_frequency'] = __('Frequency', RFMP_TXT_DOMAIN);
-        $columns['description'] = __('Description', RFMP_TXT_DOMAIN);
+        $columns['created_at'] = __('Date/time', 'registration-form-with-mollie-payments');
+        $columns['post_id'] = __('Form', 'registration-form-with-mollie-payments');
+        $columns['customer'] = __('Customer', 'registration-form-with-mollie-payments');
+        $columns['total_price'] = __('Total price', 'registration-form-with-mollie-payments');
+        $columns['price_frequency'] = __('Frequency', 'registration-form-with-mollie-payments');
+        $columns['description'] = __('Description', 'registration-form-with-mollie-payments');
         $columns['actions'] = '';
 
         return $columns;
@@ -20,7 +20,7 @@ class RFMP_Registrations_Table extends WP_List_Table {
     {
         $url_view   = 'edit.php?post_type=rfmp&page=registration&view=' . $item['id'];
         $url_delete = wp_nonce_url('edit.php?post_type=rfmp&page=registration&view=' . $item['id'] . '&delete=true', 'delete-reg_' . $item['id']);
-        return sprintf('<a href="%s">' . esc_html__('View', RFMP_TXT_DOMAIN) . '</a> <a href="%s" style="color:#a00;" onclick="return confirm(\'' . esc_html__('Are you sure?', RFMP_TXT_DOMAIN) . '\');">' . esc_html__('Delete', RFMP_TXT_DOMAIN) . '</a>', $url_view, $url_delete);
+        return sprintf('<a href="%s">' . esc_html__('View', 'registration-form-with-mollie-payments') . '</a> <a href="%s" style="color:#a00;" onclick="return confirm(\'' . esc_html__('Are you sure?', 'registration-form-with-mollie-payments') . '\');">' . esc_html__('Delete', 'registration-form-with-mollie-payments') . '</a>', $url_view, $url_delete);
     }
 
     function prepare_items()
@@ -96,31 +96,31 @@ class RFMP_Registrations_Table extends WP_List_Table {
                 $return = '';
                 break;
             case '1 months':
-                $return = __('per month', RFMP_TXT_DOMAIN);
+                $return = __('per month', 'registration-form-with-mollie-payments');
                 break;
             case '1 month':
-                $return = __('per month', RFMP_TXT_DOMAIN);
+                $return = __('per month', 'registration-form-with-mollie-payments');
                 break;
             case '3 months':
-                $return = __('each quarter', RFMP_TXT_DOMAIN);
+                $return = __('each quarter', 'registration-form-with-mollie-payments');
                 break;
             case '12 months':
-                $return = __('per year', RFMP_TXT_DOMAIN);
+                $return = __('per year', 'registration-form-with-mollie-payments');
                 break;
             case '1 weeks':
-                $return = __('per week', RFMP_TXT_DOMAIN);
+                $return = __('per week', 'registration-form-with-mollie-payments');
                 break;
             case '1 week':
-                $return = __('per week', RFMP_TXT_DOMAIN);
+                $return = __('per week', 'registration-form-with-mollie-payments');
                 break;
             case '1 days':
-                $return = __('per day', RFMP_TXT_DOMAIN);
+                $return = __('per day', 'registration-form-with-mollie-payments');
                 break;
             case '1 day':
-                $return = __('per day', RFMP_TXT_DOMAIN);
+                $return = __('per day', 'registration-form-with-mollie-payments');
                 break;
             default:
-                $return = __('each', RFMP_TXT_DOMAIN) . ' ' . $frequency;
+                $return = __('each', 'registration-form-with-mollie-payments') . ' ' . $frequency;
         }
 
         return $return;
