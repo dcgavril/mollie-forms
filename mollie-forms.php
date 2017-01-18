@@ -2,7 +2,7 @@
 /*
 Plugin Name: Mollie Forms
 Description: Create registration forms with payment methods of Mollie. One-time and recurring payments are possible.
-Version: 0.1.5
+Version: 0.1.6
 Author: Nick Dijkstra
 Author URI: http://nickdijkstra.nl
 Text Domain: registration-form-with-mollie-payments
@@ -16,6 +16,11 @@ if (!defined('ABSPATH')) {
 // Plugin Folder Path
 if (!defined('RFMP_PLUGIN_PATH')) {
     define('RFMP_PLUGIN_PATH', plugin_dir_path(__FILE__));
+}
+
+// Plugin Version
+if (!defined('RFMP_VERSION')) {
+    define('RFMP_VERSION', '0.1.6');
 }
 
 define('RFMP_PLUGIN_BASE', plugin_basename(__FILE__));

@@ -214,6 +214,7 @@ class Mollie_API_Client
 		$this->addVersionString("PHP/" . phpversion());
 		$this->addVersionString("cURL/" . $curl_version["version"]);
 		$this->addVersionString($curl_version["ssl_version"]);
+		$this->addVersionString("MollieForms/" . RFMP_VERSION);
 
 		// The PEM path may be overwritten with setPemPath().
 		$this->pem_path = realpath(dirname(__FILE__) . "/cacert.pem");
