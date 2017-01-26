@@ -216,7 +216,8 @@ Class RFMP_Start {
                     var frequency = priceoptions[0].options[priceoptions[0].selectedIndex].dataset.frequency;
                 }
                                    
-                
+                document.getElementById("rfmp_checkbox_' . $post . '").style.display = (frequency=="once" ? "none" : "block");
+                document.getElementById("rfmp_checkbox_hidden_' . $post . '").value = (frequency=="once" ? 0 : 1);
                 ' . $script . '
             }
             </script>';
@@ -273,6 +274,9 @@ Class RFMP_Start {
                 $methods .= '</select>';
             }
 
+            $methods .= '<input type="hidden" id="rfmp_checkbox_hidden_' . $post . '" name="rfmp_checkbox_hidden_' . $post . '" value="0">';
+            $methods .= '<br><label id="rfmp_checkbox_' . $post . '" style="display:none;"><input type="checkbox" name="rfmp_checkbox_' . $post . '" value="1"> ' . __('I hereby give authorization to collect the amount shown above from my account periodically.', 'mollie-forms') . '</label>';
+
         } catch (Mollie_API_Exception $e) {
             $methods = '<p style="color: red">' . $e->getMessage() . '</p>';
         }
@@ -296,7 +300,9 @@ Class RFMP_Start {
             $priceoptions .= '<ul class="' . esc_attr($class) . '" style="list-style-type:none;margin:0;">';
             foreach ($option_desc as $key => $desc)
             {
-                $priceoptions .= '<li><label><input type="radio" onchange="rfmp_recurring_methods_' . $post . '();" data-frequency="' . esc_attr($option_frequency[$key]) . '" name="rfmp_priceoptions_' . $post . '" value="' . esc_attr($key) . '"' . ($form_value == $key || $first ? ' checked' : '') . '> ' . esc_html($desc) . ' (&euro;' . number_format($option_price[$key], 2, ',', '') . ' ' . $this->frequency_label($option_frequencyval[$key] . ' ' . $option_frequency[$key]) . ')</label></li>';
+                $frequency = $option_frequency[$key] != 'once' ? $option_frequencyval[$key] . ' ' . $option_frequency[$key] : 'once';
+
+                $priceoptions .= '<li><label><input type="radio" onchange="rfmp_recurring_methods_' . $post . '();" data-frequency="' . esc_attr($option_frequency[$key]) . '" name="rfmp_priceoptions_' . $post . '" value="' . esc_attr($key) . '"' . ($form_value == $key || $first ? ' checked' : '') . '> ' . esc_html($desc) . ' (&euro;' . number_format($option_price[$key], 2, ',', '') . ' ' . $this->frequency_label($frequency) . ')</label></li>';
                 $first = false;
             }
             $priceoptions .= '</ul>';
@@ -306,10 +312,14 @@ Class RFMP_Start {
             $priceoptions .= '<select name="rfmp_priceoptions_' . $post . '" onchange="rfmp_recurring_methods_' . $post . '();" class="' . esc_attr($class) . '">';
             foreach ($option_desc as $key => $desc)
             {
-                $priceoptions .= '<option data-frequency="' . esc_attr($option_frequency[$key]) . '" value="' . esc_attr($key) . '"' . ($form_value == $key ? ' selected' : '') . '>' . esc_html($desc) . ' (&euro;' . number_format($option_price[$key], 2, ',', '') . ' ' . $this->frequency_label($option_frequencyval[$key] . ' ' . $option_frequency[$key]) . ')</option>';
+                $frequency = $option_frequency[$key] != 'once' ? $option_frequencyval[$key] . ' ' . $option_frequency[$key] : 'once';
+
+                $priceoptions .= '<option data-frequency="' . esc_attr($option_frequency[$key]) . '" value="' . esc_attr($key) . '"' . ($form_value == $key ? ' selected' : '') . '>' . esc_html($desc) . ' (&euro;' . number_format($option_price[$key], 2, ',', '') . ' ' . $this->frequency_label($frequency) . ')</option>';
             }
             $priceoptions .= '</select>';
         }
+
+
 
         return $priceoptions;
     }
@@ -331,6 +341,12 @@ Class RFMP_Start {
                 $return = false;
                 $this->required_errors .= '<p class="rfmp_error" style="color:red;">- ' . sprintf(esc_html__('%s is a required field', 'mollie-forms'), $fields_label[$key]) . '</p>';
             }
+        }
+
+        if ($_POST['rfmp_checkbox_hidden_' . $post] == '1' && !isset($_POST['rfmp_checkbox_' . $post]))
+        {
+            $return = false;
+            $this->required_errors .= '<p class="rfmp_error" style="color:red;">- ' . esc_html__('Please give us authorization to collect the amount from your account periodically.', 'mollie-forms') . '</p>';
         }
 
         return $return;

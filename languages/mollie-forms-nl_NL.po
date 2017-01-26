@@ -2,14 +2,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mollie Forms\n"
-"POT-Creation-Date: 2016-12-29 17:52+0100\n"
-"PO-Revision-Date: 2016-12-29 17:55+0100\n"
+"POT-Creation-Date: 2017-01-26 11:46+0100\n"
+"PO-Revision-Date: 2017-01-26 11:47+0100\n"
 "Last-Translator: Nick Dijkstra <nbdijkstra@gmail.com>, 2016\n"
-"Language-Team: Dutch (Netherlands) (https://www.transifex.com/nick-dijkstra/teams/70304/nl_NL/)\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/nick-dijkstra/"
+"teams/70304/nl_NL/)\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.11\n"
 "X-Poedit-Basepath: ..\n"
@@ -198,7 +199,7 @@ msgstr "Class succes bericht"
 msgid "Class error message"
 msgstr "Class error bericht"
 
-#: includes/class-admin.php:361 includes/class-start.php:313
+#: includes/class-admin.php:361 includes/class-start.php:365
 msgid "No API-key set"
 msgstr "Geen API-key ingesteld"
 
@@ -304,37 +305,37 @@ msgstr "Terugstorten"
 
 #: includes/class-admin.php:666 includes/class-admin.php:669
 #: includes/class-registrations-table.php:99
-#: includes/class-registrations-table.php:102 includes/class-start.php:474
-#: includes/class-start.php:477
+#: includes/class-registrations-table.php:102 includes/class-start.php:537
+#: includes/class-start.php:540
 msgid "per month"
 msgstr "per maand"
 
 #: includes/class-admin.php:672 includes/class-registrations-table.php:105
-#: includes/class-start.php:480
+#: includes/class-start.php:543
 msgid "each quarter"
 msgstr "per kwartaal"
 
 #: includes/class-admin.php:675 includes/class-registrations-table.php:108
-#: includes/class-start.php:483
+#: includes/class-start.php:546
 msgid "per year"
 msgstr "per jaar"
 
 #: includes/class-admin.php:678 includes/class-admin.php:681
 #: includes/class-registrations-table.php:111
-#: includes/class-registrations-table.php:114 includes/class-start.php:486
-#: includes/class-start.php:489
+#: includes/class-registrations-table.php:114 includes/class-start.php:549
+#: includes/class-start.php:552
 msgid "per week"
 msgstr "per week"
 
 #: includes/class-admin.php:684 includes/class-admin.php:687
 #: includes/class-registrations-table.php:117
-#: includes/class-registrations-table.php:120 includes/class-start.php:492
-#: includes/class-start.php:495
+#: includes/class-registrations-table.php:120 includes/class-start.php:555
+#: includes/class-start.php:558
 msgid "per day"
 msgstr "per dag"
 
 #: includes/class-admin.php:690 includes/class-registrations-table.php:123
-#: includes/class-start.php:498
+#: includes/class-start.php:561
 msgid "each"
 msgstr "iedere"
 
@@ -454,27 +455,43 @@ msgstr "Filter formulieren lijst"
 msgid "Registration Form Description"
 msgstr "Registratieformulier omschrijving"
 
-#: includes/class-start.php:70
-msgid "weeks"
-msgstr "weken"
-
-#: includes/class-start.php:71
-msgid "months"
-msgstr "maanden"
-
-#: includes/class-start.php:72
-msgid "days"
-msgstr "dagen"
-
-#: includes/class-start.php:85
+#: includes/class-start.php:80
 msgid "Form not found"
 msgstr "Formulier niet gevonden"
 
-#: includes/class-start.php:103
+#: includes/class-start.php:98
 msgid "No payment found"
 msgstr "Geen betaling gevonden"
 
-#: includes/class-start.php:295
+#: includes/class-start.php:278
+msgid ""
+"I hereby give authorization to collect the amount shown above from my "
+"account periodically."
+msgstr ""
+"Hierbij geef ik toestemming om het bovenstaande bedrag periodiek van mijn "
+"rekening af te laten schrijven."
+
+#: includes/class-start.php:342
 #, php-format
 msgid "%s is a required field"
 msgstr "%s is een verplicht veld"
+
+#: includes/class-start.php:349
+msgid ""
+"Please give us authorization to collect the amount from your account "
+"periodically."
+msgstr ""
+"Gelieve ons toestemming te geven om het bedrag periodiek van uw rekening af "
+"te laten schrijven."
+
+#: includes/class-start.php:525
+msgid "days"
+msgstr "dagen"
+
+#: includes/class-start.php:526
+msgid "weeks"
+msgstr "weken"
+
+#: includes/class-start.php:527
+msgid "months"
+msgstr "maanden"

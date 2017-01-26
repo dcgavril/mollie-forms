@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mollie Forms\n"
-"POT-Creation-Date: 2016-12-29 17:52+0100\n"
+"POT-Creation-Date: 2017-01-26 11:46+0100\n"
 "PO-Revision-Date: 2016-12-29 15:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -198,7 +198,7 @@ msgstr ""
 msgid "Class error message"
 msgstr ""
 
-#: includes/class-admin.php:361 includes/class-start.php:313
+#: includes/class-admin.php:361 includes/class-start.php:365
 msgid "No API-key set"
 msgstr ""
 
@@ -304,37 +304,37 @@ msgstr ""
 
 #: includes/class-admin.php:666 includes/class-admin.php:669
 #: includes/class-registrations-table.php:99
-#: includes/class-registrations-table.php:102 includes/class-start.php:474
-#: includes/class-start.php:477
+#: includes/class-registrations-table.php:102 includes/class-start.php:537
+#: includes/class-start.php:540
 msgid "per month"
 msgstr ""
 
 #: includes/class-admin.php:672 includes/class-registrations-table.php:105
-#: includes/class-start.php:480
+#: includes/class-start.php:543
 msgid "each quarter"
 msgstr ""
 
 #: includes/class-admin.php:675 includes/class-registrations-table.php:108
-#: includes/class-start.php:483
+#: includes/class-start.php:546
 msgid "per year"
 msgstr ""
 
 #: includes/class-admin.php:678 includes/class-admin.php:681
 #: includes/class-registrations-table.php:111
-#: includes/class-registrations-table.php:114 includes/class-start.php:486
-#: includes/class-start.php:489
+#: includes/class-registrations-table.php:114 includes/class-start.php:549
+#: includes/class-start.php:552
 msgid "per week"
 msgstr ""
 
 #: includes/class-admin.php:684 includes/class-admin.php:687
 #: includes/class-registrations-table.php:117
-#: includes/class-registrations-table.php:120 includes/class-start.php:492
-#: includes/class-start.php:495
+#: includes/class-registrations-table.php:120 includes/class-start.php:555
+#: includes/class-start.php:558
 msgid "per day"
 msgstr ""
 
 #: includes/class-admin.php:690 includes/class-registrations-table.php:123
-#: includes/class-start.php:498
+#: includes/class-start.php:561
 msgid "each"
 msgstr ""
 
@@ -454,27 +454,35 @@ msgstr ""
 msgid "Registration Form Description"
 msgstr ""
 
-#: includes/class-start.php:70
-msgid "weeks"
-msgstr ""
-
-#: includes/class-start.php:71
-msgid "months"
-msgstr ""
-
-#: includes/class-start.php:72
-msgid "days"
-msgstr ""
-
-#: includes/class-start.php:85
+#: includes/class-start.php:80
 msgid "Form not found"
 msgstr ""
 
-#: includes/class-start.php:103
+#: includes/class-start.php:98
 msgid "No payment found"
 msgstr ""
 
-#: includes/class-start.php:295
+#: includes/class-start.php:278
+msgid "I hereby give authorization to collect the amount shown above from my account periodically."
+msgstr ""
+
+#: includes/class-start.php:342
 #, php-format
 msgid "%s is a required field"
+msgstr ""
+
+#: includes/class-start.php:349
+msgid "Please give us authorization to collect the amount from your account periodically."
+msgstr ""
+
+#: includes/class-start.php:525
+msgid "days"
+msgstr ""
+
+#: includes/class-start.php:526
+msgid "weeks"
+msgstr ""
+
+#: includes/class-start.php:527
+msgid "months"
 msgstr ""
