@@ -93,10 +93,11 @@ Class RFMP_Start {
             $message_success    = get_post_meta($post->ID, '_rfmp_msg_success', true);
             $message_error      = get_post_meta($post->ID, '_rfmp_msg_error', true);
 
-            $payment = $this->wpdb->get_row("SELECT * FROM " . RFMP_TABLE_PAYMENTS . " WHERE rfmp_id='" . esc_sql($_GET['payment']) . "'");
-            if ($payment == null)
+            $payment        = $this->wpdb->get_row("SELECT * FROM " . RFMP_TABLE_PAYMENTS . " WHERE rfmp_id='" . esc_sql($_GET['payment']) . "'");
+            $registration   = $this->wpdb->get_row("SELECT * FROM " . RFMP_TABLE_REGISTRATIONS . " WHERE id='" . esc_sql($payment->registration_id) . "'");
+            if ($payment == null || $registration == null)
                 return '<p class="' . esc_attr($class_error) . '">' . esc_html__('No payment found', 'mollie-forms') . '</p>';
-            elseif ($payment->form_id == $post->ID)
+            elseif ($registration->post_id == $post->ID)
             {
                 if ($payment->payment_status == 'paid')
                     return '<p class="' . esc_attr($class_success) . '">' . esc_html($message_success) . '</p>';
