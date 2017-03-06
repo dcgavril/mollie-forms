@@ -25,6 +25,13 @@ jQuery(document).ready(function($) {
             $(this).prev("input").hide();
     });
 
+    $(".rfmp_pricetype").live('change', function() {
+        if ($(this).val() != 'open')
+            $(this).next("input").show();
+        else
+            $(this).next("input").hide();
+    });
+
     $(".rfmp_type").live('change', function() {
         if ($(this).val() == 'dropdown')
             $(this).closest('td').next('td').next('td').find(".rfmp_value").show();

@@ -210,15 +210,18 @@ Class RFMP_Start {
                     for (var i = 0, length = priceoptions.length; i < length; i++) {
                         if (priceoptions[i].checked) {
                             var frequency = priceoptions[i].dataset.frequency;
+                            var pricetype = priceoptions[i].dataset.pricetype;
                             break;
                         }
                     }
                 } else {
                     var frequency = priceoptions[0].options[priceoptions[0].selectedIndex].dataset.frequency;
+                    var pricetype = priceoptions[0].options[priceoptions[0].selectedIndex].dataset.pricetype;
                 }
                                    
                 document.getElementById("rfmp_checkbox_' . $post . '").style.display = (frequency=="once" ? "none" : "block");
                 document.getElementById("rfmp_checkbox_hidden_' . $post . '").value = (frequency=="once" ? 0 : 1);
+                document.getElementById("rfmp_open_amount_' . $post . '").style.display = (pricetype=="open" ? "block" : "none");
                 ' . $script . '
             }
             </script>';
@@ -289,6 +292,7 @@ Class RFMP_Start {
     {
         $option_desc        = get_post_meta($post, '_rfmp_priceoption_desc', true);
         $option_price       = get_post_meta($post, '_rfmp_priceoption_price', true);
+        $option_pricetype   = get_post_meta($post, '_rfmp_priceoption_pricetype', true);
         $option_frequency   = get_post_meta($post, '_rfmp_priceoption_frequency', true);
         $option_frequencyval= get_post_meta($post, '_rfmp_priceoption_frequencyval', true);
         $option_display     = get_post_meta($post, '_rfmp_priceoptions_display', true);
@@ -302,8 +306,12 @@ Class RFMP_Start {
             foreach ($option_desc as $key => $desc)
             {
                 $frequency = $option_frequency[$key] != 'once' ? $option_frequencyval[$key] . ' ' . $option_frequency[$key] : 'once';
+                if ($option_pricetype[$key] != 'open')
+                    $price = '&euro;' . number_format($option_price[$key], 2, ',', '') . ' ' . $this->frequency_label($frequency);
+                else
+                    $price = $this->frequency_label($frequency);
 
-                $priceoptions .= '<li><label><input type="radio" onchange="rfmp_recurring_methods_' . $post . '();" data-frequency="' . esc_attr($option_frequency[$key]) . '" name="rfmp_priceoptions_' . $post . '" value="' . esc_attr($key) . '"' . ($form_value == $key || $first ? ' checked' : '') . '> ' . esc_html($desc) . ' (&euro;' . number_format($option_price[$key], 2, ',', '') . ' ' . $this->frequency_label($frequency) . ')</label></li>';
+                $priceoptions .= '<li><label><input type="radio" onchange="rfmp_recurring_methods_' . $post . '();" data-frequency="' . esc_attr($option_frequency[$key]) . '" data-pricetype="' . $option_pricetype[$key] . '" name="rfmp_priceoptions_' . $post . '" value="' . esc_attr($key) . '"' . ($form_value == $key || $first ? ' checked' : '') . '> ' . esc_html($desc) . ' (' . $price . ')</label></li>';
                 $first = false;
             }
             $priceoptions .= '</ul>';
@@ -314,12 +322,18 @@ Class RFMP_Start {
             foreach ($option_desc as $key => $desc)
             {
                 $frequency = $option_frequency[$key] != 'once' ? $option_frequencyval[$key] . ' ' . $option_frequency[$key] : 'once';
+                if ($option_pricetype[$key] != 'open')
+                    $price = '&euro;' . number_format($option_price[$key], 2, ',', '') . ' ' . $this->frequency_label($frequency);
+                else
+                    $price = $this->frequency_label($frequency);
 
-                $priceoptions .= '<option data-frequency="' . esc_attr($option_frequency[$key]) . '" value="' . esc_attr($key) . '"' . ($form_value == $key ? ' selected' : '') . '>' . esc_html($desc) . ' (&euro;' . number_format($option_price[$key], 2, ',', '') . ' ' . $this->frequency_label($frequency) . ')</option>';
+                $priceoptions .= '<option data-frequency="' . esc_attr($option_frequency[$key]) . '" data-pricetype="' . $option_pricetype[$key] . '" value="' . esc_attr($key) . '"' . ($form_value == $key ? ' selected' : '') . '>' . esc_html($desc) . ' (' . $price . ')</option>';
             }
             $priceoptions .= '</select>';
         }
 
+        $open_amount   = isset($_POST['rfmp_amount_' . $post]) ? $_POST['rfmp_amount_' . $post] : '';
+        $priceoptions .= '<p id="rfmp_open_amount_' . $post . '" style="display:none;"><label>' . esc_html__('Amount', 'mollie-forms') . ' <span style="color:red;">*</span><br><input type="text" value="' . esc_attr($open_amount) . '" name="rfmp_amount_' . $post . '"> ' . $this->frequency_label($frequency) . '</label><input type="hidden" name="rfmp_amount_required_' . $post . '" id="rfmp_open_amount_required_' . $post . '" value="0"></p>';
 
 
         return $priceoptions;
@@ -344,10 +358,16 @@ Class RFMP_Start {
             }
         }
 
-        if ($_POST['rfmp_checkbox_hidden_' . $post] == '1' && !isset($_POST['rfmp_checkbox_' . $post]))
+        if (isset($_POST['rfmp_checkbox_hidden_' . $post]) && $_POST['rfmp_checkbox_hidden_' . $post] == '1' && !isset($_POST['rfmp_checkbox_' . $post]))
         {
             $return = false;
             $this->required_errors .= '<p class="rfmp_error" style="color:red;">- ' . esc_html__('Please give us authorization to collect the amount from your account periodically.', 'mollie-forms') . '</p>';
+        }
+
+        if (isset($_POST['rfmp_amount_required_' . $post]) && (empty($_POST['rfmp_amount_' . $post]) || $_POST['rfmp_amount_' . $post] <= 1))
+        {
+            $return = false;
+            $this->required_errors .= '<p class="rfmp_error" style="color:red;">- ' . esc_html__('Please fill in a higher amount.', 'mollie-forms') . '</p>';
         }
 
         return $return;
@@ -373,6 +393,7 @@ Class RFMP_Start {
                 $option             = $_POST['rfmp_priceoptions_' . $post];
                 $option_desc        = get_post_meta($post, '_rfmp_priceoption_desc', true);
                 $option_price       = get_post_meta($post, '_rfmp_priceoption_price', true);
+                $option_pricetype   = get_post_meta($post, '_rfmp_priceoption_pricetype', true);
                 $option_frequency   = get_post_meta($post, '_rfmp_priceoption_frequency', true);
                 $option_frequencyval= get_post_meta($post, '_rfmp_priceoption_frequencyval', true);
 
@@ -389,7 +410,11 @@ Class RFMP_Start {
                 $variable           = get_post_meta($post, '_rfmp_payment_method_variable', true);
 
                 $desc               = $option_desc[$option];
-                $price              = $option_price[$option];
+
+                if ($option_pricetype[$option] == 'open')
+                    $price          = isset($_POST['rfmp_amount_' . $post]) ? (float) $_POST['rfmp_amount_' . $post] : 0;
+                else
+                    $price          = (float) $option_price[$option];
 
                 if ($option_frequency[$option] == 'once')
                     $option_frequencyval[$option] = '';

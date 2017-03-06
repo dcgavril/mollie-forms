@@ -193,6 +193,7 @@ Class RFMP_Admin {
         wp_nonce_field(basename(__FILE__), 'rfmp_meta_box_priceoptions_nonce');
         $option_desc        = get_post_meta($post->ID, '_rfmp_priceoption_desc', true);
         $option_price       = get_post_meta($post->ID, '_rfmp_priceoption_price', true);
+        $option_pricetype   = get_post_meta($post->ID, '_rfmp_priceoption_pricetype', true);
         $option_frequency   = get_post_meta($post->ID, '_rfmp_priceoption_frequency', true);
         $option_frequencyval= get_post_meta($post->ID, '_rfmp_priceoption_frequencyval', true);
         ?>
@@ -200,7 +201,13 @@ Class RFMP_Admin {
             <tr>
                 <td class="sort"></td>
                 <td><input type="text" name="rfmp_priceoptions_desc[]" style="width:100%;"></td>
-                <td><input type="text" name="rfmp_priceoptions_price[]"></td>
+                <td>
+                    <select name="rfmp_priceoptions_pricetype[]" class="rfmp_pricetype">
+                        <option value="fixed"><?php esc_html_e('Fixed', 'mollie-forms');?></option>
+                        <option value="open"><?php esc_html_e('Open', 'mollie-forms');?></option>
+                    </select>
+                    <input type="number" min="0.50" step="any" name="rfmp_priceoptions_price[]">
+                </td>
                 <td>
                     <input type="number" name="rfmp_priceoptions_frequencyval[]" style="width:50px;display:none;">
                     <select name="rfmp_priceoptions_frequency[]" class="rfmp_frequency">
@@ -210,7 +217,7 @@ Class RFMP_Admin {
                         <option value="days"><?php esc_html_e('Days', 'mollie-forms');?></option>
                     </select>
                 </td>
-                <td width="1%"><a href="#" class="delete"><?php esc_html_e('Delete', 'mollie-forms');?></a></td>
+                <td width="1%"><a href="javascript: void(0);" class="delete"><?php esc_html_e('Delete', 'mollie-forms');?></a></td>
             </tr>
         </script>
 
@@ -230,7 +237,13 @@ Class RFMP_Admin {
                         <tr>
                             <td class="sort"></td>
                             <td><input type="text" required style="width:100%;" name="rfmp_priceoptions_desc[]" value="<?php echo esc_attr($desc);?>"></td>
-                            <td><input type="number" min="0" step="any" required name="rfmp_priceoptions_price[]" value="<?php echo esc_attr($option_price[$key]);?>"></td>
+                            <td>
+                                <select name="rfmp_priceoptions_pricetype[]" class="rfmp_pricetype">
+                                    <option value="fixed"><?php esc_html_e('Fixed', 'mollie-forms');?></option>
+                                    <option value="open"<?php echo ($option_pricetype[$key] == 'open' ? ' selected' : '');?>><?php esc_html_e('Open', 'mollie-forms');?></option>
+                                </select>
+                                <input type="number" min="0.50" step="any" name="rfmp_priceoptions_price[]" value="<?php echo esc_attr($option_price[$key]);?>" style="<?php echo ($option_pricetype[$key] == 'open' ? 'display:none;' : '');?>">
+                            </td>
                             <td>
                                 <input type="number" name="rfmp_priceoptions_frequencyval[]" value="<?php echo esc_attr($option_frequencyval[$key]);?>" style="width:50px;<?php echo ($option_frequency[$key] == 'once' ? 'display:none;' : '');?>">
                                 <select name="rfmp_priceoptions_frequency[]" class="rfmp_frequency">
@@ -240,7 +253,7 @@ Class RFMP_Admin {
                                     <option value="days"<?php echo ($option_frequency[$key] == 'days' ? ' selected' : '');?>><?php esc_html_e('Days', 'mollie-forms');?></option>
                                 </select>
                             </td>
-                            <td width="1%"><a href="#" class="delete"><?php esc_html_e('Delete', 'mollie-forms');?></a></td>
+                            <td width="1%"><a href="javascript: void(0);" class="delete"><?php esc_html_e('Delete', 'mollie-forms');?></a></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -416,6 +429,7 @@ Class RFMP_Admin {
 
         update_post_meta($post_id, '_rfmp_priceoption_desc', $_POST['rfmp_priceoptions_desc']);
         update_post_meta($post_id, '_rfmp_priceoption_price', $_POST['rfmp_priceoptions_price']);
+        update_post_meta($post_id, '_rfmp_priceoption_pricetype', $_POST['rfmp_priceoptions_pricetype']);
         update_post_meta($post_id, '_rfmp_priceoption_frequency', $_POST['rfmp_priceoptions_frequency']);
         update_post_meta($post_id, '_rfmp_priceoption_frequencyval', $_POST['rfmp_priceoptions_frequencyval']);
 
