@@ -222,6 +222,7 @@ Class RFMP_Start {
                 document.getElementById("rfmp_checkbox_' . $post . '").style.display = (frequency=="once" ? "none" : "block");
                 document.getElementById("rfmp_checkbox_hidden_' . $post . '").value = (frequency=="once" ? 0 : 1);
                 document.getElementById("rfmp_open_amount_' . $post . '").style.display = (pricetype=="open" ? "block" : "none");
+                document.getElementById("rfmp_open_amount_required_' . $post . '").value = (pricetype=="open" ? 1 : 0);
                 ' . $script . '
             }
             </script>';
@@ -364,7 +365,7 @@ Class RFMP_Start {
             $this->required_errors .= '<p class="rfmp_error" style="color:red;">- ' . esc_html__('Please give us authorization to collect the amount from your account periodically.', 'mollie-forms') . '</p>';
         }
 
-        if (isset($_POST['rfmp_amount_required_' . $post]) && (empty($_POST['rfmp_amount_' . $post]) || $_POST['rfmp_amount_' . $post] <= 1))
+        if (isset($_POST['rfmp_amount_required_' . $post]) && $_POST['rfmp_amount_required_' . $post] == '1' && (empty($_POST['rfmp_amount_' . $post]) || $_POST['rfmp_amount_' . $post] <= 1))
         {
             $return = false;
             $this->required_errors .= '<p class="rfmp_error" style="color:red;">- ' . esc_html__('Please fill in a higher amount.', 'mollie-forms') . '</p>';
