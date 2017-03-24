@@ -31,7 +31,7 @@ Class RFMP_Admin {
             'edit.php?post_type=rfmp',
             __('Registrations', 'mollie-forms'),
             __('Registrations', 'mollie-forms'),
-            'manage_options',
+            'edit_posts',
             'registrations',
             array(
                 $this,
@@ -42,7 +42,7 @@ Class RFMP_Admin {
             null,
             __('Registration', 'mollie-forms'),
             __('Registration', 'mollie-forms'),
-            'manage_options',
+            'edit_posts',
             'registration',
             array(
                 $this,
