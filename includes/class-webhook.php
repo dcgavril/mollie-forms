@@ -141,6 +141,10 @@ class RFMP_Webhook {
                 $payment_id
             ));
 
+            // E-mail
+            $this->sendEmail($post, $regPayment->registration_id, $payment, 'customer');
+            $this->sendEmail($post, $regPayment->registration_id, $payment, 'merchant');
+
             // First payment
             if (isset($query->query_vars['first']) && ($payment->isPaid() && !$payment->isRefunded()))
             {
@@ -195,7 +199,111 @@ class RFMP_Webhook {
 
         } catch (Mollie_API_Exception $e) {
             status_header(500);
-            return"API call failed: " . $e->getMessage();
+            return "API call failed: " . $e->getMessage();
         }
+    }
+
+    protected function sendEmail($post, $registration_id, $payment, $type)
+    {
+        if (!in_array($payment->status, array('paid', 'expired', 'cancelled')))
+            return;
+
+        $enabled = get_post_meta($post, '_rfmp_enabled_' . $payment->status . '_' . $type, true);
+        if ($enabled != '1')
+            return;
+
+        $registration = $this->wpdb->get_row("SELECT * FROM " . RFMP_TABLE_REGISTRATIONS . " WHERE id=" . (int) $registration_id);
+
+        $data = array();
+        $search     = array(
+            '{rfmp="amount"}',
+            '{rfmp="interval"}',
+            '{rfmp="status"}',
+        );
+        $replace    = array(
+            $payment->amount,
+            $this->frequency_label($registration->price_frequency),
+            $payment->status
+        );
+
+        $fields = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_REGISTRATION_FIELDS . " WHERE registration_id=" . (int) $registration_id);
+        foreach ($fields as $row)
+        {
+            if ($row->type == 'email')
+                $data['to_email'] = $row->value;
+
+            $data[$row->field]  = $row->value;
+            $search[]           = '{rfmp="' . $row->field . '"}';
+            $replace[]          = $row->value;
+        }
+
+        $email = get_post_meta($post, '_rfmp_email_' . $payment->status . '_' . $type, true);
+        $email = str_replace($search, $replace, $email);
+
+        $subject = get_post_meta($post, '_rfmp_subject_' . $payment->status . '_' . $type, true);
+        $subject = str_replace($search, $replace, $subject);
+
+        $fromname = get_post_meta($post, '_rfmp_fromname_' . $payment->status . '_' . $type, true);
+        $fromemail = get_post_meta($post, '_rfmp_fromemail_' . $payment->status . '_' . $type, true);
+
+
+        $to = $type == 'customer' ? $data['to_email'] : $fromemail;
+        $headers[] = 'From: ' . $fromname . ' <' . $fromemail . '>';
+        $headers[] = 'Content-Type: text/html; charset=UTF-8';
+
+        wp_mail($to, $subject, nl2br($email), $headers);
+    }
+
+    private function frequency_label($frequency)
+    {
+        $frequency  = trim($frequency);
+        $search     = array(
+            'months',
+            'weeks',
+            'days',
+            'year',
+        );
+        $replace    = array(
+            __('months', 'mollie-forms'),
+            __('weeks', 'mollie-forms'),
+            __('days', 'mollie-forms'),
+            __('year', 'mollie-forms'),
+        );
+
+        switch ($frequency)
+        {
+            case 'once':
+            case '':
+                $return = '';
+                break;
+            case '1 months':
+                $return = __('per month', 'mollie-forms');
+                break;
+            case '1 month':
+                $return = __('per month', 'mollie-forms');
+                break;
+            case '3 months':
+                $return = __('each quarter', 'mollie-forms');
+                break;
+            case '12 months':
+                $return = __('per year', 'mollie-forms');
+                break;
+            case '1 weeks':
+                $return = __('per week', 'mollie-forms');
+                break;
+            case '1 week':
+                $return = __('per week', 'mollie-forms');
+                break;
+            case '1 days':
+                $return = __('per day', 'mollie-forms');
+                break;
+            case '1 day':
+                $return = __('per day', 'mollie-forms');
+                break;
+            default:
+                $return = __('each', 'mollie-forms') . ' ' . str_replace($search, $replace, $frequency);
+        }
+
+        return $return;
     }
 }

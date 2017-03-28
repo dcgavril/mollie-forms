@@ -39,4 +39,6 @@ jQuery(document).ready(function($) {
             $(this).closest('td').next('td').next('td').find(".rfmp_value").val('').hide();
     });
 
+    $('#rfmp_tabs').tabs();
+
 });

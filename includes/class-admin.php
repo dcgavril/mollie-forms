@@ -56,6 +56,7 @@ Class RFMP_Admin {
         add_meta_box('rfmp_meta_box_fields', __('Fields', 'mollie-forms'), array($this, 'build_meta_boxes_fields'), 'rfmp', 'normal', 'high');
         add_meta_box('rfmp_meta_box_settings', __('Settings', 'mollie-forms'), array($this, 'build_meta_boxes_settings'), 'rfmp', 'normal', 'default');
         add_meta_box('rfmp_meta_box_priceoptions', __('Price options', 'mollie-forms'), array($this, 'build_meta_boxes_priceoptions'), 'rfmp', 'normal', 'default');
+        add_meta_box('rfmp_meta_box_emails', __('Email settings', 'mollie-forms'), array($this, 'build_meta_boxes_emails'), 'rfmp', 'normal', 'default');
         add_meta_box('rfmp_meta_box_paymentmethods', __('Payment methods', 'mollie-forms'), array($this, 'build_meta_boxes_paymentmethods'), 'rfmp', 'side', 'default');
     }
 
@@ -360,6 +361,300 @@ Class RFMP_Admin {
         <?php
     }
 
+    public function build_meta_boxes_emails($post)
+    {
+        wp_nonce_field(basename(__FILE__), 'rfmp_meta_box_emails_nonce');
+
+
+
+
+        $enabled_paid_customer      = get_post_meta($post->ID, '_rfmp_enabled_paid_customer', true);
+        $email_paid_customer        = get_post_meta($post->ID, '_rfmp_email_paid_customer', true);
+        $subject_paid_customer      = get_post_meta($post->ID, '_rfmp_subject_paid_customer', true);
+        $fromemail_paid_customer    = get_post_meta($post->ID, '_rfmp_fromemail_paid_customer', true);
+        $fromname_paid_customer     = get_post_meta($post->ID, '_rfmp_fromname_paid_customer', true);
+
+        $enabled_expired_customer      = get_post_meta($post->ID, '_rfmp_enabled_expired_customer', true);
+        $email_expired_customer        = get_post_meta($post->ID, '_rfmp_email_expired_customer', true);
+        $subject_expired_customer      = get_post_meta($post->ID, '_rfmp_subject_expired_customer', true);
+        $fromemail_expired_customer    = get_post_meta($post->ID, '_rfmp_fromemail_expired_customer', true);
+        $fromname_expired_customer     = get_post_meta($post->ID, '_rfmp_fromname_expired_customer', true);
+
+        $enabled_cancelled_customer      = get_post_meta($post->ID, '_rfmp_enabled_cancelled_customer', true);
+        $email_cancelled_customer        = get_post_meta($post->ID, '_rfmp_email_cancelled_customer', true);
+        $subject_cancelled_customer      = get_post_meta($post->ID, '_rfmp_subject_cancelled_customer', true);
+        $fromemail_cancelled_customer    = get_post_meta($post->ID, '_rfmp_fromemail_cancelled_customer', true);
+        $fromname_cancelled_customer     = get_post_meta($post->ID, '_rfmp_fromname_cancelled_customer', true);
+
+        $enabled_paid_merchant      = get_post_meta($post->ID, '_rfmp_enabled_paid_merchant', true);
+        $email_paid_merchant        = get_post_meta($post->ID, '_rfmp_email_paid_merchant', true);
+        $subject_paid_merchant      = get_post_meta($post->ID, '_rfmp_subject_paid_merchant', true);
+        $fromemail_paid_merchant    = get_post_meta($post->ID, '_rfmp_fromemail_paid_merchant', true);
+        $fromname_paid_merchant     = get_post_meta($post->ID, '_rfmp_fromname_paid_merchant', true);
+
+        $enabled_expired_merchant      = get_post_meta($post->ID, '_rfmp_enabled_expired_merchant', true);
+        $email_expired_merchant        = get_post_meta($post->ID, '_rfmp_email_expired_merchant', true);
+        $subject_expired_merchant      = get_post_meta($post->ID, '_rfmp_subject_expired_merchant', true);
+        $fromemail_expired_merchant    = get_post_meta($post->ID, '_rfmp_fromemail_expired_merchant', true);
+        $fromname_expired_merchant     = get_post_meta($post->ID, '_rfmp_fromname_expired_merchant', true);
+
+        $enabled_cancelled_merchant      = get_post_meta($post->ID, '_rfmp_enabled_cancelled_merchant', true);
+        $email_cancelled_merchant        = get_post_meta($post->ID, '_rfmp_email_cancelled_merchant', true);
+        $subject_cancelled_merchant      = get_post_meta($post->ID, '_rfmp_subject_cancelled_merchant', true);
+        $fromemail_cancelled_merchant    = get_post_meta($post->ID, '_rfmp_fromemail_cancelled_merchant', true);
+        $fromname_cancelled_merchant     = get_post_meta($post->ID, '_rfmp_fromname_cancelled_merchant', true);
+
+        $rfmp_editor_settings   = array();
+        ?>
+        <div class='inside'>
+            <div id="rfmp_tabs">
+                <ul>
+                    <li><a href="#rfmp_tab_paid_customer"><?php esc_html_e('Customer: Payment successful', 'mollie-forms');?></a></li>
+                    <li><a href="#rfmp_tab_expired_customer"><?php esc_html_e('Customer: Payment expired', 'mollie-forms');?></a></li>
+                    <li><a href="#rfmp_tab_cancelled_customer"><?php esc_html_e('Customer: Payment cancelled', 'mollie-forms');?></a></li>
+                    <li><a href="#rfmp_tab_paid_merchant"><?php esc_html_e('Merchant: Payment successful', 'mollie-forms');?></a></li>
+                    <li><a href="#rfmp_tab_expired_merchant"><?php esc_html_e('Merchant: Payment expired', 'mollie-forms');?></a></li>
+                    <li><a href="#rfmp_tab_cancelled_merchant"><?php esc_html_e('Merchant: Payment cancelled', 'mollie-forms');?></a></li>
+                </ul>
+
+                <div id="rfmp_tab_paid_customer">
+                    <table class="form-table">
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('Enabled', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_enabled_paid_customer" value="1" type="checkbox" <?php echo $enabled_paid_customer == '1' ? 'checked' : '';?>>
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('Subject', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_subject_paid_customer" value="<?php echo esc_attr($subject_paid_customer);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('From "email"', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_fromemail_paid_customer" value="<?php echo esc_attr($fromemail_paid_customer);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('From "name"', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_fromname_paid_customer" value="<?php echo esc_attr($fromname_paid_customer);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                    </table>
+
+                    <?php wp_editor($email_paid_customer, 'rfmp_email_paid_customer', $rfmp_editor_settings); ?>
+                </div>
+                <div id="rfmp_tab_expired_customer">
+                    <table class="form-table">
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('Enabled', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_enabled_expired_customer" value="1" type="checkbox" <?php echo $enabled_expired_customer == '1' ? 'checked' : '';?>>
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('Subject', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_subject_expired_customer" value="<?php echo esc_attr($subject_expired_customer);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('From "email"', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_fromemail_expired_customer" value="<?php echo esc_attr($fromemail_expired_customer);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('From "name"', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_fromname_expired_customer" value="<?php echo esc_attr($fromname_expired_customer);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                    </table>
+
+                    <?php wp_editor($email_expired_customer, 'rfmp_email_expired_customer', $rfmp_editor_settings); ?>
+                </div>
+                <div id="rfmp_tab_cancelled_customer">
+                    <table class="form-table">
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('Enabled', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_enabled_cancelled_customer" value="1" type="checkbox" <?php echo $enabled_cancelled_customer == '1' ? 'checked' : '';?>>
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('Subject', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_subject_cancelled_customer" value="<?php echo esc_attr($subject_cancelled_customer);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('From "email"', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_fromemail_cancelled_customer" value="<?php echo esc_attr($fromemail_cancelled_customer);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('From "name"', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_fromname_cancelled_customer" value="<?php echo esc_attr($fromname_cancelled_customer);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                    </table>
+
+                    <?php wp_editor($email_cancelled_customer, 'rfmp_email_cancelled_customer', $rfmp_editor_settings); ?>
+                </div>
+                <div id="rfmp_tab_paid_merchant">
+                    <table class="form-table">
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('Enabled', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_enabled_paid_merchant" value="1" type="checkbox" <?php echo $enabled_paid_merchant == '1' ? 'checked' : '';?>>
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('Subject', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_subject_paid_merchant" value="<?php echo esc_attr($subject_paid_merchant);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('To/from "email"', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_fromemail_paid_merchant" value="<?php echo esc_attr($fromemail_paid_merchant);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('To/from "name"', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_fromname_paid_merchant" value="<?php echo esc_attr($fromname_paid_merchant);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                    </table>
+
+                    <?php wp_editor($email_paid_merchant, 'rfmp_email_paid_merchant', $rfmp_editor_settings); ?>
+                </div>
+                <div id="rfmp_tab_expired_merchant">
+                    <table class="form-table">
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('Enabled', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_enabled_expired_merchant" value="1" type="checkbox" <?php echo $enabled_expired_merchant == '1' ? 'checked' : '';?>>
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('Subject', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_subject_expired_merchant" value="<?php echo esc_attr($subject_expired_merchant);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('To/from "email"', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_fromemail_expired_merchant" value="<?php echo esc_attr($fromemail_expired_merchant);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('To/from "name"', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_fromname_expired_merchant" value="<?php echo esc_attr($fromname_expired_merchant);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                    </table>
+
+                    <?php wp_editor($email_expired_merchant, 'rfmp_email_expired_merchant', $rfmp_editor_settings); ?>
+                </div>
+                <div id="rfmp_tab_cancelled_merchant">
+                    <table class="form-table">
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('Enabled', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_enabled_cancelled_merchant" value="1" type="checkbox" <?php echo $enabled_cancelled_merchant == '1' ? 'checked' : '';?>>
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('Subject', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_subject_cancelled_merchant" value="<?php echo esc_attr($subject_cancelled_merchant);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('To/from "email"', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_fromemail_cancelled_merchant" value="<?php echo esc_attr($fromemail_cancelled_merchant);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row" class="titledesc">
+                                <label><?php esc_html_e('To/from "name"', 'mollie-forms');?></label>
+                            </th>
+                            <td class="forminp forminp-text">
+                                <input name="rfmp_fromname_cancelled_merchant" value="<?php echo esc_attr($fromname_cancelled_merchant);?>" type="text" style="width: 350px">
+                            </td>
+                        </tr>
+                    </table>
+
+                    <?php wp_editor($email_cancelled_merchant, 'rfmp_email_cancelled_merchant', $rfmp_editor_settings); ?>
+                </div>
+            </div>
+
+            <br>
+            <?php esc_html_e('You can use variables in the subjects and messages. Use {rfmp="label"} as variable and replace label with your filled in label of the field.', 'mollie-forms');?><br>
+            <?php esc_html_e('Examples: {rfmp="Name"} {rfmp="Email address"} {rfmp="group"}', 'mollie-forms');?><br>
+            <?php esc_html_e('You can also use fixed variables for the amount {rfmp="amount"} and payment status {rfmp="status"} and payment interval {rfmp="interval"}', 'mollie-forms');?>
+        </div>
+        <?php
+    }
+
     public function build_meta_boxes_paymentmethods($post)
     {
         wp_nonce_field(basename(__FILE__), 'rfmp_meta_box_paymentmethods_nonce');
@@ -408,6 +703,10 @@ Class RFMP_Admin {
         if (!isset($_POST['rfmp_meta_box_paymentmethods_nonce']) || !wp_verify_nonce($_POST['rfmp_meta_box_paymentmethods_nonce'], basename(__FILE__)))
             return;
 
+        // verify meta box nonce
+        if (!isset($_POST['rfmp_meta_box_emails_nonce']) || !wp_verify_nonce($_POST['rfmp_meta_box_emails_nonce'], basename(__FILE__)))
+            return;
+
         // Check the user's permissions.
         if (!current_user_can('edit_post', $post_id))
             return;
@@ -436,12 +735,47 @@ Class RFMP_Admin {
         update_post_meta($post_id, '_rfmp_payment_method', $_POST['rfmp_payment_method']);
         update_post_meta($post_id, '_rfmp_payment_method_fixed', $_POST['rfmp_payment_method_fixed']);
         update_post_meta($post_id, '_rfmp_payment_method_variable', $_POST['rfmp_payment_method_variable']);
+
+        update_post_meta($post_id, '_rfmp_enabled_paid_customer', $_POST['rfmp_enabled_paid_customer']);
+        update_post_meta($post_id, '_rfmp_email_paid_customer', $_POST['rfmp_email_paid_customer']);
+        update_post_meta($post_id, '_rfmp_subject_paid_customer', $_POST['rfmp_subject_paid_customer']);
+        update_post_meta($post_id, '_rfmp_fromname_paid_customer', $_POST['rfmp_fromname_paid_customer']);
+        update_post_meta($post_id, '_rfmp_fromemail_paid_customer', $_POST['rfmp_fromemail_paid_customer']);
+        update_post_meta($post_id, '_rfmp_enabled_expired_customer', $_POST['rfmp_enabled_expired_customer']);
+        update_post_meta($post_id, '_rfmp_email_expired_customer', $_POST['rfmp_email_expired_customer']);
+        update_post_meta($post_id, '_rfmp_subject_expired_customer', $_POST['rfmp_subject_expired_customer']);
+        update_post_meta($post_id, '_rfmp_fromname_expired_customer', $_POST['rfmp_fromname_expired_customer']);
+        update_post_meta($post_id, '_rfmp_fromemail_expired_customer', $_POST['rfmp_fromemail_expired_customer']);
+        update_post_meta($post_id, '_rfmp_enabled_cancelled_customer', $_POST['rfmp_enabled_cancelled_customer']);
+        update_post_meta($post_id, '_rfmp_email_cancelled_customer', $_POST['rfmp_email_cancelled_customer']);
+        update_post_meta($post_id, '_rfmp_subject_cancelled_customer', $_POST['rfmp_subject_cancelled_customer']);
+        update_post_meta($post_id, '_rfmp_fromname_cancelled_customer', $_POST['rfmp_fromname_cancelled_customer']);
+        update_post_meta($post_id, '_rfmp_fromemail_cancelled_customer', $_POST['rfmp_fromemail_cancelled_customer']);
+
+        update_post_meta($post_id, '_rfmp_enabled_paid_merchant', $_POST['rfmp_enabled_paid_merchant']);
+        update_post_meta($post_id, '_rfmp_email_paid_merchant', $_POST['rfmp_email_paid_merchant']);
+        update_post_meta($post_id, '_rfmp_subject_paid_merchant', $_POST['rfmp_subject_paid_merchant']);
+        update_post_meta($post_id, '_rfmp_fromname_paid_merchant', $_POST['rfmp_fromname_paid_merchant']);
+        update_post_meta($post_id, '_rfmp_fromemail_paid_merchant', $_POST['rfmp_fromemail_paid_merchant']);
+        update_post_meta($post_id, '_rfmp_enabled_expired_merchant', $_POST['rfmp_enabled_expired_merchant']);
+        update_post_meta($post_id, '_rfmp_email_expired_merchant', $_POST['rfmp_email_expired_merchant']);
+        update_post_meta($post_id, '_rfmp_subject_expired_merchant', $_POST['rfmp_subject_expired_merchant']);
+        update_post_meta($post_id, '_rfmp_fromname_expired_merchant', $_POST['rfmp_fromname_expired_merchant']);
+        update_post_meta($post_id, '_rfmp_fromemail_expired_merchant', $_POST['rfmp_fromemail_expired_merchant']);
+        update_post_meta($post_id, '_rfmp_enabled_cancelled_merchant', $_POST['rfmp_enabled_cancelled_merchant']);
+        update_post_meta($post_id, '_rfmp_email_cancelled_merchant', $_POST['rfmp_email_cancelled_merchant']);
+        update_post_meta($post_id, '_rfmp_subject_cancelled_merchant', $_POST['rfmp_subject_cancelled_merchant']);
+        update_post_meta($post_id, '_rfmp_fromname_cancelled_merchant', $_POST['rfmp_fromname_cancelled_merchant']);
+        update_post_meta($post_id, '_rfmp_fromemail_cancelled_merchant', $_POST['rfmp_fromemail_cancelled_merchant']);
     }
 
     public function load_scripts()
     {
-        wp_enqueue_script('rfmp_admin_scripts', plugin_dir_url(__FILE__) . 'js/admin-scripts.js', array('jquery', 'jquery-ui-core', 'jquery-ui-sortable'));
+        wp_enqueue_script('rfmp_admin_scripts', plugin_dir_url(__FILE__) . 'js/admin-scripts.js', array('jquery', 'jquery-ui-core', 'jquery-ui-sortable', 'jquery-ui-tabs'));
         wp_enqueue_style('rfmp_admin_styles', plugin_dir_url(__FILE__) . 'css/admin-styles.css');
+
+        wp_register_style('jQueryUI', 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+        wp_enqueue_style('jQueryUI');
     }
 
     public function post_actions($actions, $post)
