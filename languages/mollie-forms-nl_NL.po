@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mollie Forms\n"
-"POT-Creation-Date: 2017-03-28 16:33+0200\n"
-"PO-Revision-Date: 2017-03-28 16:33+0200\n"
+"POT-Creation-Date: 2017-03-31 14:28+0200\n"
+"PO-Revision-Date: 2017-03-31 14:29+0200\n"
 "Last-Translator: Nick Dijkstra <nbdijkstra@gmail.com>, 2016\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/nick-dijkstra/"
 "teams/70304/nl_NL/)\n"
@@ -127,7 +127,7 @@ msgid "Open"
 msgstr "Open"
 
 #: includes/class-admin.php:215 includes/class-admin.php:251
-#: includes/class-admin.php:1011 includes/class-webhook.php:276
+#: includes/class-admin.php:1011
 msgid "Once"
 msgstr "Éenmalig"
 
@@ -278,15 +278,15 @@ msgstr ""
 
 #: includes/class-admin.php:652
 msgid "Examples: {rfmp=\"Name\"} {rfmp=\"Email address\"} {rfmp=\"group\"}"
-msgstr "Voorbeelden: {rfmp=“Naam”} {rfmp=“E-mailadres”} {rfmp=“groep”}"
+msgstr "Voorbeelden: {rfmp=\"Naam\"} {rfmp=\"E-mailadres\"} {rfmp=\"groep\"}"
 
 #: includes/class-admin.php:653
 msgid ""
 "You can also use fixed variables for the amount {rfmp=\"amount\"} and "
 "payment status {rfmp=\"status\"} and payment interval {rfmp=\"interval\"}"
 msgstr ""
-"Je kunt ook standaard variabelen gebruiken voor het bedrag {rfmp=\"amount”}, "
-"betaalstatus {rfmp=\"status\"} en betalingsinterval {rfmp=\"interval\"}"
+"Je kunt ook standaard variabelen gebruiken voor het bedrag {rfmp=\"amount"
+"\"}, betaalstatus {rfmp=\"status\"} en betalingsinterval {rfmp=\"interval\"}"
 
 #: includes/class-admin.php:669 includes/class-start.php:390
 msgid "No API-key set"
@@ -395,39 +395,39 @@ msgstr "Terugstorten"
 #: includes/class-admin.php:1014 includes/class-admin.php:1017
 #: includes/class-registrations-table.php:99
 #: includes/class-registrations-table.php:102 includes/class-start.php:567
-#: includes/class-start.php:570 includes/class-webhook.php:279
-#: includes/class-webhook.php:282
+#: includes/class-start.php:570 includes/class-webhook.php:280
+#: includes/class-webhook.php:283
 msgid "per month"
 msgstr "per maand"
 
 #: includes/class-admin.php:1020 includes/class-registrations-table.php:105
-#: includes/class-start.php:573 includes/class-webhook.php:285
+#: includes/class-start.php:573 includes/class-webhook.php:286
 msgid "each quarter"
 msgstr "per kwartaal"
 
 #: includes/class-admin.php:1023 includes/class-registrations-table.php:108
-#: includes/class-start.php:576 includes/class-webhook.php:288
+#: includes/class-start.php:576 includes/class-webhook.php:289
 msgid "per year"
 msgstr "per jaar"
 
 #: includes/class-admin.php:1026 includes/class-admin.php:1029
 #: includes/class-registrations-table.php:111
 #: includes/class-registrations-table.php:114 includes/class-start.php:579
-#: includes/class-start.php:582 includes/class-webhook.php:291
-#: includes/class-webhook.php:294
+#: includes/class-start.php:582 includes/class-webhook.php:292
+#: includes/class-webhook.php:295
 msgid "per week"
 msgstr "per week"
 
 #: includes/class-admin.php:1032 includes/class-admin.php:1035
 #: includes/class-registrations-table.php:117
 #: includes/class-registrations-table.php:120 includes/class-start.php:585
-#: includes/class-start.php:588 includes/class-webhook.php:297
-#: includes/class-webhook.php:300
+#: includes/class-start.php:588 includes/class-webhook.php:298
+#: includes/class-webhook.php:301
 msgid "per day"
 msgstr "per dag"
 
 #: includes/class-admin.php:1038 includes/class-registrations-table.php:123
-#: includes/class-start.php:591 includes/class-webhook.php:303
+#: includes/class-start.php:591 includes/class-webhook.php:304
 msgid "each"
 msgstr "iedere"
 
