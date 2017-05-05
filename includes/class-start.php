@@ -416,9 +416,9 @@ Class RFMP_Start {
                 $desc               = $option_desc[$option];
 
                 if ($option_pricetype[$option] == 'open')
-                    $price          = isset($_POST['rfmp_amount_' . $post]) ? (float) $_POST['rfmp_amount_' . $post] : 0;
+                    $price          = isset($_POST['rfmp_amount_' . $post]) ? (float) str_replace(',','.',$_POST['rfmp_amount_' . $post]) : 0;
                 else
-                    $price          = (float) $option_price[$option];
+                    $price          = (float) str_replace(',','.',$option_price[$option]);
 
                 if ($option_frequency[$option] == 'once')
                     $option_frequencyval[$option] = '';
@@ -437,7 +437,7 @@ Class RFMP_Start {
                     $price += str_replace(',','.',$fixed[$method]);
                 }
 
-                $total = number_format($price, 2, '.', '');
+                $total = number_format(str_replace(',','.',$price), 2, '.', '');
 
                 // Create new customer at Mollie
                 $customer = $this->mollie->customers->create(array(
@@ -454,11 +454,12 @@ Class RFMP_Start {
                     $customer->name,
                     $customer->email
                 ));
+                $customer_id = $this->wpdb->insert_id;
 
                 // Create registration
                 $this->wpdb->query($this->wpdb->prepare("INSERT INTO " . RFMP_TABLE_REGISTRATIONS . "
-                    ( created_at, post_id, customer_id, subscription_id, total_price, price_frequency, description )
-                    VALUES ( NOW(), %d, %s, NULL, %s, %s, %s )",
+                    ( created_at, post_id, customer_id, subscription_id, total_price, price_frequency, description, subs_fix )
+                    VALUES ( NOW(), %d, %s, NULL, %s, %s, %s, 1 )",
                     $post,
                     $customer->id,
                     $total,
@@ -541,6 +542,24 @@ Class RFMP_Start {
 
         } catch (Mollie_API_Exception $e) {
             echo '<p style="color: red">' . $e->getMessage() . '</p>';
+
+            if (isset($registration_id))
+            {
+                // an error occurred, delete registration
+                $this->wpdb->query($this->wpdb->prepare("DELETE FROM " . RFMP_TABLE_REGISTRATIONS . " WHERE id = %d",
+                    $registration_id
+                ));
+            }
+            if (isset($customer_id))
+            {
+                // an error occurred, delete customer
+                if (isset($customer) && isset($customer->id))
+                    $this->mollie->customers->delete($customer->id);
+
+                $this->wpdb->query($this->wpdb->prepare("DELETE FROM " . RFMP_TABLE_CUSTOMERS . " WHERE id = %d",
+                    $customer_id
+                ));
+            }
         }
     }
 

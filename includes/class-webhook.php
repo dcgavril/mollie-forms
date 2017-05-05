@@ -155,7 +155,13 @@ class RFMP_Webhook {
                     return 'Registration not found';
                 }
 
-                $this->wpdb->query($this->wpdb->prepare("INSERT INTO " . RFMP_TABLE_SUBSCRIPTIONS . "
+                // subscriptions table fix
+                if ($registration->subs_fix)
+                    $subs_table = RFMP_TABLE_SUBSCRIPTIONS;
+                else
+                    $subs_table = RFMP_TABLE_CUSTOMERS;
+
+                $this->wpdb->query($this->wpdb->prepare("INSERT INTO " . $subs_table . "
                     ( registration_id, customer_id, created_at )
                     VALUES ( %s, %s, NOW())",
                     $registration->id,
@@ -173,7 +179,7 @@ class RFMP_Webhook {
 
                 if (isset($subscription->id) && $subscription->id)
                 {
-                    $this->wpdb->query($this->wpdb->prepare("UPDATE " . RFMP_TABLE_SUBSCRIPTIONS . " SET subscription_id = %s, sub_mode = %s, sub_amount = %s, sub_times = %s, sub_interval = %s, sub_description = %s, sub_method = %s, sub_status = %s WHERE id = %d",
+                    $this->wpdb->query($this->wpdb->prepare("UPDATE " . $subs_table . " SET subscription_id = %s, sub_mode = %s, sub_amount = %s, sub_times = %s, sub_interval = %s, sub_description = %s, sub_method = %s, sub_status = %s WHERE id = %d",
                         $subscription->id,
                         $subscription->mode,
                         $subscription->amount,
@@ -187,7 +193,7 @@ class RFMP_Webhook {
                 }
                 else
                 {
-                    $this->wpdb->query($this->wpdb->prepare("DELETE FROM " . RFMP_TABLE_SUBSCRIPTIONS . " WHERE id = %s",
+                    $this->wpdb->query($this->wpdb->prepare("DELETE FROM " . $subs_table . " WHERE id = %s",
                         $sub_id
                     ));
                 }

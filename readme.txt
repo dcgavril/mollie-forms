@@ -3,7 +3,7 @@ Contributors: ndijkstra
 Tags: mollie,registration,form,payments,ideal,bancontact,sofort,bitcoin,belfius,creditcard,recurring,forms
 Requires at least: 3.8
 Tested up to: 4.7.3
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,7 +25,7 @@ Create registration forms with payment methods of Mollie. One-time and recurring
 * Fixed or open amount possible
 * Configure emails per form
 * Refund payments and cancel subscriptions in Wordpress admin
-* Available in English and Dutch
+* Available in English, Dutch and French.
 * Style it with your own css classes.
 
 More features will be added soon.
@@ -56,6 +56,12 @@ For recurring payments you will need a supported payment method. You have to act
 
 
 == Changelog ==
+
+= 0.3.1 =
+* Fixed issue with empty registrations
+* Payment and subscription status visible in registration list
+* Subscription table bugfix
+* Added French translations
 
 = 0.3.0 =
 * You can now configure emails per form

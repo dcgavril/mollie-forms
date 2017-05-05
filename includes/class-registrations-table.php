@@ -9,7 +9,9 @@ class RFMP_Registrations_Table extends WP_List_Table {
         $columns['post_id'] = __('Form', 'mollie-forms');
         $columns['customer'] = __('Customer', 'mollie-forms');
         $columns['total_price'] = __('Total price', 'mollie-forms');
+        $columns['payment_status'] = __('Payment status', 'mollie-forms');
         $columns['price_frequency'] = __('Frequency', 'mollie-forms');
+        $columns['subscription_status'] = __('Subscription status', 'mollie-forms');
         $columns['description'] = __('Description', 'mollie-forms');
         $columns['actions'] = '';
 
@@ -72,6 +74,23 @@ class RFMP_Registrations_Table extends WP_List_Table {
                 break;
             case 'price_frequency':
                 return $this->frequency_label($item[$column_name]);
+                break;
+            case 'payment_status':
+                $payments = $wpdb->get_var("SELECT COUNT(*) FROM " . RFMP_TABLE_PAYMENTS . " WHERE payment_status='paid' AND registration_id=" . (int) $item['id']);
+                return $payments ? '<span style="color: green;">' . __('Paid', 'mollie-forms') . ' (' . $payments . 'x)</span>' : '<span style="color: red;">' . __('Not paid', 'mollie-forms') . '</span>';
+                break;
+            case 'subscription_status':
+                $reg = $wpdb->get_row("SELECT subs_fix FROM " . RFMP_TABLE_REGISTRATIONS . " WHERE id=" . $item['id']);
+                if ($reg->subs_fix)
+                    $subs_table = RFMP_TABLE_SUBSCRIPTIONS;
+                else
+                    $subs_table = RFMP_TABLE_CUSTOMERS;
+
+                $subscriptions = $wpdb->get_var("SELECT COUNT(*) FROM " . $subs_table . " WHERE sub_status='active' AND registration_id=" . (int) $item['id']);
+                if ($item['price_frequency'] == 'once')
+                    return '';
+
+                return $subscriptions ? '<span style="color: green;">' . __('Active', 'mollie-forms') . '</span>' : '<span style="color: red;">' . __('Not active', 'mollie-forms') . '</span>';
                 break;
             default:
                 return $item[$column_name];

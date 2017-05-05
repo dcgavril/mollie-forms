@@ -839,8 +839,14 @@ Class RFMP_Admin {
             exit;
         }
 
+        // subscriptions table fix
+        if ($registration->subs_fix)
+            $subs_table = RFMP_TABLE_SUBSCRIPTIONS;
+        else
+            $subs_table = RFMP_TABLE_CUSTOMERS;
+
         $fields         = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_REGISTRATION_FIELDS . " WHERE registration_id=" . $id);
-        $subscriptions  = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_SUBSCRIPTIONS . " WHERE registration_id=" . $id);
+        $subscriptions  = $this->wpdb->get_results("SELECT * FROM " . $subs_table . " WHERE registration_id=" . $id);
         $payments       = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_PAYMENTS . " WHERE registration_id=" . $id);
 
         $api_key        = get_post_meta($registration->post_id, '_rfmp_api_key', true);
@@ -855,7 +861,7 @@ Class RFMP_Admin {
             try {
                 $cancelledSub   = $mollie->customers_subscriptions->withParentId($registration->customer_id)->cancel($_GET['cancel']);
 
-                $this->wpdb->query($this->wpdb->prepare("UPDATE " . RFMP_TABLE_SUBSCRIPTIONS . " SET sub_status = %s WHERE subscription_id = %s",
+                $this->wpdb->query($this->wpdb->prepare("UPDATE " . $subs_table . " SET sub_status = %s WHERE subscription_id = %s",
                     $cancelledSub->status,
                     $cancelledSub->id
                 ));
