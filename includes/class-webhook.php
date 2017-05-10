@@ -126,7 +126,7 @@ class RFMP_Webhook {
                     ));
                 }
 
-                return 'OK, ' . $payment_id . ', Post ID: ' . $post . ', Subscription ID: ' . $sub;
+                return 'OK, ' . $payment_id . ', Post ID: ' . $post . ', Subscription ID: ' . $sub->subscription_id;
             }
 
 
