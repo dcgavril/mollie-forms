@@ -82,8 +82,12 @@ class RFMP_Webhook {
                 $sub = $this->wpdb->get_row("SELECT * FROM " . RFMP_TABLE_SUBSCRIPTIONS . " WHERE id = '" . esc_sql($query->query_vars['sub']) . "'");
                 if ($sub == null)
                 {
-                    status_header(404);
-                    return 'Subscription not found';
+                    $sub = $this->wpdb->get_row("SELECT * FROM " . RFMP_TABLE_CUSTOMERS . " WHERE id = '" . esc_sql($query->query_vars['sub']) . "' AND registration_id != '0'");
+                    if ($sub == null)
+                    {
+                        status_header(404);
+                        return 'Subscription not found';
+                    }
                 }
 
                 $registration = $this->wpdb->get_row("SELECT * FROM " . RFMP_TABLE_REGISTRATIONS . " WHERE id = '" . esc_sql($sub->registration_id) . "'");
