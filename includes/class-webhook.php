@@ -176,6 +176,7 @@ class RFMP_Webhook {
                 $subscription = $mollie->customers_subscriptions->withParentId($registration->customer_id)->create(array(
                     "amount"      => $registration->total_price,
                     "interval"    => $registration->price_frequency,
+                    "times"       => $registration->number_of_times > 0 ? ($registration->number_of_times - 1) : null,
                     "description" => $registration->description,
                     "webhookUrl"  => $webhook . 'sub/' . $sub_id,
                     "startDate"   => date('Y-m-d', strtotime("+" . $registration->price_frequency, strtotime(date('Y-m-d')))),

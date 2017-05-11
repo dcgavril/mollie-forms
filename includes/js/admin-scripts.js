@@ -20,9 +20,15 @@ jQuery(document).ready(function($) {
 
     $(".rfmp_frequency").live('change', function() {
         if ($(this).val() != 'once')
+        {
             $(this).prev("input").show();
+            $(this).closest('td').next('td').find("input").show();
+        }
         else
+        {
             $(this).prev("input").hide();
+            $(this).closest('td').next('td').find("input").hide();
+        }
     });
 
     $(".rfmp_pricetype").live('change', function() {

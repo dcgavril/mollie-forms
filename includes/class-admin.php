@@ -197,6 +197,7 @@ Class RFMP_Admin {
         $option_pricetype   = get_post_meta($post->ID, '_rfmp_priceoption_pricetype', true);
         $option_frequency   = get_post_meta($post->ID, '_rfmp_priceoption_frequency', true);
         $option_frequencyval= get_post_meta($post->ID, '_rfmp_priceoption_frequencyval', true);
+        $option_times       = get_post_meta($post->ID, '_rfmp_priceoption_times', true);
         ?>
         <script id="rfmp_template_priceoption" type="text/template">
             <tr>
@@ -218,6 +219,9 @@ Class RFMP_Admin {
                         <option value="days"><?php esc_html_e('Days', 'mollie-forms');?></option>
                     </select>
                 </td>
+                <td>
+                    <input type="number" name="rfmp_priceoptions_times[]" style="width: 50px;display:none;">
+                </td>
                 <td width="1%"><a href="javascript: void(0);" class="delete"><?php esc_html_e('Delete', 'mollie-forms');?></a></td>
             </tr>
         </script>
@@ -230,6 +234,7 @@ Class RFMP_Admin {
                         <th><?php esc_html_e('Description', 'mollie-forms');?></th>
                         <th><?php esc_html_e('Price', 'mollie-forms');?> &euro;</th>
                         <th><?php esc_html_e('Frequency', 'mollie-forms');?></th>
+                        <th><?php esc_html_e('Number of times', 'mollie-forms');?> <a href="#" style="cursor: help;" title="<?php esc_html_e('The number of times including the first payment. Leave empty or set to 0 for an on-going subscription', 'mollie-forms');?>">?</a></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -253,6 +258,9 @@ Class RFMP_Admin {
                                     <option value="weeks"<?php echo ($option_frequency[$key] == 'weeks' ? ' selected' : '');?>><?php esc_html_e('Weeks', 'mollie-forms');?></option>
                                     <option value="days"<?php echo ($option_frequency[$key] == 'days' ? ' selected' : '');?>><?php esc_html_e('Days', 'mollie-forms');?></option>
                                 </select>
+                            </td>
+                            <td>
+                                <input type="number" name="rfmp_priceoptions_times[]" value="<?php echo esc_attr($option_times[$key]);?>" style="width: 50px;<?php echo ($option_frequency[$key] == 'once' ? 'display:none;' : '');?>">
                             </td>
                             <td width="1%"><a href="javascript: void(0);" class="delete"><?php esc_html_e('Delete', 'mollie-forms');?></a></td>
                         </tr>
@@ -731,6 +739,7 @@ Class RFMP_Admin {
         update_post_meta($post_id, '_rfmp_priceoption_pricetype', $_POST['rfmp_priceoptions_pricetype']);
         update_post_meta($post_id, '_rfmp_priceoption_frequency', $_POST['rfmp_priceoptions_frequency']);
         update_post_meta($post_id, '_rfmp_priceoption_frequencyval', $_POST['rfmp_priceoptions_frequencyval']);
+        update_post_meta($post_id, '_rfmp_priceoption_times', $_POST['rfmp_priceoptions_times']);
 
         update_post_meta($post_id, '_rfmp_payment_method', $_POST['rfmp_payment_method']);
         update_post_meta($post_id, '_rfmp_payment_method_fixed', $_POST['rfmp_payment_method_fixed']);
@@ -845,15 +854,25 @@ Class RFMP_Admin {
         else
             $subs_table = RFMP_TABLE_CUSTOMERS;
 
-        $fields         = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_REGISTRATION_FIELDS . " WHERE registration_id=" . $id);
-        $subscriptions  = $this->wpdb->get_results("SELECT * FROM " . $subs_table . " WHERE registration_id=" . $id);
-        $payments       = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_PAYMENTS . " WHERE registration_id=" . $id);
-
         $api_key        = get_post_meta($registration->post_id, '_rfmp_api_key', true);
 
         // Connect with Mollie
         $mollie = new Mollie_API_Client;
         $mollie->setApiKey($api_key);
+
+        // Get all subscriptions
+        $allSubs   = $mollie->customers_subscriptions->withParentId($registration->customer_id)->all(0, 250);
+        foreach ($allSubs as $sub)
+        {
+            $this->wpdb->query($this->wpdb->prepare("UPDATE " . $subs_table . " SET sub_status = %s WHERE subscription_id = %s",
+                $sub->status,
+                $sub->id
+            ));
+        }
+
+        $fields         = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_REGISTRATION_FIELDS . " WHERE registration_id=" . $id);
+        $subscriptions  = $this->wpdb->get_results("SELECT * FROM " . $subs_table . " WHERE registration_id=" . $id);
+        $payments       = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_PAYMENTS . " WHERE registration_id=" . $id);
 
         // Cancel subscription
         if (isset($_GET['cancel']) && check_admin_referer('cancel-sub_' . $_GET['cancel']))
@@ -944,7 +963,7 @@ Class RFMP_Admin {
                         <th><?php esc_html_e('Created at', 'mollie-forms');?></th>
                         <th><?php esc_html_e('Subscription mode', 'mollie-forms');?></th>
                         <th><?php esc_html_e('Subscription amount', 'mollie-forms');?></th>
-                        <th><?php esc_html_e('Subscription method', 'mollie-forms');?></th>
+                        <th><?php esc_html_e('Subscription number of times', 'mollie-forms');?></th>
                         <th><?php esc_html_e('Subscription interval', 'mollie-forms');?></th>
                         <th><?php esc_html_e('Subscription description', 'mollie-forms');?></th>
                         <th><?php esc_html_e('Subscription status', 'mollie-forms');?></th>
@@ -961,7 +980,7 @@ Class RFMP_Admin {
                             <td class="column-created_at"><?php echo esc_html(date_i18n(get_option('date_format') . ' ' . get_option('time_format'), strtotime($subscription->created_at)));?></td>
                             <td class="column-sub_mode"><?php echo esc_html($subscription->sub_mode);?></td>
                             <td class="column-sub_amount">&euro;<?php echo esc_html(number_format($subscription->sub_amount, 2, ',', ''));?></td>
-                            <td class="column-sub_method"><?php echo esc_html($subscription->sub_method);?></td>
+                            <td class="column-sub_times"><?php echo esc_html($subscription->sub_times);?></td>
                             <td class="column-sub_interval"><?php echo esc_html($this->frequency_label($subscription->sub_interval));?></td>
                             <td class="column-sub_description"><?php echo esc_html($subscription->sub_description);?></td>
                             <td class="column-sub_status"><?php echo esc_html($subscription->sub_status);?></td>

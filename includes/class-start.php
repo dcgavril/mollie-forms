@@ -299,6 +299,7 @@ Class RFMP_Start {
         $option_pricetype   = get_post_meta($post, '_rfmp_priceoption_pricetype', true);
         $option_frequency   = get_post_meta($post, '_rfmp_priceoption_frequency', true);
         $option_frequencyval= get_post_meta($post, '_rfmp_priceoption_frequencyval', true);
+        $option_times       = get_post_meta($post, '_rfmp_priceoption_times', true);
         $option_display     = get_post_meta($post, '_rfmp_priceoptions_display', true);
         $form_value         = isset($_POST['rfmp_priceoptions_' . $post ]) ? $_POST['rfmp_priceoptions_' . $post] : '';
 
@@ -315,7 +316,8 @@ Class RFMP_Start {
                 else
                     $price = $this->frequency_label($frequency);
 
-                $priceoptions .= '<li><label><input type="radio" onchange="rfmp_recurring_methods_' . $post . '();" data-frequency="' . esc_attr($option_frequency[$key]) . '" data-freq="' . $this->frequency_label($frequency) . '" data-pricetype="' . $option_pricetype[$key] . '" name="rfmp_priceoptions_' . $post . '" value="' . esc_attr($key) . '"' . ($form_value == $key || $first ? ' checked' : '') . '> ' . esc_html($desc) . ' (' . $price . ')</label></li>';
+                $times = $option_times[$key] > 0 ? '; ' . sprintf(esc_html__('Stops after %s times', 'mollie-forms'), $option_times[$key]) : '';
+                $priceoptions .= '<li><label><input type="radio" onchange="rfmp_recurring_methods_' . $post . '();" data-frequency="' . esc_attr($option_frequency[$key]) . '" data-freq="' . $this->frequency_label($frequency) . '" data-pricetype="' . $option_pricetype[$key] . '" name="rfmp_priceoptions_' . $post . '" value="' . esc_attr($key) . '"' . ($form_value == $key || $first ? ' checked' : '') . '> ' . esc_html($desc) . ' (' . $price . $times . ')</label></li>';
                 $first = false;
             }
             $priceoptions .= '</ul>';
@@ -331,7 +333,8 @@ Class RFMP_Start {
                 else
                     $price = $this->frequency_label($frequency);
 
-                $priceoptions .= '<option data-frequency="' . esc_attr($option_frequency[$key]) . '" data-freq="' . $this->frequency_label($frequency) . '" data-pricetype="' . $option_pricetype[$key] . '" value="' . esc_attr($key) . '"' . ($form_value == $key ? ' selected' : '') . '>' . esc_html($desc) . ' (' . $price . ')</option>';
+                $times = $option_times[$key] > 0 ? '; ' . sprintf(esc_html__('Stops after %s times', 'mollie-forms'), $option_times[$key]) : '';
+                $priceoptions .= '<option data-frequency="' . esc_attr($option_frequency[$key]) . '" data-freq="' . $this->frequency_label($frequency) . '" data-pricetype="' . $option_pricetype[$key] . '" value="' . esc_attr($key) . '"' . ($form_value == $key ? ' selected' : '') . '>' . esc_html($desc) . ' (' . $price . $times . ')</option>';
             }
             $priceoptions .= '</select>';
         }
@@ -400,6 +403,7 @@ Class RFMP_Start {
                 $option_pricetype   = get_post_meta($post, '_rfmp_priceoption_pricetype', true);
                 $option_frequency   = get_post_meta($post, '_rfmp_priceoption_frequency', true);
                 $option_frequencyval= get_post_meta($post, '_rfmp_priceoption_frequencyval', true);
+                $option_times       = get_post_meta($post, '_rfmp_priceoption_times', true);
 
                 $field_type         = get_post_meta($post, '_rfmp_fields_type', true);
                 $field_label        = get_post_meta($post, '_rfmp_fields_label', true);
@@ -424,6 +428,7 @@ Class RFMP_Start {
                     $option_frequencyval[$option] = '';
 
                 $frequency          = trim($option_frequencyval[$option] . ' ' . $option_frequency[$option]);
+                $times              = $option_times[$option] > 0 ? (int) $option_times[$option] : null; // number of times
 
                 // Calculate total price
                 if (isset($variable[$method]) && $variable[$method])
@@ -458,12 +463,13 @@ Class RFMP_Start {
 
                 // Create registration
                 $this->wpdb->query($this->wpdb->prepare("INSERT INTO " . RFMP_TABLE_REGISTRATIONS . "
-                    ( created_at, post_id, customer_id, subscription_id, total_price, price_frequency, description, subs_fix )
-                    VALUES ( NOW(), %d, %s, NULL, %s, %s, %s, 1 )",
+                    ( created_at, post_id, customer_id, subscription_id, total_price, price_frequency, number_of_times, description, subs_fix )
+                    VALUES ( NOW(), %d, %s, NULL, %s, %s, %s, %s, 1 )",
                     $post,
                     $customer->id,
                     $total,
                     $frequency,
+                    $times,
                     $desc
                 ));
                 $registration_id = $this->wpdb->insert_id;
