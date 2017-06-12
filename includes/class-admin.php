@@ -658,7 +658,7 @@ Class RFMP_Admin {
             <br>
             <?php esc_html_e('You can use variables in the subjects and messages. Use {rfmp="label"} as variable and replace label with your filled in label of the field.', 'mollie-forms');?><br>
             <?php esc_html_e('Examples: {rfmp="Name"} {rfmp="Email address"} {rfmp="group"}', 'mollie-forms');?><br>
-            <?php esc_html_e('You can also use fixed variables for the amount {rfmp="amount"} and payment status {rfmp="status"} and payment interval {rfmp="interval"}', 'mollie-forms');?>
+            <?php esc_html_e('You can also use fixed variables for the amount {rfmp="amount"} and payment status {rfmp="status"} and payment interval {rfmp="interval"} and payment ID {rfmp="payment_id"}', 'mollie-forms');?>
         </div>
         <?php
     }
@@ -1003,12 +1003,18 @@ Class RFMP_Admin {
                         <th><?php esc_html_e('Payment status', 'mollie-forms');?></th>
                         <th><?php esc_html_e('Amount', 'mollie-forms');?></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="the-list">
                 <?php
                 foreach ($payments as $payment) {
                     $url_refund = wp_nonce_url('?post_type=rfmp&page=registration&view=' . $id . '&refund=' . $payment->payment_id, 'refund-payment_' . $payment->payment_id);
+                    try {
+                        $mollie_payment = $mollie->payments->get($payment->payment_id);
+                    } catch(Mollie_API_Exception $e) {
+
+                    }
                     ?>
                     <tr>
                         <td class="column-rfmp_id"><?php echo esc_html($payment->rfmp_id);?></td>
@@ -1018,6 +1024,7 @@ Class RFMP_Admin {
                         <td class="column-payment_mode"><?php echo esc_html($payment->payment_mode);?></td>
                         <td class="column-payment_status"><?php echo esc_html($payment->payment_status);?></td>
                         <td class="column-amount"><?php echo '&euro; ' . number_format($payment->amount, 2, ',', '');?></td>
+                        <td><?php echo (isset($mollie_payment, $mollie_payment->details->consumerName) ? esc_html($mollie_payment->details->consumerName) . '<br>' . esc_html($mollie_payment->details->consumerAccount) : '');?></td>
                         <td class="column-cancel"><?php if ($payment->payment_status == 'paid') { ?><a href="<?php echo $url_refund;?>" style="color:#a00;"><?php echo esc_html_e('Refund', 'mollie-forms');?></a><?php } ?></td>
                     </tr>
                 <?php } ?>

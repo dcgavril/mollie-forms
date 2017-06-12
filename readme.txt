@@ -2,8 +2,8 @@
 Contributors: ndijkstra
 Tags: mollie,registration,form,payments,ideal,bancontact,sofort,bitcoin,belfius,creditcard,recurring,forms
 Requires at least: 3.8
-Tested up to: 4.7.3
-Stable tag: 0.3.5
+Tested up to: 4.8.0
+Stable tag: 0.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,11 @@ For recurring payments you will need a supported payment method. You have to act
 
 
 == Changelog ==
+
+= 0.3.6 =
+* Added consumer information (name, iban) to payments table
+* Added fixed variable {rfmp="payment_id"} for Mollie Payment ID in email templates
+* GET variables possible to prefill form: ?form_ID_field_INDEX=value (replace ID with form id and INDEX with the field index. First field is 0, second field is 1 etc.)
 
 = 0.3.5 =
 * Added "Number of times" option for subscriptions

@@ -132,7 +132,7 @@ Class RFMP_Start {
         $required = ($fields_required[$key] ? ' <span style="color:red;">*</span>' : '');
 
         $name = 'form_' . $post . '_field_' . $key;
-        $form_value = isset($_POST[$name]) ? $_POST[$name] : '';
+        $form_value = isset($_POST[$name]) ? $_POST[$name] : (isset($_GET[$name]) ? $_GET[$name] : '');
         switch ($type)
         {
             case 'text':

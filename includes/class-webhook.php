@@ -230,11 +230,13 @@ class RFMP_Webhook {
             '{rfmp="amount"}',
             '{rfmp="interval"}',
             '{rfmp="status"}',
+            '{rfmp="payment_id"}',
         );
         $replace    = array(
             $payment->amount,
             $this->frequency_label($registration->price_frequency),
-            $payment->status
+            $payment->status,
+            $payment->id
         );
 
         $fields = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_REGISTRATION_FIELDS . " WHERE registration_id=" . (int) $registration_id);
