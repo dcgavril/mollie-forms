@@ -261,15 +261,17 @@ class RFMP_Webhook {
         $fromname = get_post_meta($post, '_rfmp_fromname_' . $payment->status . '_' . $type, true);
         $fromemail = get_post_meta($post, '_rfmp_fromemail_' . $payment->status . '_' . $type, true);
 
-
         $to = $type == 'customer' ? $data['to_email'] : $fromemail;
         $headers[] = 'From: ' . $fromname . ' <' . $fromemail . '>';
         $headers[] = 'Content-Type: text/html; charset=UTF-8';
+        $arrEmails = array();
 
         foreach (explode(',', $to) as $toemail)
         {
-            wp_mail($toemail, $subject, nl2br($email), $headers);
+            $arrEmails[] = $toemail;
         }
+
+        wp_mail($arrEmails, $subject, nl2br($email), $headers);
     }
 
     private function frequency_label($frequency)
