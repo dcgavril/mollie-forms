@@ -246,12 +246,14 @@ class RFMP_Webhook {
                 $data['to_email'] = $row->value;
 
             $data[$row->field]  = $row->value;
-            $search[]           = '{rfmp="' . $row->field . '"}';
+            $search[]           = '{rfmp="' . trim($row->field) . '"}';
             $replace[]          = $row->value;
         }
 
         $email = get_post_meta($post, '_rfmp_email_' . $payment->status . '_' . $type, true);
         $email = str_replace($search, $replace, $email);
+        $email = str_replace(array('http://', 'https://'), '//', $email);
+        $email = str_replace('//', (is_ssl() ? 'https://' : 'http://'), $email);
 
         $subject = get_post_meta($post, '_rfmp_subject_' . $payment->status . '_' . $type, true);
         $subject = str_replace($search, $replace, $subject);
@@ -264,7 +266,10 @@ class RFMP_Webhook {
         $headers[] = 'From: ' . $fromname . ' <' . $fromemail . '>';
         $headers[] = 'Content-Type: text/html; charset=UTF-8';
 
-        wp_mail($to, $subject, nl2br($email), $headers);
+        foreach (explode(',', $to) as $toemail)
+        {
+            wp_mail($toemail, $subject, nl2br($email), $headers);
+        }
     }
 
     private function frequency_label($frequency)
