@@ -1,0 +1,625 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Mollie Forms\n"
+"POT-Creation-Date: 2017-06-14 15:59+0200\n"
+"PO-Revision-Date: 2017-06-14 16:02+0200\n"
+"Last-Translator: Eveline Gerritse <eveline@mollie.com>, 2017\n"
+"Language-Team: German (Germany) (https://www.transifex.com/nick-dijkstra/"
+"teams/70304/de_DE/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/class-admin.php:32 includes/class-admin.php:33
+#: includes/class-admin.php:796 includes/class-admin.php:822
+msgid "Registrations"
+msgstr "Registrierungen"
+
+#: includes/class-admin.php:43 includes/class-admin.php:44
+#: includes/class-admin.php:936
+msgid "Registration"
+msgstr "Registrierung"
+
+#: includes/class-admin.php:56
+msgid "Fields"
+msgstr "Felder"
+
+#: includes/class-admin.php:57
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: includes/class-admin.php:58 includes/class-admin.php:115
+msgid "Price options"
+msgstr "Preisoptionen"
+
+#: includes/class-admin.php:59
+msgid "Email settings"
+msgstr "E-Mail Einstellungen"
+
+#: includes/class-admin.php:60 includes/class-admin.php:135
+msgid "Payment methods"
+msgstr "Zahlungsmethoden"
+
+#: includes/class-admin.php:75 includes/class-admin.php:145
+msgid "Name"
+msgstr "Name"
+
+#: includes/class-admin.php:75
+msgid "Email"
+msgstr "E-Mail"
+
+#: includes/class-admin.php:75 includes/class-admin.php:1001
+msgid "Payment method"
+msgstr "Zahlungsmethode"
+
+#: includes/class-admin.php:75
+msgid "Submit"
+msgstr "Versenden"
+
+#: includes/class-admin.php:83 includes/class-admin.php:167
+msgid "Text field"
+msgstr "Textzeile"
+
+#: includes/class-admin.php:84 includes/class-admin.php:168
+msgid "Text area"
+msgstr "Textfeld"
+
+#: includes/class-admin.php:85 includes/class-admin.php:169
+#: includes/class-admin.php:316 includes/class-admin.php:327
+msgid "Dropdown"
+msgstr "Auswahlmenü"
+
+#: includes/class-admin.php:86 includes/class-admin.php:170
+msgid "Checkbox"
+msgstr "Kontrollkästchen"
+
+#: includes/class-admin.php:93 includes/class-admin.php:177
+#: includes/class-admin.php:225 includes/class-admin.php:265
+#: includes/class-registrations-table.php:25
+msgid "Delete"
+msgstr "Löschen"
+
+#: includes/class-admin.php:102
+msgid "Type"
+msgstr "Art"
+
+#: includes/class-admin.php:103
+msgid "Label"
+msgstr "Überschrift"
+
+#: includes/class-admin.php:104
+msgid "Values"
+msgstr "Werte"
+
+#: includes/class-admin.php:105
+msgid "Class"
+msgstr "Class"
+
+#: includes/class-admin.php:106
+msgid "Required"
+msgstr "Verpflichtet"
+
+#: includes/class-admin.php:125
+msgid "Submit button"
+msgstr "Versand Knopf"
+
+#: includes/class-admin.php:155
+msgid "Email address"
+msgstr "E-Mail Adresse"
+
+#: includes/class-admin.php:184
+msgid "Add new field"
+msgstr "Neues Feld einfügen"
+
+#: includes/class-admin.php:208 includes/class-admin.php:248
+msgid "Fixed"
+msgstr "Pauschale"
+
+#: includes/class-admin.php:209 includes/class-admin.php:249
+msgid "Open"
+msgstr "Variabel"
+
+#: includes/class-admin.php:216 includes/class-admin.php:256
+#: includes/class-admin.php:1043
+msgid "Once"
+msgstr "Einmalig"
+
+#: includes/class-admin.php:217 includes/class-admin.php:257
+msgid "Months"
+msgstr "Monatlich"
+
+#: includes/class-admin.php:218 includes/class-admin.php:258
+msgid "Weeks"
+msgstr "Wöchentlich"
+
+#: includes/class-admin.php:219 includes/class-admin.php:259
+msgid "Days"
+msgstr "Täglich"
+
+#: includes/class-admin.php:234 includes/class-registrations-table.php:15
+msgid "Description"
+msgstr "Beschreibung"
+
+#: includes/class-admin.php:235
+msgid "Price"
+msgstr "Preis"
+
+#: includes/class-admin.php:236 includes/class-registrations-table.php:13
+msgid "Frequency"
+msgstr "Häufigkeit"
+
+#: includes/class-admin.php:237
+msgid "Number of times"
+msgstr ""
+
+#: includes/class-admin.php:237
+msgid ""
+"The number of times including the first payment. Leave empty or set to 0 "
+"for an on-going subscription"
+msgstr ""
+
+#: includes/class-admin.php:271
+msgid "Add new price option"
+msgstr "Füge neuen Preisoption hinzu"
+
+#: includes/class-admin.php:295
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: includes/class-admin.php:299
+msgid "Place this shortcode on a page or in a post"
+msgstr "Beitrag"
+
+#: includes/class-admin.php:304
+msgid "Mollie API-key"
+msgstr "Mollie API-key"
+
+#: includes/class-admin.php:312
+msgid "Price options display"
+msgstr "Anzeige Preisoptionen"
+
+#: includes/class-admin.php:317
+msgid "List"
+msgstr "Liste"
+
+#: includes/class-admin.php:323
+msgid "Payment methods display"
+msgstr "Anzeige Zahlungsmethoden"
+
+#: includes/class-admin.php:328
+msgid "List with icons and text"
+msgstr "Liste mit Symbolen und Text"
+
+#: includes/class-admin.php:329
+msgid "List with text"
+msgstr "Liste mit Text"
+
+#: includes/class-admin.php:330
+msgid "List with icons"
+msgstr "Liste mit Symbolen"
+
+#: includes/class-admin.php:336
+msgid "Success message"
+msgstr "Erfolgreiche Nachricht"
+
+#: includes/class-admin.php:344
+msgid "Error message"
+msgstr "Error Nachricht"
+
+#: includes/class-admin.php:352
+msgid "Class success message"
+msgstr "Class erfolgreiche Nachricht"
+
+#: includes/class-admin.php:360
+msgid "Class error message"
+msgstr "Class error Nachricht"
+
+#: includes/class-admin.php:420
+msgid "Customer: Payment successful"
+msgstr "Kunde: Zahlung erfolgreich"
+
+#: includes/class-admin.php:421
+msgid "Customer: Payment expired"
+msgstr "Kunde: Zahlung verfallen"
+
+#: includes/class-admin.php:422
+msgid "Customer: Payment cancelled"
+msgstr "Kunde: Zahlung storniert"
+
+#: includes/class-admin.php:423
+msgid "Merchant: Payment successful"
+msgstr "Verkäufer: Zahlung erfolgreich"
+
+#: includes/class-admin.php:424
+msgid "Merchant: Payment expired"
+msgstr "Verkäufer: Zahlung verfallen"
+
+#: includes/class-admin.php:425
+msgid "Merchant: Payment cancelled"
+msgstr "Verkäufer: Zahlung storniert"
+
+#: includes/class-admin.php:432 includes/class-admin.php:470
+#: includes/class-admin.php:508 includes/class-admin.php:546
+#: includes/class-admin.php:584 includes/class-admin.php:622
+msgid "Enabled"
+msgstr "Anklicken"
+
+#: includes/class-admin.php:440 includes/class-admin.php:478
+#: includes/class-admin.php:516 includes/class-admin.php:554
+#: includes/class-admin.php:592 includes/class-admin.php:630
+msgid "Subject"
+msgstr "Thema"
+
+#: includes/class-admin.php:448 includes/class-admin.php:486
+#: includes/class-admin.php:524
+msgid "From \"email\""
+msgstr "Von \"E-Mail\""
+
+#: includes/class-admin.php:456 includes/class-admin.php:494
+#: includes/class-admin.php:532
+msgid "From \"name\""
+msgstr "Von \"Name\""
+
+#: includes/class-admin.php:562 includes/class-admin.php:600
+#: includes/class-admin.php:638
+msgid "To/from \"email\""
+msgstr "An/von \"E-Mail\""
+
+#: includes/class-admin.php:570 includes/class-admin.php:608
+#: includes/class-admin.php:646
+msgid "To/from \"name\""
+msgstr "An/von \"Name\""
+
+#: includes/class-admin.php:659
+msgid ""
+"You can use variables in the subjects and messages. Use {rfmp=\"label\"} as "
+"variable and replace label with your filled in label of the field."
+msgstr ""
+"Sie können Variablen nutzen in Überschriften und Nachrichten. Benutze {rfmp="
+"\"Überschrift\"} als Variable und ersetz Überschrift durch Ihr eingetragene "
+"Überschrift aus dem Feld."
+
+#: includes/class-admin.php:660
+msgid "Examples: {rfmp=\"Name\"} {rfmp=\"Email address\"} {rfmp=\"group\"}"
+msgstr "Beispiele: {rfmp=\"Name\"} {rfmp=\"E-Mail Adress\"} {rfmp=\"Gruppe\"}"
+
+#: includes/class-admin.php:661
+msgid ""
+"You can also use fixed variables for the amount {rfmp=\"amount\"} and "
+"payment status {rfmp=\"status\"} and payment interval {rfmp=\"interval\"} "
+"and payment ID {rfmp=\"payment_id\"} and form title {rfmp=\"form_title\"}"
+msgstr ""
+
+#: includes/class-admin.php:677 includes/class-start.php:393
+msgid "No API-key set"
+msgstr "Kein API-key eingesetzt"
+
+#: includes/class-admin.php:686
+msgid "Surcharge:"
+msgstr "Zuschlag"
+
+#: includes/class-admin.php:814
+msgid "The registration is successful deleted"
+msgstr "Die Registrierung ist erfolgreich gelöscht"
+
+#: includes/class-admin.php:832 includes/class-admin.php:838
+msgid "Registration not found"
+msgstr "Registrierung nicht gefunden"
+
+#: includes/class-admin.php:922
+msgid "The payment is successful refunded"
+msgstr "Die Zahlung ist erfolgreich rückerstattet"
+
+#: includes/class-admin.php:925
+msgid "The payment can not be refunded"
+msgstr "Die Zahlung kann nicht rückerstattet werden"
+
+#: includes/class-admin.php:928
+msgid "The subscription is successful cancelled"
+msgstr "Das Abonnement ist erfolgreich storniert"
+
+#: includes/class-admin.php:947 includes/class-registrations-table.php:11
+msgid "Total price"
+msgstr "Gesamtpreis"
+
+#: includes/class-admin.php:951
+msgid "Mollie Customer ID"
+msgstr "Mollie Kunden ID"
+
+#: includes/class-admin.php:958
+msgid "Subscriptions"
+msgstr "Abonnementen"
+
+#: includes/class-admin.php:962
+msgid "Subscription ID"
+msgstr "Abonnement ID"
+
+#: includes/class-admin.php:963 includes/class-admin.php:1000
+msgid "Created at"
+msgstr "Kreiert am"
+
+#: includes/class-admin.php:964
+msgid "Subscription mode"
+msgstr "Abonnementmodus"
+
+#: includes/class-admin.php:965
+msgid "Subscription amount"
+msgstr "Abonnementbetrag"
+
+#: includes/class-admin.php:966
+msgid "Subscription number of times"
+msgstr ""
+
+#: includes/class-admin.php:967
+msgid "Subscription interval"
+msgstr "Abonnementintervall"
+
+#: includes/class-admin.php:968
+msgid "Subscription description"
+msgstr "Abonnementbeschreibung"
+
+#: includes/class-admin.php:969 includes/class-registrations-table.php:14
+msgid "Subscription status"
+msgstr "Abonnementstatus"
+
+#: includes/class-admin.php:987
+msgid "Cancel"
+msgstr "Stornieren"
+
+#: includes/class-admin.php:994
+msgid "Payments"
+msgstr "Zahlungen"
+
+#: includes/class-admin.php:998
+msgid "ID"
+msgstr "ID"
+
+#: includes/class-admin.php:999
+msgid "Payment ID"
+msgstr "Zahlungs ID"
+
+#: includes/class-admin.php:1002
+msgid "Payment mode"
+msgstr "Zahlungsmodus"
+
+#: includes/class-admin.php:1003 includes/class-registrations-table.php:12
+msgid "Payment status"
+msgstr "Zahlungsstatus"
+
+#: includes/class-admin.php:1004 includes/class-start.php:343
+msgid "Amount"
+msgstr "Betrag"
+
+#: includes/class-admin.php:1028
+msgid "Refund"
+msgstr "Rückerstattung"
+
+#: includes/class-admin.php:1046 includes/class-admin.php:1049
+#: includes/class-registrations-table.php:118
+#: includes/class-registrations-table.php:121 includes/class-start.php:592
+#: includes/class-start.php:595 includes/class-webhook.php:298
+#: includes/class-webhook.php:301
+msgid "per month"
+msgstr "Monatlich"
+
+#: includes/class-admin.php:1052 includes/class-registrations-table.php:124
+#: includes/class-start.php:598 includes/class-webhook.php:304
+msgid "each quarter"
+msgstr "Vierteljährlich"
+
+#: includes/class-admin.php:1055 includes/class-registrations-table.php:127
+#: includes/class-start.php:601 includes/class-webhook.php:307
+msgid "per year"
+msgstr "Jährlich"
+
+#: includes/class-admin.php:1058 includes/class-admin.php:1061
+#: includes/class-registrations-table.php:130
+#: includes/class-registrations-table.php:133 includes/class-start.php:604
+#: includes/class-start.php:607 includes/class-webhook.php:310
+#: includes/class-webhook.php:313
+msgid "per week"
+msgstr "Wöchentlich"
+
+#: includes/class-admin.php:1064 includes/class-admin.php:1067
+#: includes/class-registrations-table.php:136
+#: includes/class-registrations-table.php:139 includes/class-start.php:610
+#: includes/class-start.php:613 includes/class-webhook.php:316
+#: includes/class-webhook.php:319
+msgid "per day"
+msgstr "Täglich"
+
+#: includes/class-admin.php:1070 includes/class-registrations-table.php:142
+#: includes/class-start.php:616 includes/class-webhook.php:322
+msgid "each"
+msgstr "alle"
+
+#: includes/class-registrations-table.php:8
+msgid "Date/time"
+msgstr "Datum/Zeit"
+
+#: includes/class-registrations-table.php:9
+msgid "Form"
+msgstr "Formular"
+
+#: includes/class-registrations-table.php:10
+msgid "Customer"
+msgstr "Kunde"
+
+#: includes/class-registrations-table.php:25
+msgid "View"
+msgstr "Ansicht"
+
+#: includes/class-registrations-table.php:25
+msgid "Are you sure?"
+msgstr "Sind Sie sicher?"
+
+#: includes/class-registrations-table.php:80
+msgid "Paid"
+msgstr "Bezahlt"
+
+#: includes/class-registrations-table.php:80
+msgid "Not paid"
+msgstr "Nicht bezahlt"
+
+#: includes/class-registrations-table.php:93
+msgid "Active"
+msgstr "Aktiv"
+
+#: includes/class-registrations-table.php:93
+msgid "Not active"
+msgstr "Nicht aktiv"
+
+#: includes/class-start.php:23
+msgid "Mollie Forms"
+msgstr "Mollie Formular"
+
+#: includes/class-start.php:24 includes/class-start.php:48
+msgid "Registration Form"
+msgstr "Registrierungs Fromular"
+
+#: includes/class-start.php:25
+msgid "Item Archives"
+msgstr "Item Archive"
+
+#: includes/class-start.php:26
+msgid "Parent Item:"
+msgstr "Parent Item:"
+
+#: includes/class-start.php:27
+msgid "All Forms"
+msgstr "Alle Formularen"
+
+#: includes/class-start.php:28
+msgid "Add New Form"
+msgstr "Neues Formular hinzufügen"
+
+#: includes/class-start.php:29
+msgid "Add New"
+msgstr "Neu hinzufügen"
+
+#: includes/class-start.php:30
+msgid "New Form"
+msgstr "Neues Formular"
+
+#: includes/class-start.php:31
+msgid "Edit Form"
+msgstr "Formular bearbeiten"
+
+#: includes/class-start.php:32
+msgid "Update Form"
+msgstr "Formular updaten"
+
+#: includes/class-start.php:33
+msgid "View Form"
+msgstr "Formular Ansicht"
+
+#: includes/class-start.php:34
+msgid "Search Form"
+msgstr "Formular Suche"
+
+#: includes/class-start.php:35
+msgid "Not found"
+msgstr "Nicht gefunden"
+
+#: includes/class-start.php:36
+msgid "Not found in Trash"
+msgstr "Nicht gefunden im Mülleimer"
+
+#: includes/class-start.php:37
+msgid "Featured Image"
+msgstr "Featured Image"
+
+#: includes/class-start.php:38
+msgid "Set featured image"
+msgstr "Setz featured Image"
+
+#: includes/class-start.php:39
+msgid "Remove featured image"
+msgstr "Entfern featured Image"
+
+#: includes/class-start.php:40
+msgid "Use as featured image"
+msgstr "Benutz als featured Image"
+
+#: includes/class-start.php:41
+msgid "Insert into form"
+msgstr "In Formular einfügen"
+
+#: includes/class-start.php:42
+msgid "Uploaded to this form"
+msgstr "Zu diesem Formular hochgeladen"
+
+#: includes/class-start.php:43
+msgid "Forms list"
+msgstr "Formularen Liste"
+
+#: includes/class-start.php:44
+msgid "Forms list navigation"
+msgstr "Formularen Liste Navigation"
+
+#: includes/class-start.php:45
+msgid "Filter forms list"
+msgstr "Filter Formularen Liste "
+
+#: includes/class-start.php:49
+msgid "Registration Form Description"
+msgstr "Registrierung Formular Beschreibung"
+
+#: includes/class-start.php:80
+msgid "Form not found"
+msgstr "Formular nicht gefunden"
+
+#: includes/class-start.php:99
+msgid "No payment found"
+msgstr "Keine Zahlung gefunden"
+
+#: includes/class-start.php:286
+msgid ""
+"I hereby give authorization to collect the amount shown above from my "
+"account periodically."
+msgstr "Status Zahlung"
+
+#: includes/class-start.php:319 includes/class-start.php:336
+#, php-format
+msgid "Stops after %s times"
+msgstr ""
+
+#: includes/class-start.php:364
+#, php-format
+msgid "%s is a required field"
+msgstr "%s ist ein notwendiges Feld"
+
+#: includes/class-start.php:371
+msgid ""
+"Please give us authorization to collect the amount from your account "
+"periodically."
+msgstr ""
+"Bitte geben Sie uns eine Vollmacht um diesen Betrag periodisch von Ihrem "
+"Bankkonto einzuziehen."
+
+#: includes/class-start.php:377
+msgid "Please fill in a higher amount."
+msgstr "Bitte einen höheren Betrag eintragen"
+
+#: includes/class-start.php:580 includes/class-webhook.php:287
+msgid "days"
+msgstr "Tagen"
+
+#: includes/class-start.php:581 includes/class-webhook.php:286
+msgid "weeks"
+msgstr "Wochen"
+
+#: includes/class-start.php:582 includes/class-webhook.php:285
+msgid "months"
+msgstr "Monaten"
+
+#: includes/class-webhook.php:288
+msgid "year"
+msgstr "Jahr"
