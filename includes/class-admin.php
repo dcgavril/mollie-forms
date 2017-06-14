@@ -658,7 +658,7 @@ Class RFMP_Admin {
             <br>
             <?php esc_html_e('You can use variables in the subjects and messages. Use {rfmp="label"} as variable and replace label with your filled in label of the field.', 'mollie-forms');?><br>
             <?php esc_html_e('Examples: {rfmp="Name"} {rfmp="Email address"} {rfmp="group"}', 'mollie-forms');?><br>
-            <?php esc_html_e('You can also use fixed variables for the amount {rfmp="amount"} and payment status {rfmp="status"} and payment interval {rfmp="interval"} and payment ID {rfmp="payment_id"}', 'mollie-forms');?>
+            <?php esc_html_e('You can also use fixed variables for the amount {rfmp="amount"} and payment status {rfmp="status"} and payment interval {rfmp="interval"} and payment ID {rfmp="payment_id"} and form title {rfmp="form_title"}', 'mollie-forms');?>
         </div>
         <?php
     }

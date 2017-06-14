@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mollie Forms\n"
-"POT-Creation-Date: 2017-05-11 16:01+0200\n"
+"POT-Creation-Date: 2017-06-14 15:59+0200\n"
 "PO-Revision-Date: 2016-12-29 15:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -126,7 +126,7 @@ msgid "Open"
 msgstr ""
 
 #: includes/class-admin.php:216 includes/class-admin.php:256
-#: includes/class-admin.php:1036
+#: includes/class-admin.php:1043
 msgid "Once"
 msgstr ""
 
@@ -283,7 +283,7 @@ msgid "Examples: {rfmp=\"Name\"} {rfmp=\"Email address\"} {rfmp=\"group\"}"
 msgstr ""
 
 #: includes/class-admin.php:661
-msgid "You can also use fixed variables for the amount {rfmp=\"amount\"} and payment status {rfmp=\"status\"} and payment interval {rfmp=\"interval\"}"
+msgid "You can also use fixed variables for the amount {rfmp=\"amount\"} and payment status {rfmp=\"status\"} and payment interval {rfmp=\"interval\"} and payment ID {rfmp=\"payment_id\"} and form title {rfmp=\"form_title\"}"
 msgstr ""
 
 #: includes/class-admin.php:677 includes/class-start.php:393
@@ -386,46 +386,46 @@ msgstr ""
 msgid "Amount"
 msgstr ""
 
-#: includes/class-admin.php:1021
+#: includes/class-admin.php:1028
 msgid "Refund"
 msgstr ""
 
-#: includes/class-admin.php:1039 includes/class-admin.php:1042
+#: includes/class-admin.php:1046 includes/class-admin.php:1049
 #: includes/class-registrations-table.php:118
 #: includes/class-registrations-table.php:121 includes/class-start.php:592
-#: includes/class-start.php:595 includes/class-webhook.php:291
-#: includes/class-webhook.php:294
+#: includes/class-start.php:595 includes/class-webhook.php:298
+#: includes/class-webhook.php:301
 msgid "per month"
 msgstr ""
 
-#: includes/class-admin.php:1045 includes/class-registrations-table.php:124
-#: includes/class-start.php:598 includes/class-webhook.php:297
+#: includes/class-admin.php:1052 includes/class-registrations-table.php:124
+#: includes/class-start.php:598 includes/class-webhook.php:304
 msgid "each quarter"
 msgstr ""
 
-#: includes/class-admin.php:1048 includes/class-registrations-table.php:127
-#: includes/class-start.php:601 includes/class-webhook.php:300
+#: includes/class-admin.php:1055 includes/class-registrations-table.php:127
+#: includes/class-start.php:601 includes/class-webhook.php:307
 msgid "per year"
 msgstr ""
 
-#: includes/class-admin.php:1051 includes/class-admin.php:1054
+#: includes/class-admin.php:1058 includes/class-admin.php:1061
 #: includes/class-registrations-table.php:130
 #: includes/class-registrations-table.php:133 includes/class-start.php:604
-#: includes/class-start.php:607 includes/class-webhook.php:303
-#: includes/class-webhook.php:306
+#: includes/class-start.php:607 includes/class-webhook.php:310
+#: includes/class-webhook.php:313
 msgid "per week"
 msgstr ""
 
-#: includes/class-admin.php:1057 includes/class-admin.php:1060
+#: includes/class-admin.php:1064 includes/class-admin.php:1067
 #: includes/class-registrations-table.php:136
 #: includes/class-registrations-table.php:139 includes/class-start.php:610
-#: includes/class-start.php:613 includes/class-webhook.php:309
-#: includes/class-webhook.php:312
+#: includes/class-start.php:613 includes/class-webhook.php:316
+#: includes/class-webhook.php:319
 msgid "per day"
 msgstr ""
 
-#: includes/class-admin.php:1063 includes/class-registrations-table.php:142
-#: includes/class-start.php:616 includes/class-webhook.php:315
+#: includes/class-admin.php:1070 includes/class-registrations-table.php:142
+#: includes/class-start.php:616 includes/class-webhook.php:322
 msgid "each"
 msgstr ""
 
@@ -591,18 +591,18 @@ msgstr ""
 msgid "Please fill in a higher amount."
 msgstr ""
 
-#: includes/class-start.php:580 includes/class-webhook.php:280
+#: includes/class-start.php:580 includes/class-webhook.php:287
 msgid "days"
 msgstr ""
 
-#: includes/class-start.php:581 includes/class-webhook.php:279
+#: includes/class-start.php:581 includes/class-webhook.php:286
 msgid "weeks"
 msgstr ""
 
-#: includes/class-start.php:582 includes/class-webhook.php:278
+#: includes/class-start.php:582 includes/class-webhook.php:285
 msgid "months"
 msgstr ""
 
-#: includes/class-webhook.php:281
+#: includes/class-webhook.php:288
 msgid "year"
 msgstr ""

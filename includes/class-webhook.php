@@ -231,12 +231,14 @@ class RFMP_Webhook {
             '{rfmp="interval"}',
             '{rfmp="status"}',
             '{rfmp="payment_id"}',
+            '{rfmp="form_title"}',
         );
         $replace    = array(
             $payment->amount,
             $this->frequency_label($registration->price_frequency),
             $payment->status,
-            $payment->id
+            $payment->id,
+            get_the_title($post)
         );
 
         $fields = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_REGISTRATION_FIELDS . " WHERE registration_id=" . (int) $registration_id);
@@ -262,16 +264,12 @@ class RFMP_Webhook {
         $fromemail = get_post_meta($post, '_rfmp_fromemail_' . $payment->status . '_' . $type, true);
 
         $to = $type == 'customer' ? $data['to_email'] : $fromemail;
-        $headers[] = 'From: ' . $fromname . ' <' . $fromemail . '>';
+
+        $fromemail = explode(',', trim($fromemail));
+        $headers[] = 'From: ' . $fromname . ' <' . $fromemail[0] . '>';
         $headers[] = 'Content-Type: text/html; charset=UTF-8';
-        $arrEmails = array();
 
-        foreach (explode(',', $to) as $toemail)
-        {
-            $arrEmails[] = $toemail;
-        }
-
-        wp_mail($arrEmails, $subject, nl2br($email), $headers);
+        wp_mail($to, $subject, nl2br($email), $headers);
     }
 
     private function frequency_label($frequency)
