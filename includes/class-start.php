@@ -317,7 +317,7 @@ Class RFMP_Start {
                     $price = $this->frequency_label($frequency);
 
                 $times = $option_times[$key] > 0 ? '; ' . sprintf(esc_html__('Stops after %s times', 'mollie-forms'), $option_times[$key]) : '';
-                $priceoptions .= '<li><label><input type="radio" onchange="rfmp_recurring_methods_' . $post . '();" data-frequency="' . esc_attr($option_frequency[$key]) . '" data-freq="' . $this->frequency_label($frequency) . '" data-pricetype="' . $option_pricetype[$key] . '" name="rfmp_priceoptions_' . $post . '" value="' . esc_attr($key) . '"' . ($form_value == $key || $first ? ' checked' : '') . '> ' . esc_html($desc) . ' (' . $price . $times . ')</label></li>';
+                $priceoptions .= '<li><label><input type="radio" onchange="rfmp_recurring_methods_' . $post . '();" data-frequency="' . esc_attr($option_frequency[$key]) . '" data-freq="' . $this->frequency_label($frequency) . '" data-pricetype="' . $option_pricetype[$key] . '" name="rfmp_priceoptions_' . $post . '" value="' . esc_attr($key) . '"' . ($form_value == $key || $first ? ' checked' : '') . '> ' . esc_html($desc) . (!empty($price) || !empty($times) ? ' (' . $price . $times . ')' : '') . '</label></li>';
                 $first = false;
             }
             $priceoptions .= '</ul>';
