@@ -136,19 +136,19 @@ Class RFMP_Start {
         switch ($type)
         {
             case 'text':
-                $return = '<label>' . esc_html($fields_label[$key]) . $required . '<br><input type="text" name="' . $name . '" class="' . esc_attr($fields_class[$key]) . '" ' . ($fields_required[$key] ? 'required' : '') . ' value="' . esc_attr($form_value) . '" style="width: 100%;"></label>';
+                $return = '<label>' . strip_tags($fields_label[$key], '<a>') . $required . '<br><input type="text" name="' . $name . '" class="' . esc_attr($fields_class[$key]) . '" ' . ($fields_required[$key] ? 'required' : '') . ' value="' . esc_attr($form_value) . '" style="width: 100%;"></label>';
                 break;
             case 'textarea':
-                $return = '<label>' . esc_html($fields_label[$key]) . $required . '<br><textarea name="' . $name . '" class="' . esc_attr($fields_class[$key]) . '" ' . ($fields_required[$key] ? 'required' : '') . ' style="width: 100%;">' . esc_html($form_value) . '</textarea></label>';
+                $return = '<label>' . strip_tags($fields_label[$key], '<a>') . $required . '<br><textarea name="' . $name . '" class="' . esc_attr($fields_class[$key]) . '" ' . ($fields_required[$key] ? 'required' : '') . ' style="width: 100%;">' . esc_html($form_value) . '</textarea></label>';
                 break;
             case 'name':
-                $return = '<label>' . esc_html($fields_label[$key]) . $required . '<br><input type="text" name="' . $name . '" class="' . esc_attr($fields_class[$key]) . '" ' . ($fields_required[$key] ? 'required' : '') . ' value="' . esc_attr($form_value) . '" style="width: 100%;"></label>';
+                $return = '<label>' . strip_tags($fields_label[$key], '<a>') . $required . '<br><input type="text" name="' . $name . '" class="' . esc_attr($fields_class[$key]) . '" ' . ($fields_required[$key] ? 'required' : '') . ' value="' . esc_attr($form_value) . '" style="width: 100%;"></label>';
                 break;
             case 'email':
-                $return = '<label>' . esc_html($fields_label[$key]) . $required . '<br><input type="email" name="' . $name . '" class="' . esc_attr($fields_class[$key]) . '" ' . ($fields_required[$key] ? 'required' : '') . ' value="' . esc_attr($form_value) . '" style="width: 100%;"></label>';
+                $return = '<label>' . strip_tags($fields_label[$key], '<a>') . $required . '<br><input type="email" name="' . $name . '" class="' . esc_attr($fields_class[$key]) . '" ' . ($fields_required[$key] ? 'required' : '') . ' value="' . esc_attr($form_value) . '" style="width: 100%;"></label>';
                 break;
             case 'checkbox':
-                $return = '<label>' . esc_html($fields_label[$key]) . $required . ' <input type="checkbox" name="' . $name . '" class="' . esc_attr($fields_class[$key]) . '" value="1" ' . ($fields_required[$key] ? 'required' : '') . ($form_value == '1' ? ' checked' : '') . '></label>';
+                $return = '<label><input type="checkbox" name="' . $name . '" class="' . esc_attr($fields_class[$key]) . '" value="1" ' . ($fields_required[$key] ? 'required' : '') . ($form_value == '1' ? ' checked' : '') . '> ' . strip_tags($fields_label[$key], '<a>') . $required . '</label>';
                 break;
             case 'dropdown':
                 $values = explode('|', $fields_value[$key]);
@@ -162,10 +162,10 @@ Class RFMP_Start {
                 $return = '<input type="submit" name="' . $name . '" value="' . esc_attr($fields_label[$key]) . '" class="' . esc_attr($fields_class[$key]) . '">';
                 break;
             case 'payment_methods':
-                $return = '<label>' . esc_html($fields_label[$key]) . '<br>' . $this->payment_methods($post, $fields_class[$key]) . '</label>';
+                $return = '<label>' . strip_tags($fields_label[$key], '<a>') . '<br>' . $this->payment_methods($post, $fields_class[$key]) . '</label>';
                 break;
             case 'priceoptions':
-                $return = '<label>' . esc_html($fields_label[$key]) . '<br>' . $this->price_options($post, $fields_class[$key]) . '</label>';
+                $return = '<label>' . strip_tags($fields_label[$key], '<a>') . '<br>' . $this->price_options($post, $fields_class[$key]) . '</label>';
                 break;
         }
 
@@ -339,7 +339,6 @@ Class RFMP_Start {
             $priceoptions .= '</select>';
         }
 
-        $open_amount   = isset($_POST['rfmp_amount_' . $post]) ? $_POST['rfmp_amount_' . $post] : '';
         $priceoptions .= '<p id="rfmp_open_amount_' . $post . '" style="display:none;"><label>' . esc_html__('Amount', 'mollie-forms') . ' <span style="color:red;">*</span><br><input type="text" value="' . esc_attr($open_amount) . '" name="rfmp_amount_' . $post . '"> <span id="rfmp_amount_freq_' . $post . '"></span></label><input type="hidden" name="rfmp_amount_required_' . $post . '" id="rfmp_open_amount_required_' . $post . '" value="0"></p>';
 
 
