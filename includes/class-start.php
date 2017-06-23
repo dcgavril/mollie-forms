@@ -69,20 +69,21 @@ Class RFMP_Start {
 
     public function add_rfmp_shortcode($atts)
     {
-        $output = '<form method="post">';
         $atts = shortcode_atts(array(
             'id' => ''
         ), $atts);
-
         $post = get_post($atts['id']);
 
         if (!$post->ID)
             return __('Form not found', 'mollie-forms');
 
+        $output = '<form method="post">';
+        $output .= '<input type="hidden" name="rfmp-post" value="' . $post->ID . '">';
+
         $fields_type = get_post_meta($post->ID, '_rfmp_fields_type', true);
 
         // POST request and check required fields
-        if ($this->check_required($post->ID) && $_SERVER['REQUEST_METHOD'] == 'POST')
+        if ($this->check_required($post->ID) && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['rfmp-post']) && $_POST['rfmp-post'] == $post->ID)
             $this->do_post($post->ID);
 
         // Message after payment
