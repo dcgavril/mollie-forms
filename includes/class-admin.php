@@ -373,9 +373,6 @@ Class RFMP_Admin {
     {
         wp_nonce_field(basename(__FILE__), 'rfmp_meta_box_emails_nonce');
 
-
-
-
         $enabled_paid_customer      = get_post_meta($post->ID, '_rfmp_enabled_paid_customer', true);
         $email_paid_customer        = get_post_meta($post->ID, '_rfmp_email_paid_customer', true);
         $subject_paid_customer      = get_post_meta($post->ID, '_rfmp_subject_paid_customer', true);

@@ -78,6 +78,8 @@ Class RFMP_Start {
             return __('Form not found', 'mollie-forms');
 
         $output = '<form method="post">';
+
+        $output .= wp_nonce_field(basename(__FILE__), 'rfmp_form_' . $post->ID . '_nonce', true, false);
         $output .= '<input type="hidden" name="rfmp-post" value="' . $post->ID . '">';
 
         $fields_type = get_post_meta($post->ID, '_rfmp_fields_type', true);
@@ -382,6 +384,9 @@ Class RFMP_Start {
 
     private function do_post($post)
     {
+        if (!isset($_POST['rfmp_form_' . $post . '_nonce']) || !wp_verify_nonce($_POST['rfmp_form_' . $post . '_nonce'], basename(__FILE__)))
+            return '';
+
         $api_key    = get_post_meta($post, '_rfmp_api_key', true);
         $webhook    = get_home_url(null, RFMP_WEBHOOK . $post . '/');
         $redirect   = get_home_url(null, $_SERVER['REQUEST_URI'] . (strstr($_SERVER['REQUEST_URI'], '?') ? '&' : '?'));
@@ -473,6 +478,12 @@ Class RFMP_Start {
                     $desc
                 ));
                 $registration_id = $this->wpdb->insert_id;
+
+                if (!$registration_id)
+                {
+                    $message_error = get_post_meta($post, '_rfmp_msg_error', true);
+                    return '<p style="color: red">' . esc_html($message_error) . '</p>';
+                }
 
                 // Check frequency
                 if ($option_frequency[$option] == 'once')
