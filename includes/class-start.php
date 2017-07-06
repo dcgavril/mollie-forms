@@ -150,6 +150,9 @@ Class RFMP_Start {
             case 'email':
                 $return = '<label>' . strip_tags($fields_label[$key], '<a>') . $required . '<br><input type="email" name="' . $name . '" class="' . esc_attr($fields_class[$key]) . '" ' . ($fields_required[$key] ? 'required' : '') . ' value="' . esc_attr($form_value) . '" style="width: 100%;"></label>';
                 break;
+            case 'date':
+                $return = '<label>' . strip_tags($fields_label[$key], '<a>') . $required . '<br><input type="date" name="' . $name . '" class="' . esc_attr($fields_class[$key]) . '" ' . ($fields_required[$key] ? 'required' : '') . ' value="' . esc_attr($form_value) . '" style="width: 100%;"></label>';
+                break;
             case 'checkbox':
                 $return = '<label><input type="checkbox" name="' . $name . '" class="' . esc_attr($fields_class[$key]) . '" value="1" ' . ($fields_required[$key] ? 'required' : '') . ($form_value == '1' ? ' checked' : '') . '> ' . strip_tags($fields_label[$key], '<a>') . $required . '</label>';
                 break;
@@ -422,8 +425,6 @@ Class RFMP_Start {
                 $fixed              = get_post_meta($post, '_rfmp_payment_method_fixed', true);
                 $variable           = get_post_meta($post, '_rfmp_payment_method_variable', true);
 
-                $desc               = $option_desc[$option];
-
                 if ($option_pricetype[$option] == 'open')
                     $price          = isset($_POST['rfmp_amount_' . $post]) ? (float) str_replace(',','.',$_POST['rfmp_amount_' . $post]) : 0;
                 else
@@ -482,78 +483,106 @@ Class RFMP_Start {
                 if (!$registration_id)
                 {
                     $message_error = get_post_meta($post, '_rfmp_msg_error', true);
-                    return '<p style="color: red">' . esc_html($message_error) . '</p>';
-                }
-
-                // Check frequency
-                if ($option_frequency[$option] == 'once')
-                {
-                    // Single payment
-                    $payment = $this->mollie->payments->create(array(
-                        'amount'            => $total,
-                        'description'       => $desc,
-                        'method'            => $method,
-                        'redirectUrl'       => $redirect . 'payment=' . $rfmp_id,
-                        'webhookUrl'        => $webhook,
-                        'customerId'        => $customer->id,
-                        'metadata'          => array(
-                            'rfmp_id'   => $rfmp_id
-                        )
-                    ));
+                    echo '<p style="color: red">' . esc_html($message_error) . '</p>';
                 }
                 else
                 {
-                    // Recurring payment, subscription
-                    $payment = $this->mollie->payments->create(array(
-                        'amount'            => $total,
-                        'description'       => $desc,
-                        'method'            => $method,
-                        'redirectUrl'       => $redirect . 'payment=' . $rfmp_id ,
-                        'webhookUrl'        => $webhook . 'first/' . $registration_id,
-                        'customerId'        => $customer->id,
-                        'recurringType'     => 'first',
-                        'metadata'          => array(
-                            'rfmp_id'   => $rfmp_id
-                        )
-                    ));
-                }
+                    // Payment description
+                    $search_desc    = array(
+                        '{rfmp="id"}',
+                        '{rfmp="amount"}',
+                        '{rfmp="priceoption"}',
+                        '{rfmp="form_title"}',
+                    );
+                    $replace_desc   = array(
+                        $rfmp_id,
+                        '€' . number_format($total, 2, ',', ''),
+                        $option_desc[$option],
+                        get_the_title($post),
+                    );
 
-                // Add field values of registration
-                foreach ($field_label as $key => $field)
-                {
-                    if ($field_type[$key] != 'submit')
+
+                    // Add field values of registration
+                    foreach ($field_label as $key => $field)
                     {
-                        $value = $_POST['form_' . $post . '_field_' . $key];
-                        if ($field_type[$key] == 'payment_methods')
-                            $value = $_POST['rfmp_payment_method_' . $post];
-                        elseif ($field_type[$key] == 'priceoptions')
-                            $value = $desc;
+                        if ($field_type[$key] != 'submit')
+                        {
+                            $value = $_POST['form_' . $post . '_field_' . $key];
+                            if ($field_type[$key] == 'payment_methods')
+                                $value = $_POST['rfmp_payment_method_' . $post];
+                            elseif ($field_type[$key] == 'priceoptions')
+                                $value = $option_desc[$option];
 
-                        $this->wpdb->query($this->wpdb->prepare("INSERT INTO " . RFMP_TABLE_REGISTRATION_FIELDS . "
+                            $search_desc[]  = '{rfmp="' . trim($field) . '"}';
+                            $replace_desc[] = $value;
+
+                            $this->wpdb->query($this->wpdb->prepare("INSERT INTO " . RFMP_TABLE_REGISTRATION_FIELDS . "
                     ( registration_id, field, `value`, `type` )
                     VALUES ( %d, %s, %s, %s )",
-                            $registration_id,
-                            $field,
-                            $value,
-                            $field_type[$key]
+                                $registration_id,
+                                $field,
+                                $value,
+                                $field_type[$key]
+                            ));
+                        }
+                    }
+
+
+                    $desc = get_post_meta($post, '_rfmp_payment_description', true);
+                    if (!$desc)
+                        $desc = '{rfmp="priceoption"}';
+
+                    $desc = str_replace($search_desc, $replace_desc, $desc);
+
+
+                    // Check frequency
+                    if ($option_frequency[$option] == 'once')
+                    {
+                        // Single payment
+                        $payment = $this->mollie->payments->create(array(
+                            'amount'            => $total,
+                            'description'       => $desc,
+                            'method'            => $method,
+                            'redirectUrl'       => $redirect . 'payment=' . $rfmp_id,
+                            'webhookUrl'        => $webhook,
+                            'customerId'        => $customer->id,
+                            'metadata'          => array(
+                                'rfmp_id'   => $rfmp_id
+                            )
                         ));
                     }
-                }
+                    else
+                    {
+                        // Recurring payment, subscription
+                        $payment = $this->mollie->payments->create(array(
+                            'amount'            => $total,
+                            'description'       => $desc,
+                            'method'            => $method,
+                            'redirectUrl'       => $redirect . 'payment=' . $rfmp_id ,
+                            'webhookUrl'        => $webhook . 'first/' . $registration_id,
+                            'customerId'        => $customer->id,
+                            'recurringType'     => 'first',
+                            'metadata'          => array(
+                                'rfmp_id'   => $rfmp_id
+                            )
+                        ));
+                    }
 
-                // Create payment for registration
-                $this->wpdb->query($this->wpdb->prepare("INSERT INTO " . RFMP_TABLE_PAYMENTS . "
+                    // Create payment for registration
+                    $this->wpdb->query($this->wpdb->prepare("INSERT INTO " . RFMP_TABLE_PAYMENTS . "
                     ( created_at, registration_id, payment_id, payment_method, payment_mode, payment_status, amount, rfmp_id )
                     VALUES ( NOW(), %d, %s, %s, %s, %s, %s, %s )",
-                    $registration_id,
-                    $payment->id,
-                    $payment->method,
-                    $payment->mode,
-                    $payment->status,
-                    $payment->amount,
-                    $rfmp_id
-                ));
+                        $registration_id,
+                        $payment->id,
+                        $payment->method,
+                        $payment->mode,
+                        $payment->status,
+                        $payment->amount,
+                        $rfmp_id
+                    ));
 
-                return wp_redirect($payment->getPaymentUrl());
+                    return wp_redirect($payment->getPaymentUrl());
+                }
             }
 
 

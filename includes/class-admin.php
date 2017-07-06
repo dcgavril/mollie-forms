@@ -84,6 +84,7 @@ Class RFMP_Admin {
                         <option value="textarea"><?php esc_html_e('Text area', 'mollie-forms');?></option>
                         <option value="dropdown"><?php esc_html_e('Dropdown', 'mollie-forms');?></option>
                         <option value="checkbox"><?php esc_html_e('Checkbox', 'mollie-forms');?></option>
+                        <option value="date"><?php esc_html_e('Date', 'mollie-forms');?></option>
                     </select>
                 </td>
                 <td><input type="text" name="rfmp_fields_label[]" style="width:100%"></td>
@@ -168,6 +169,7 @@ Class RFMP_Admin {
                                         <option value="textarea"<?php echo ($type == 'textarea' ? ' selected' : '');?>><?php esc_html_e('Text area', 'mollie-forms');?></option>
                                         <option value="dropdown"<?php echo ($type == 'dropdown' ? ' selected' : '');?>><?php esc_html_e('Dropdown', 'mollie-forms');?></option>
                                         <option value="checkbox"<?php echo ($type == 'checkbox' ? ' selected' : '');?>><?php esc_html_e('Checkbox', 'mollie-forms');?></option>
+                                        <option value="date"<?php echo ($type == 'date' ? ' selected' : '');?>><?php esc_html_e('Date', 'mollie-forms');?></option>
                                     </select>
                                 </td>
                                 <td><input type="text" name="rfmp_fields_label[]" value="<?php echo esc_attr($field_label[$key]);?>" style="width:100%"></td>
@@ -284,6 +286,7 @@ Class RFMP_Admin {
         $display_po         = get_post_meta($post->ID, '_rfmp_priceoptions_display', true);
         $class_success      = get_post_meta($post->ID, '_rfmp_class_success', true);
         $class_error        = get_post_meta($post->ID, '_rfmp_class_error', true);
+        $payment_description= get_post_meta($post->ID, '_rfmp_payment_description', true);
         $message_success    = get_post_meta($post->ID, '_rfmp_msg_success', true);
         $message_error      = get_post_meta($post->ID, '_rfmp_msg_error', true);
         ?>
@@ -329,6 +332,19 @@ Class RFMP_Admin {
                             <option value="text"<?php echo ($display_pm == 'text' ? ' selected' : '');?>><?php esc_html_e('List with text', 'mollie-forms');?></option>
                             <option value="icons"<?php echo ($display_pm == 'icons' ? ' selected' : '');?>><?php esc_html_e('List with icons', 'mollie-forms');?></option>
                         </select>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row" class="titledesc">
+                        <label for="rfmp_payment_desc"><?php esc_html_e('Payment description', 'mollie-forms');?></label>
+                    </th>
+                    <td class="forminp forminp-text">
+                        <input name="rfmp_payment_description" id="rfmp_payment_desc" value="<?php echo esc_attr($payment_description);?>" required type="text" style="width: 350px"><br>
+                        <small>
+                            <?php esc_html_e('You can use variables in the payment description. Use {rfmp="label"} as variable and replace label with your filled in label of the field.', 'mollie-forms');?><br>
+                            <?php esc_html_e('Examples: {rfmp="Name"} {rfmp="Email address"} {rfmp="group"}', 'mollie-forms');?><br>
+                            <?php esc_html_e('You can also use fixed variables for the amount {rfmp="amount"} and ID {rfmp="id"} and price option {rfmp="priceoption"} and form title {rfmp="form_title"}', 'mollie-forms');?>
+                        </small>
                     </td>
                 </tr>
                 <tr valign="top">
@@ -722,6 +738,7 @@ Class RFMP_Admin {
         update_post_meta($post_id, '_rfmp_priceoptions_display', $_POST['rfmp_priceoptions_display']);
         update_post_meta($post_id, '_rfmp_class_success', $_POST['rfmp_class_success']);
         update_post_meta($post_id, '_rfmp_class_error', $_POST['rfmp_class_error']);
+        update_post_meta($post_id, '_rfmp_payment_description', $_POST['rfmp_payment_description']);
         update_post_meta($post_id, '_rfmp_msg_success', $_POST['rfmp_msg_success']);
         update_post_meta($post_id, '_rfmp_msg_error', $_POST['rfmp_msg_error']);
 
