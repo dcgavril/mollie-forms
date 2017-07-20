@@ -232,13 +232,15 @@ class RFMP_Webhook {
             '{rfmp="status"}',
             '{rfmp="payment_id"}',
             '{rfmp="form_title"}',
+            '{rfmp="created_at"}',
         );
         $replace    = array(
             $payment->amount,
             $this->frequency_label($registration->price_frequency),
             $payment->status,
             $payment->id,
-            get_the_title($post)
+            get_the_title($post),
+            date_i18n(get_option('date_format') . ' ' . get_option('time_format'), strtotime($registration->created_at))
         );
 
         $fields = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_REGISTRATION_FIELDS . " WHERE registration_id=" . (int) $registration_id);
