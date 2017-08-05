@@ -303,6 +303,7 @@ Class RFMP_Start {
         $option_desc        = get_post_meta($post, '_rfmp_priceoption_desc', true);
         $option_price       = get_post_meta($post, '_rfmp_priceoption_price', true);
         $option_pricetype   = get_post_meta($post, '_rfmp_priceoption_pricetype', true);
+        $option_shipping    = get_post_meta($post, '_rfmp_priceoption_shipping', true);
         $option_frequency   = get_post_meta($post, '_rfmp_priceoption_frequency', true);
         $option_frequencyval= get_post_meta($post, '_rfmp_priceoption_frequencyval', true);
         $option_times       = get_post_meta($post, '_rfmp_priceoption_times', true);
@@ -322,6 +323,11 @@ Class RFMP_Start {
                 else
                     $price = $this->frequency_label($frequency);
 
+                if (trim($option_shipping[$key]))
+                {
+                    $price .= ' + &euro; ' . number_format($option_shipping[$key], 2, ',', '') . ' ' . esc_html__('Shipping costs', 'mollie-forms');
+                }
+
                 $times = $option_times[$key] > 0 ? '; ' . sprintf(esc_html__('Stops after %s times', 'mollie-forms'), $option_times[$key]) : '';
                 $priceoptions .= '<li><label><input type="radio" onchange="rfmp_recurring_methods_' . $post . '();" data-frequency="' . esc_attr($option_frequency[$key]) . '" data-freq="' . $this->frequency_label($frequency) . '" data-pricetype="' . $option_pricetype[$key] . '" name="rfmp_priceoptions_' . $post . '" value="' . esc_attr($key) . '"' . ($form_value == $key || $first ? ' checked' : '') . '> ' . esc_html($desc) . (!empty($price) || !empty($times) ? ' (' . $price . $times . ')' : '') . '</label></li>';
                 $first = false;
@@ -338,6 +344,11 @@ Class RFMP_Start {
                     $price = '&euro;' . number_format($option_price[$key], 2, ',', '') . ' ' . $this->frequency_label($frequency);
                 else
                     $price = $this->frequency_label($frequency);
+
+                if (trim($option_shipping[$key]))
+                {
+                    $price .= ' + &euro; ' . number_format($option_shipping[$key], 2, ',', '') . ' ' . esc_html__('Shipping costs', 'mollie-forms');
+                }
 
                 $times = $option_times[$key] > 0 ? '; ' . sprintf(esc_html__('Stops after %s times', 'mollie-forms'), $option_times[$key]) : '';
                 $priceoptions .= '<option data-frequency="' . esc_attr($option_frequency[$key]) . '" data-freq="' . $this->frequency_label($frequency) . '" data-pricetype="' . $option_pricetype[$key] . '" value="' . esc_attr($key) . '"' . ($form_value == $key ? ' selected' : '') . '>' . esc_html($desc) . ' (' . $price . $times . ')</option>';
@@ -409,6 +420,7 @@ Class RFMP_Start {
                 $option_desc        = get_post_meta($post, '_rfmp_priceoption_desc', true);
                 $option_price       = get_post_meta($post, '_rfmp_priceoption_price', true);
                 $option_pricetype   = get_post_meta($post, '_rfmp_priceoption_pricetype', true);
+                $option_shipping    = get_post_meta($post, '_rfmp_priceoption_shipping', true);
                 $option_frequency   = get_post_meta($post, '_rfmp_priceoption_frequency', true);
                 $option_frequencyval= get_post_meta($post, '_rfmp_priceoption_frequencyval', true);
                 $option_times       = get_post_meta($post, '_rfmp_priceoption_times', true);
@@ -429,6 +441,12 @@ Class RFMP_Start {
                     $price          = isset($_POST['rfmp_amount_' . $post]) ? (float) str_replace(',','.',$_POST['rfmp_amount_' . $post]) : 0;
                 else
                     $price          = (float) str_replace(',','.',$option_price[$option]);
+
+                if (trim($option_shipping[$option]))
+                {
+                    // Shipping costs
+                    $price         += (float) str_replace(',','.',$option_shipping[$option]);
+                }
 
                 if ($option_frequency[$option] == 'once')
                     $option_frequencyval[$option] = '';

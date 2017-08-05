@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Mollie Forms\n"
-"POT-Creation-Date: 2017-07-06 16:49+0200\n"
+"POT-Creation-Date: 2017-08-05 11:15+0200\n"
 "PO-Revision-Date: 2016-12-29 15:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,19 +10,19 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: includes/class-admin.php:32 includes/class-admin.php:33
-#: includes/class-admin.php:810 includes/class-admin.php:836
+#: includes/class-admin.php:819 includes/class-admin.php:845
 msgid "Registrations"
 msgstr ""
 
 #: includes/class-admin.php:43 includes/class-admin.php:44
-#: includes/class-admin.php:950
+#: includes/class-admin.php:959
 msgid "Registration"
 msgstr ""
 
@@ -54,7 +54,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: includes/class-admin.php:75 includes/class-admin.php:1015
+#: includes/class-admin.php:75 includes/class-admin.php:1024
 msgid "Payment method"
 msgstr ""
 
@@ -71,7 +71,7 @@ msgid "Text area"
 msgstr ""
 
 #: includes/class-admin.php:85 includes/class-admin.php:170
-#: includes/class-admin.php:319 includes/class-admin.php:330
+#: includes/class-admin.php:327 includes/class-admin.php:338
 msgid "Dropdown"
 msgstr ""
 
@@ -84,7 +84,7 @@ msgid "Date"
 msgstr ""
 
 #: includes/class-admin.php:94 includes/class-admin.php:179
-#: includes/class-admin.php:227 includes/class-admin.php:267
+#: includes/class-admin.php:231 includes/class-admin.php:275
 #: includes/class-registrations-table.php:25
 msgid "Delete"
 msgstr ""
@@ -121,327 +121,332 @@ msgstr ""
 msgid "Add new field"
 msgstr ""
 
-#: includes/class-admin.php:210 includes/class-admin.php:250
+#: includes/class-admin.php:211 includes/class-admin.php:255
 msgid "Fixed"
 msgstr ""
 
-#: includes/class-admin.php:211 includes/class-admin.php:251
+#: includes/class-admin.php:212 includes/class-admin.php:256
 msgid "Open"
 msgstr ""
 
-#: includes/class-admin.php:218 includes/class-admin.php:258
-#: includes/class-admin.php:1057
+#: includes/class-admin.php:222 includes/class-admin.php:266
+#: includes/class-admin.php:1066
 msgid "Once"
 msgstr ""
 
-#: includes/class-admin.php:219 includes/class-admin.php:259
+#: includes/class-admin.php:223 includes/class-admin.php:267
 msgid "Months"
 msgstr ""
 
-#: includes/class-admin.php:220 includes/class-admin.php:260
+#: includes/class-admin.php:224 includes/class-admin.php:268
 msgid "Weeks"
 msgstr ""
 
-#: includes/class-admin.php:221 includes/class-admin.php:261
+#: includes/class-admin.php:225 includes/class-admin.php:269
 msgid "Days"
 msgstr ""
 
-#: includes/class-admin.php:236 includes/class-registrations-table.php:15
+#: includes/class-admin.php:240 includes/class-registrations-table.php:15
 msgid "Description"
 msgstr ""
 
-#: includes/class-admin.php:237
+#: includes/class-admin.php:241
 msgid "Price"
 msgstr ""
 
-#: includes/class-admin.php:238 includes/class-registrations-table.php:13
+#: includes/class-admin.php:242 includes/class-start.php:328
+#: includes/class-start.php:350
+msgid "Shipping costs"
+msgstr ""
+
+#: includes/class-admin.php:243 includes/class-registrations-table.php:13
 msgid "Frequency"
 msgstr ""
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:244
 msgid "Number of times"
 msgstr ""
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:244
 msgid "The number of times including the first payment. Leave empty or set to 0 for an on-going subscription"
 msgstr ""
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:281
 msgid "Add new price option"
 msgstr ""
 
-#: includes/class-admin.php:298
+#: includes/class-admin.php:306
 msgid "Shortcode"
 msgstr ""
 
-#: includes/class-admin.php:302
+#: includes/class-admin.php:310
 msgid "Place this shortcode on a page or in a post"
 msgstr ""
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:315
 msgid "Mollie API-key"
 msgstr ""
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:323
 msgid "Price options display"
 msgstr ""
 
-#: includes/class-admin.php:320
+#: includes/class-admin.php:328
 msgid "List"
 msgstr ""
 
-#: includes/class-admin.php:326
+#: includes/class-admin.php:334
 msgid "Payment methods display"
 msgstr ""
 
-#: includes/class-admin.php:331
+#: includes/class-admin.php:339
 msgid "List with icons and text"
 msgstr ""
 
-#: includes/class-admin.php:332
+#: includes/class-admin.php:340
 msgid "List with text"
 msgstr ""
 
-#: includes/class-admin.php:333
+#: includes/class-admin.php:341
 msgid "List with icons"
 msgstr ""
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:347
 msgid "Payment description"
 msgstr ""
 
-#: includes/class-admin.php:344
+#: includes/class-admin.php:352
 msgid "You can use variables in the payment description. Use {rfmp=\"label\"} as variable and replace label with your filled in label of the field."
 msgstr ""
 
-#: includes/class-admin.php:345 includes/class-admin.php:673
+#: includes/class-admin.php:353 includes/class-admin.php:681
 msgid "Examples: {rfmp=\"Name\"} {rfmp=\"Email address\"} {rfmp=\"group\"}"
 msgstr ""
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:354
 msgid "You can also use fixed variables for the amount {rfmp=\"amount\"} and ID {rfmp=\"id\"} and price option {rfmp=\"priceoption\"} and form title {rfmp=\"form_title\"}"
 msgstr ""
 
-#: includes/class-admin.php:352
+#: includes/class-admin.php:360
 msgid "Success message"
 msgstr ""
 
-#: includes/class-admin.php:360
+#: includes/class-admin.php:368
 msgid "Error message"
 msgstr ""
 
-#: includes/class-admin.php:368
+#: includes/class-admin.php:376
 msgid "Class success message"
 msgstr ""
 
-#: includes/class-admin.php:376
+#: includes/class-admin.php:384
 msgid "Class error message"
 msgstr ""
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:441
 msgid "Customer: Payment successful"
 msgstr ""
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:442
 msgid "Customer: Payment expired"
 msgstr ""
 
-#: includes/class-admin.php:435
+#: includes/class-admin.php:443
 msgid "Customer: Payment cancelled"
 msgstr ""
 
-#: includes/class-admin.php:436
+#: includes/class-admin.php:444
 msgid "Merchant: Payment successful"
 msgstr ""
 
-#: includes/class-admin.php:437
+#: includes/class-admin.php:445
 msgid "Merchant: Payment expired"
 msgstr ""
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:446
 msgid "Merchant: Payment cancelled"
-msgstr ""
-
-#: includes/class-admin.php:445 includes/class-admin.php:483
-#: includes/class-admin.php:521 includes/class-admin.php:559
-#: includes/class-admin.php:597 includes/class-admin.php:635
-msgid "Enabled"
 msgstr ""
 
 #: includes/class-admin.php:453 includes/class-admin.php:491
 #: includes/class-admin.php:529 includes/class-admin.php:567
 #: includes/class-admin.php:605 includes/class-admin.php:643
-msgid "Subject"
+msgid "Enabled"
 msgstr ""
 
 #: includes/class-admin.php:461 includes/class-admin.php:499
-#: includes/class-admin.php:537
-msgid "From \"email\""
+#: includes/class-admin.php:537 includes/class-admin.php:575
+#: includes/class-admin.php:613 includes/class-admin.php:651
+msgid "Subject"
 msgstr ""
 
 #: includes/class-admin.php:469 includes/class-admin.php:507
 #: includes/class-admin.php:545
-msgid "From \"name\""
+msgid "From \"email\""
 msgstr ""
 
-#: includes/class-admin.php:575 includes/class-admin.php:613
-#: includes/class-admin.php:651
-msgid "To/from \"email\""
+#: includes/class-admin.php:477 includes/class-admin.php:515
+#: includes/class-admin.php:553
+msgid "From \"name\""
 msgstr ""
 
 #: includes/class-admin.php:583 includes/class-admin.php:621
 #: includes/class-admin.php:659
+msgid "To/from \"email\""
+msgstr ""
+
+#: includes/class-admin.php:591 includes/class-admin.php:629
+#: includes/class-admin.php:667
 msgid "To/from \"name\""
 msgstr ""
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:680
 msgid "You can use variables in the subjects and messages. Use {rfmp=\"label\"} as variable and replace label with your filled in label of the field."
 msgstr ""
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:682
 msgid "You can also use fixed variables for the amount {rfmp=\"amount\"} and payment status {rfmp=\"status\"} and payment interval {rfmp=\"interval\"} and payment ID {rfmp=\"payment_id\"} and form title {rfmp=\"form_title\"}"
 msgstr ""
 
-#: includes/class-admin.php:690 includes/class-start.php:401
+#: includes/class-admin.php:698 includes/class-start.php:412
 msgid "No API-key set"
 msgstr ""
 
-#: includes/class-admin.php:699
+#: includes/class-admin.php:707
 msgid "Surcharge:"
 msgstr ""
 
-#: includes/class-admin.php:828
+#: includes/class-admin.php:837
 msgid "The registration is successful deleted"
 msgstr ""
 
-#: includes/class-admin.php:846 includes/class-admin.php:852
+#: includes/class-admin.php:855 includes/class-admin.php:861
 msgid "Registration not found"
 msgstr ""
 
-#: includes/class-admin.php:936
+#: includes/class-admin.php:945
 msgid "The payment is successful refunded"
 msgstr ""
 
-#: includes/class-admin.php:939
+#: includes/class-admin.php:948
 msgid "The payment can not be refunded"
 msgstr ""
 
-#: includes/class-admin.php:942
+#: includes/class-admin.php:951
 msgid "The subscription is successful cancelled"
 msgstr ""
 
-#: includes/class-admin.php:961 includes/class-registrations-table.php:11
+#: includes/class-admin.php:970 includes/class-registrations-table.php:11
 msgid "Total price"
 msgstr ""
 
-#: includes/class-admin.php:965
+#: includes/class-admin.php:974
 msgid "Mollie Customer ID"
 msgstr ""
 
-#: includes/class-admin.php:972
+#: includes/class-admin.php:981
 msgid "Subscriptions"
 msgstr ""
 
-#: includes/class-admin.php:976
+#: includes/class-admin.php:985
 msgid "Subscription ID"
 msgstr ""
 
-#: includes/class-admin.php:977 includes/class-admin.php:1014
+#: includes/class-admin.php:986 includes/class-admin.php:1023
 msgid "Created at"
 msgstr ""
 
-#: includes/class-admin.php:978
+#: includes/class-admin.php:987
 msgid "Subscription mode"
 msgstr ""
 
-#: includes/class-admin.php:979
+#: includes/class-admin.php:988
 msgid "Subscription amount"
 msgstr ""
 
-#: includes/class-admin.php:980
+#: includes/class-admin.php:989
 msgid "Subscription number of times"
 msgstr ""
 
-#: includes/class-admin.php:981
+#: includes/class-admin.php:990
 msgid "Subscription interval"
 msgstr ""
 
-#: includes/class-admin.php:982
+#: includes/class-admin.php:991
 msgid "Subscription description"
 msgstr ""
 
-#: includes/class-admin.php:983 includes/class-registrations-table.php:14
+#: includes/class-admin.php:992 includes/class-registrations-table.php:14
 msgid "Subscription status"
 msgstr ""
 
-#: includes/class-admin.php:1001
+#: includes/class-admin.php:1010
 msgid "Cancel"
 msgstr ""
 
-#: includes/class-admin.php:1008
+#: includes/class-admin.php:1017
 msgid "Payments"
 msgstr ""
 
-#: includes/class-admin.php:1012
+#: includes/class-admin.php:1021
 msgid "ID"
 msgstr ""
 
-#: includes/class-admin.php:1013
+#: includes/class-admin.php:1022
 msgid "Payment ID"
 msgstr ""
 
-#: includes/class-admin.php:1016
+#: includes/class-admin.php:1025
 msgid "Payment mode"
 msgstr ""
 
-#: includes/class-admin.php:1017 includes/class-registrations-table.php:12
+#: includes/class-admin.php:1026 includes/class-registrations-table.php:12
 msgid "Payment status"
 msgstr ""
 
-#: includes/class-admin.php:1018 includes/class-start.php:348
+#: includes/class-admin.php:1027 includes/class-start.php:359
 msgid "Amount"
 msgstr ""
 
-#: includes/class-admin.php:1042
+#: includes/class-admin.php:1051
 msgid "Refund"
 msgstr ""
 
-#: includes/class-admin.php:1060 includes/class-admin.php:1063
+#: includes/class-admin.php:1069 includes/class-admin.php:1072
 #: includes/class-registrations-table.php:118
-#: includes/class-registrations-table.php:121 includes/class-start.php:632
-#: includes/class-start.php:635 includes/class-webhook.php:298
-#: includes/class-webhook.php:301
+#: includes/class-registrations-table.php:121 includes/class-start.php:650
+#: includes/class-start.php:653 includes/class-webhook.php:300
+#: includes/class-webhook.php:303
 msgid "per month"
 msgstr ""
 
-#: includes/class-admin.php:1066 includes/class-registrations-table.php:124
-#: includes/class-start.php:638 includes/class-webhook.php:304
+#: includes/class-admin.php:1075 includes/class-registrations-table.php:124
+#: includes/class-start.php:656 includes/class-webhook.php:306
 msgid "each quarter"
 msgstr ""
 
-#: includes/class-admin.php:1069 includes/class-registrations-table.php:127
-#: includes/class-start.php:641 includes/class-webhook.php:307
+#: includes/class-admin.php:1078 includes/class-registrations-table.php:127
+#: includes/class-start.php:659 includes/class-webhook.php:309
 msgid "per year"
 msgstr ""
 
-#: includes/class-admin.php:1072 includes/class-admin.php:1075
+#: includes/class-admin.php:1081 includes/class-admin.php:1084
 #: includes/class-registrations-table.php:130
-#: includes/class-registrations-table.php:133 includes/class-start.php:644
-#: includes/class-start.php:647 includes/class-webhook.php:310
-#: includes/class-webhook.php:313
+#: includes/class-registrations-table.php:133 includes/class-start.php:662
+#: includes/class-start.php:665 includes/class-webhook.php:312
+#: includes/class-webhook.php:315
 msgid "per week"
 msgstr ""
 
-#: includes/class-admin.php:1078 includes/class-admin.php:1081
+#: includes/class-admin.php:1087 includes/class-admin.php:1090
 #: includes/class-registrations-table.php:136
-#: includes/class-registrations-table.php:139 includes/class-start.php:650
-#: includes/class-start.php:653 includes/class-webhook.php:316
-#: includes/class-webhook.php:319
+#: includes/class-registrations-table.php:139 includes/class-start.php:668
+#: includes/class-start.php:671 includes/class-webhook.php:318
+#: includes/class-webhook.php:321
 msgid "per day"
 msgstr ""
 
-#: includes/class-admin.php:1084 includes/class-registrations-table.php:142
-#: includes/class-start.php:656 includes/class-webhook.php:322
+#: includes/class-admin.php:1093 includes/class-registrations-table.php:142
+#: includes/class-start.php:674 includes/class-webhook.php:324
 msgid "each"
 msgstr ""
 
@@ -589,36 +594,36 @@ msgstr ""
 msgid "I hereby give authorization to collect the amount shown above from my account periodically."
 msgstr ""
 
-#: includes/class-start.php:325 includes/class-start.php:342
+#: includes/class-start.php:331 includes/class-start.php:353
 #, php-format
 msgid "Stops after %s times"
 msgstr ""
 
-#: includes/class-start.php:369
+#: includes/class-start.php:380
 #, php-format
 msgid "%s is a required field"
 msgstr ""
 
-#: includes/class-start.php:376
+#: includes/class-start.php:387
 msgid "Please give us authorization to collect the amount from your account periodically."
 msgstr ""
 
-#: includes/class-start.php:382
+#: includes/class-start.php:393
 msgid "Please fill in a higher amount."
 msgstr ""
 
-#: includes/class-start.php:620 includes/class-webhook.php:287
+#: includes/class-start.php:638 includes/class-webhook.php:289
 msgid "days"
 msgstr ""
 
-#: includes/class-start.php:621 includes/class-webhook.php:286
+#: includes/class-start.php:639 includes/class-webhook.php:288
 msgid "weeks"
 msgstr ""
 
-#: includes/class-start.php:622 includes/class-webhook.php:285
+#: includes/class-start.php:640 includes/class-webhook.php:287
 msgid "months"
 msgstr ""
 
-#: includes/class-webhook.php:288
+#: includes/class-webhook.php:290
 msgid "year"
 msgstr ""
