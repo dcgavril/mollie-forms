@@ -197,6 +197,7 @@ Class RFMP_Admin {
         $option_desc        = get_post_meta($post->ID, '_rfmp_priceoption_desc', true);
         $option_price       = get_post_meta($post->ID, '_rfmp_priceoption_price', true);
         $option_pricetype   = get_post_meta($post->ID, '_rfmp_priceoption_pricetype', true);
+        $option_shipping    = get_post_meta($post->ID, '_rfmp_priceoption_shipping', true);
         $option_frequency   = get_post_meta($post->ID, '_rfmp_priceoption_frequency', true);
         $option_frequencyval= get_post_meta($post->ID, '_rfmp_priceoption_frequencyval', true);
         $option_times       = get_post_meta($post->ID, '_rfmp_priceoption_times', true);
@@ -211,6 +212,9 @@ Class RFMP_Admin {
                         <option value="open"><?php esc_html_e('Open', 'mollie-forms');?></option>
                     </select>
                     <input type="number" min="0.50" step="any" name="rfmp_priceoptions_price[]">
+                </td>
+                <td>
+                    <input type="number" min="0.50" step="any" name="rfmp_priceoptions_shipping[]">
                 </td>
                 <td>
                     <input type="number" name="rfmp_priceoptions_frequencyval[]" style="width:50px;display:none;">
@@ -235,6 +239,7 @@ Class RFMP_Admin {
                         <th class="sort"></th>
                         <th><?php esc_html_e('Description', 'mollie-forms');?></th>
                         <th><?php esc_html_e('Price', 'mollie-forms');?> &euro;</th>
+                        <th><?php esc_html_e('Shipping costs', 'mollie-forms');?> &euro;</th>
                         <th><?php esc_html_e('Frequency', 'mollie-forms');?></th>
                         <th><?php esc_html_e('Number of times', 'mollie-forms');?> <a href="#" style="cursor: help;" title="<?php esc_html_e('The number of times including the first payment. Leave empty or set to 0 for an on-going subscription', 'mollie-forms');?>">?</a></th>
                         <th></th>
@@ -251,6 +256,9 @@ Class RFMP_Admin {
                                     <option value="open"<?php echo ($option_pricetype[$key] == 'open' ? ' selected' : '');?>><?php esc_html_e('Open', 'mollie-forms');?></option>
                                 </select>
                                 <input type="number" min="0.50" step="any" name="rfmp_priceoptions_price[]" value="<?php echo esc_attr($option_price[$key]);?>" style="<?php echo ($option_pricetype[$key] == 'open' ? 'display:none;' : '');?>">
+                            </td>
+                            <td>
+                                <input type="number" min="0.50" step="any" name="rfmp_priceoptions_shipping[]" value="<?php echo esc_attr($option_shipping[$key]);?>">
                             </td>
                             <td>
                                 <input type="number" name="rfmp_priceoptions_frequencyval[]" value="<?php echo esc_attr($option_frequencyval[$key]);?>" style="width:50px;<?php echo ($option_frequency[$key] == 'once' ? 'display:none;' : '');?>">
@@ -270,7 +278,7 @@ Class RFMP_Admin {
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="5"><input type="button" id="rfmp_add_priceoption" class="button" value="<?php esc_html_e('Add new price option', 'mollie-forms');?>"></th>
+                        <th colspan="7"><input type="button" id="rfmp_add_priceoption" class="button" value="<?php esc_html_e('Add new price option', 'mollie-forms');?>"></th>
                     </tr>
                 </tfoot>
             </table>
@@ -751,6 +759,7 @@ Class RFMP_Admin {
         update_post_meta($post_id, '_rfmp_priceoption_desc', $_POST['rfmp_priceoptions_desc']);
         update_post_meta($post_id, '_rfmp_priceoption_price', $_POST['rfmp_priceoptions_price']);
         update_post_meta($post_id, '_rfmp_priceoption_pricetype', $_POST['rfmp_priceoptions_pricetype']);
+        update_post_meta($post_id, '_rfmp_priceoption_shipping', $_POST['rfmp_priceoptions_shipping']);
         update_post_meta($post_id, '_rfmp_priceoption_frequency', $_POST['rfmp_priceoptions_frequency']);
         update_post_meta($post_id, '_rfmp_priceoption_frequencyval', $_POST['rfmp_priceoptions_frequencyval']);
         update_post_meta($post_id, '_rfmp_priceoption_times', $_POST['rfmp_priceoptions_times']);
