@@ -10,6 +10,7 @@ Class RFMP_Start {
 
         add_action('init', array($this, 'add_registration_form_type'), 0);
         add_shortcode('rfmp', array($this, 'add_rfmp_shortcode'));
+        add_shortcode('rfmp-total', array($this, 'add_rfmp_total_shortcode'));
 
         $this->wpdb     = $wpdb;
         $this->mollie   = new Mollie_API_Client;
@@ -123,6 +124,21 @@ Class RFMP_Start {
         $output .= '</form>';
 
         return $output;
+    }
+
+    public function add_rfmp_total_shortcode($atts)
+    {
+        $atts = shortcode_atts(array(
+            'id' => ''
+        ), $atts);
+        $post = get_post($atts['id']);
+
+        if (!$post->ID)
+            return __('Form not found', 'mollie-forms');
+
+        $total = $this->wpdb->get_var("SELECT SUM(payments.amount) FROM " . RFMP_TABLE_PAYMENTS . " payments INNER JOIN " . RFMP_TABLE_REGISTRATIONS . " registrations ON payments.registration_id = registrations.id AND registrations.post_id='" . esc_sql($post->ID) . "' WHERE payments.payment_status='paid' AND payments.payment_mode='live'");
+
+        return '€' . number_format($total, 2, ',', '');
     }
 
     private function field_form($post, $key, $type)
