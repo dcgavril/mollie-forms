@@ -3,7 +3,7 @@ Contributors: ndijkstra
 Tags: mollie,registration,form,payments,ideal,bancontact,sofort,bitcoin,belfius,creditcard,recurring,forms
 Requires at least: 3.8
 Tested up to: 4.8.0
-Stable tag: 0.4.2
+Stable tag: 0.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,9 @@ For recurring payments you will need a supported payment method. You have to act
 
 
 == Changelog ==
+
+= 0.4.3 =
+* Added [rfmp-total] tag to display the total raised amount per form
 
 = 0.4.2 =
 * New feature to add shipping costs to price option
