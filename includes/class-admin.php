@@ -312,6 +312,15 @@ Class RFMP_Admin {
                 </tr>
                 <tr valign="top">
                     <th scope="row" class="titledesc">
+                        <label for="rfmp_shortcode_total"><?php esc_html_e('Shortcode amount total raised', 'mollie-forms');?></label>
+                    </th>
+                    <td class="forminp forminp-text">
+                        <input id="rfmp_shortcode_total" value='[rfmp-total id="<?php echo esc_attr($post->ID);?>"]' readonly type="text" style="width: 350px" onfocus="this.select();"><br>
+                        <small><?php echo esc_html_e('Place this shortcode on a page or in a post', 'mollie-forms');?></small>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row" class="titledesc">
                         <label for="rfmp_api_key"><?php esc_html_e('Mollie API-key', 'mollie-forms');?></label>
                     </th>
                     <td class="forminp forminp-text">
