@@ -105,7 +105,7 @@ Class RFMP_Start {
             {
                 if ($payment->payment_status == 'paid')
                     return '<p class="' . esc_attr($class_success) . '">' . esc_html($message_success) . '</p>';
-                else
+                elseif($payment->payment_status != 'open')
                     $output .= '<p class="' . esc_attr($class_error) . '">' . esc_html($message_error) . '</p>';
             }
         }

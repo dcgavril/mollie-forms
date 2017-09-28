@@ -13,6 +13,7 @@ Class RFMP_Admin {
         add_action('save_post_rfmp', array($this, 'save_meta_boxes'), 10, 2);
         add_action('admin_enqueue_scripts', array($this, 'load_scripts'));
         add_action('admin_menu', array($this, 'admin_menu'));
+        add_action('admin_post_rfmp_export', array($this, 'export_registrations'));
 
         add_filter('post_row_actions', array($this, 'post_actions'), 10, 2);
 
@@ -826,6 +827,7 @@ Class RFMP_Admin {
             unset($actions['inline hide-if-no-js']);
             unset($actions['view']);
             $actions['registrations'] = '<a href="edit.php?post_type=rfmp&page=registrations&post=' . $post->ID . '">' . __('Registrations', 'mollie-forms') . '</a>';
+            $actions['export'] = '<a href="' . admin_url('admin-post.php?action=rfmp_export&post=' . $post->ID) . '">' . __('Export', 'mollie-forms') . '</a>';
         }
         return $actions;
     }
@@ -1064,6 +1066,52 @@ Class RFMP_Admin {
             </table><br>
         </div>
         <?php
+    }
+
+    public function export_registrations()
+    {
+        $post_id = $_GET['post'];
+
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=registrations.csv');
+        $output = fopen('php://output', 'w');
+
+        $headers = array(
+            esc_html__('Date/time', 'mollie-forms'),
+            esc_html__('Total', 'mollie-forms'),
+            esc_html__('Frequency', 'mollie-forms'),
+            esc_html__('Number of times', 'mollie-forms'),
+            esc_html__('Description', 'mollie-forms'),
+        );
+
+        // get all fields for headers
+        $registration = $this->wpdb->get_row("SELECT * FROM " . RFMP_TABLE_REGISTRATIONS . " WHERE post_id=" . (int) $post_id . " ORDER BY id DESC LIMIT 1");
+        $fields = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_REGISTRATION_FIELDS . " WHERE registration_id=" . (int) $registration->id);
+        foreach ($fields as $field)
+            $headers[] = esc_html($field->field);
+
+        // put header in csv
+        fputcsv($output, $headers);
+
+        // make all registration rows
+        $registrations = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_REGISTRATIONS . " WHERE post_id=" . (int) $post_id . " ORDER BY id DESC");
+        foreach ($registrations as $registration)
+        {
+            $rows = array(
+                $registration->created_at,
+                $registration->total_price,
+                $this->frequency_label($registration->price_frequency),
+                $registration->number_of_times,
+                $registration->description,
+            );
+
+            $fields = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_REGISTRATION_FIELDS . " WHERE registration_id=" . (int) $registration->id);
+            foreach ($fields as $field)
+                $rows[] = esc_html($field->value);
+
+            // put row in csv
+            fputcsv($output, $rows);
+        }
     }
 
     private function frequency_label($frequency)

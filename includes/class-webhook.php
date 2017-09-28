@@ -224,6 +224,7 @@ class RFMP_Webhook {
             return;
 
         $registration = $this->wpdb->get_row("SELECT * FROM " . RFMP_TABLE_REGISTRATIONS . " WHERE id=" . (int) $registration_id);
+        $priceoption = $this->wpdb->get_row("SELECT * FROM " . RFMP_TABLE_REGISTRATION_FIELDS . " WHERE type='priceoptions' AND registration_id=" . (int) $registration_id);
 
         $data = array();
         $search     = array(
@@ -233,6 +234,7 @@ class RFMP_Webhook {
             '{rfmp="payment_id"}',
             '{rfmp="form_title"}',
             '{rfmp="created_at"}',
+            '{rfmp="priceoption"}',
         );
         $replace    = array(
             $payment->amount,
@@ -240,7 +242,8 @@ class RFMP_Webhook {
             $payment->status,
             $payment->id,
             get_the_title($post),
-            date_i18n(get_option('date_format') . ' ' . get_option('time_format'), strtotime($registration->created_at))
+            date_i18n(get_option('date_format') . ' ' . get_option('time_format'), strtotime($registration->created_at)),
+            $priceoption->value
         );
 
         $fields = $this->wpdb->get_results("SELECT * FROM " . RFMP_TABLE_REGISTRATION_FIELDS . " WHERE registration_id=" . (int) $registration_id);
